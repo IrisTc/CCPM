@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment {
         MainActivity activity = (MainActivity) getActivity();
         final ListView lvNews = root.findViewById(R.id.lv_news);
         lvNews.setAdapter(new Myadapter());
-        Android_Async_Http_Get();
+//        Android_Async_Http_Get();
 
         return root;
     }
