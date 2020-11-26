@@ -27,6 +27,11 @@
         <activity android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.CCPM.NoActionBar"></activity>
+
+        <!--        项目详情页面-->
+        <activity android:name=".ProjectDetailActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.CCPM.NoActionBar"></activity>
     </application>
 
 </manifest>
