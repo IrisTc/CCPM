@@ -1,12 +1,14 @@
 package com.iris.ccpm.ui.items;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,6 +24,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.iris.ccpm.MainActivity;
+import com.iris.ccpm.ProjectDetailActivity;
 import com.iris.ccpm.R;
 import com.iris.ccpm.ui.home.HomeFragment;
 import com.loopj.android.http.AsyncHttpClient;
@@ -46,9 +49,18 @@ public class ItemsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_items, container, false);
 
         MainActivity activity = (MainActivity)getActivity();
-        final ListView textView = root.findViewById(R.id.text_slideshow);
+        ListView textView = root.findViewById(R.id.text_slideshow);
         textView.setAdapter(new Myadapter());
-        Android_Async_Http_Get();
+
+        textView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("click");
+                Intent intent = new Intent(getActivity(), ProjectDetailActivity.class);
+                startActivity(intent);
+            }
+        });
+//        Android_Async_Http_Get();
 
         return root;
     }

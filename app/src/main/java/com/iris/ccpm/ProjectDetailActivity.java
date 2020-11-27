@@ -86,7 +86,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
         memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
         memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
         memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        ProjectMembersAdapter member_adapter = new ProjectMembersAdapter(this,R.layout.list_item,memberList);
+        ProjectMembersAdapter member_adapter = new ProjectMembersAdapter(this,R.layout.member_item,memberList);
         ListView member_list = (ListView)members_view.findViewById(R.id.member_list);
         member_list.setAdapter(member_adapter);
 

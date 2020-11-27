@@ -66,12 +66,6 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public void viewProgram(View view){
-        Intent intent = new Intent();
-        intent.setClass(this, LoginActivity.class);
-        this.startActivity(intent);
-    }
-
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         switch(item.getItemId()){
             case R.id.action_add:{
