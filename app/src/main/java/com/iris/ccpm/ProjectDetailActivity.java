@@ -6,16 +6,15 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.iris.ccpm.adapter.Members;
 import com.iris.ccpm.adapter.MypagerAdapter;
+import com.iris.ccpm.adapter.Posts;
 import com.iris.ccpm.adapter.ProjectMembersAdapter;
+import com.iris.ccpm.adapter.ProjectPostsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,6 @@ public class ProjectDetailActivity extends AppCompatActivity {
     ViewPager vpChosen;
     ArrayList<View> viewList;
     MypagerAdapter mAdapter;
-    private static String[] title= {"1", "2", "3", "4", "5", "6"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +63,29 @@ public class ProjectDetailActivity extends AppCompatActivity {
         ImageView post_avatar=(ImageView)intro_view.findViewById(R.id.project_icon);
         post_avatar.setImageResource(R.drawable.logo);
 
+        List<Posts> postList = new ArrayList<Posts>();
+        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+        ProjectPostsAdapter adapter = new ProjectPostsAdapter(this,R.layout.list_item,postList);
         ListView list = (ListView)posts_view.findViewById(R.id.post_list);
-        list.setAdapter(new Myadapter());
+        list.setAdapter(adapter);
 
         List<Members> memberList = new ArrayList<Members>();
-        for(int i=0;i<8;++i)
-            memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
+        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
+        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
+        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
+        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
+        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
+        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
+        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
+        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
         ProjectMembersAdapter member_adapter = new ProjectMembersAdapter(this,R.layout.member_item,memberList);
         ListView member_list = (ListView)members_view.findViewById(R.id.member_list);
         member_list.setAdapter(member_adapter);
@@ -80,34 +95,6 @@ public class ProjectDetailActivity extends AppCompatActivity {
         viewList.add(members_view);
         mAdapter = new MypagerAdapter(viewList);
         vpChosen.setAdapter((mAdapter));
-    }
-
-    private class Myadapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return title.length;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return title[position];
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            LayoutInflater inflater = getLayoutInflater();
-            View view = inflater.inflate(R.layout.news_item_layout, parent, false);
-            TextView titleText = (TextView) view.findViewById(R.id.title);
-            titleText.setText(title[position]);
-            return view;
-        }
     }
 
     private void findView() {
