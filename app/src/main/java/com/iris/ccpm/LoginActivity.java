@@ -23,9 +23,17 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.tabs.TabLayout;
 import com.iris.ccpm.adapter.MypagerAdapter;
+import com.iris.ccpm.model.GlobalData;
+import com.iris.ccpm.utils.NetCallBack;
+import com.iris.ccpm.utils.Request;
+import com.iris.ccpm.utils.cache;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.ResponseHandlerInterface;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +44,9 @@ import java.util.regex.Pattern;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 
-public class  LoginActivity extends AppCompatActivity {
+import static com.iris.ccpm.utils.cache.getCachedUserInfo;
+
+public class LoginActivity extends AppCompatActivity {
     TabLayout tbSelect;
     ViewPager vpChosen;
     ArrayList<View> viewList;
@@ -44,12 +54,17 @@ public class  LoginActivity extends AppCompatActivity {
     View loginView;
     View registerView;
 
+    String username;
+    String password;
+
     EditText etUsername;
     EditText etPassword;
     Button btLogin;
     CheckBox cbDisplayPassword;
     CheckBox cbRemeber;
-    Boolean remeber = false;
+    CheckBox cbautoLogin;
+    Boolean autofix;
+    Boolean autologin;
 
     EditText etUsernameRe;
     EditText etPasswordRe;
@@ -68,17 +83,30 @@ public class  LoginActivity extends AppCompatActivity {
 
         findView();
         initTabContent();
-        autoLogin();
+        getUserinfo(this);
+
+        if (autofix) {
+            autoFix();
+            cbRemeber.setChecked(true);
+        }
+
+        Intent intent = getIntent();
+        Boolean isLogout = intent.getBooleanExtra("logout", false);
+        if (autologin) {
+            cbautoLogin.setChecked(true);
+            if (autofix && !isLogout) {
+                autoLogin();
+            }
+        }
 
         cbDisplayPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // TODO Auto-generated method stub
-                if(isChecked){
+                if (isChecked) {
                     //如果选中，显示密码
                     etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                }else{
+                } else {
                     //否则隐藏密码
                     etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }
@@ -89,57 +117,35 @@ public class  LoginActivity extends AppCompatActivity {
         cbRemeber.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                remeber = isChecked;
+                autofix = isChecked;
+            }
+        });
+
+        cbautoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                autologin = isChecked;
             }
         });
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name_str = etUsername.getText().toString();
-                String pwd_str = etPassword.getText().toString();
+                username = etUsername.getText().toString();
+                password = etPassword.getText().toString();
 
-                if(name_str.equals("") || pwd_str.equals("")) {
+                if (username.equals("") || password.equals("")) {
                     Toast.makeText(LoginActivity.this, "请填写完整信息", Toast.LENGTH_LONG).show();
                 } else {
-                    AsyncHttpClient client = new AsyncHttpClient();
                     JSONObject body = new JSONObject();
-                    body.put("username", name_str);
-                    body.put("password", pwd_str);
+                    body.put("username", username);
+                    body.put("password", password);
                     StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
-                    String url = "https://find-hdu.com/login";
-                    client.post(LoginActivity.this, url, entity, "application/json", new AsyncHttpResponseHandler() {
-                        @Override
-                        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                            String response = new String(responseBody);
-                            Log.d("login:", response);
-                            JSONObject jsonObject = JSONObject.parseObject(response);
-                            Integer code = jsonObject.getInteger("code");
-                            Log.d("code:", code.toString());
-                            String msg = jsonObject.getString("msg");
-                            if (code != 200) {
-                                Log.d("login:", msg);
-                                etUsername.setText("");
-                                etPassword.setText("");
-                                Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_LONG).show();
-                            } else {
-                                if (remeber) {
-                                    save_user(LoginActivity.this, name_str, pwd_str);
-                                }
-                                Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                            Toast.makeText(LoginActivity.this, "出了点问题...", Toast.LENGTH_LONG).show();
-                        }
-                    });
+                    login(entity);
                 }
             }
         });
+
 
         etUsernameRe.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -168,13 +174,13 @@ public class  LoginActivity extends AppCompatActivity {
             }
         });
 
-        etPhone.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+        etPhone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     String phone_str = etPhone.getText().toString();
-                    if(isMobile(phone_str) || isPhone(phone_str)) {
+                    if (isMobile(phone_str) || isPhone(phone_str)) {
                         Toast.makeText(LoginActivity.this, "输入号码格式不正确！", Toast.LENGTH_LONG).show();
                         etPhone.setText("");
                     }
@@ -251,7 +257,6 @@ public class  LoginActivity extends AppCompatActivity {
         });
     }
 
-
     public static boolean isEmail(String strEmail) {
         String strPattern = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)" + "|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
         Pattern p = Pattern.compile(strPattern);
@@ -286,25 +291,72 @@ public class  LoginActivity extends AppCompatActivity {
         return b;
     }
 
+    private void login(StringEntity entity) {
+        Request.clientPost(LoginActivity.this, "login", entity, new NetCallBack() {
+            @Override
+            public void onMySuccess(JSONObject result) {
+                save_user(LoginActivity.this, username, password, autofix, autologin);
+                String token = result.getString("token");
+                final GlobalData app = (GlobalData) getApplication();
+                app.setToken(token);
+                Request.clientGet(LoginActivity.this, "account/" + username, new NetCallBack() {
+                    @Override
+                    public void onMySuccess(JSONObject result) {
+                        save_account(result);
+                        Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onMyFailure(String error) {
+                        Toast.makeText(LoginActivity.this, error, Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onMyFailure(String error) {
+                Toast.makeText(LoginActivity.this, error, Toast.LENGTH_LONG).show();
+                etUsername.setText("");
+                etPassword.setText("");
+            }
+        });
+    }
+
+    private void save_account(JSONObject data) {
+        final GlobalData app = (GlobalData) getApplication();
+        app.setUsername(data.getString("username"));
+        app.setAvatarUrl(data.getString("avatarUrl"));
+        app.setNickName(data.getString("nickName"));
+        app.setPhoneNum(data.getString("phoneNum"));
+        app.setSynopsis(data.getString("synopsis"));
+        app.setPosition(data.getString("position"));
+    }
+
+    private void autoFix() {
+        etUsername.setText(username);
+        etPassword.setText(password);
+    }
 
     private void autoLogin() {
-        Map<String,String> user = getUserinfo(LoginActivity.this);
-        if(user!=null) {
-            String username = user.get("username");
-            String password = user.get("password");
-            etUsername.setText(username);
-            etPassword.setText(password);
+        if (autologin) {
+            JSONObject body = new JSONObject();
+            body.put("username", username);
+            body.put("password", password);
+            StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
+            login(entity);
         }
     }
 
-    private Map<String,String> getUserinfo(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("user_info",MODE_PRIVATE);
-        String username = sharedPreferences.getString("username", null);
-        String password = sharedPreferences.getString("password", null);
-        Map<String,String> user = new HashMap<String,String>();
-        user.put("username", username);
-        user.put("password", password);
-        return user;
+    private void getUserinfo(Context context) {
+        Map<String, Object> userInfo = getCachedUserInfo(LoginActivity.this);
+        SharedPreferences sharedPreferences = context.getSharedPreferences("user_info", MODE_PRIVATE);
+        username = (String) userInfo.get("username");
+        password = (String) userInfo.get("password");
+        autofix = (Boolean) userInfo.get("autofix");
+        autologin = (Boolean) userInfo.get("autologin");
+        return;
     }
 
     private void initTabContent() {
@@ -321,6 +373,7 @@ public class  LoginActivity extends AppCompatActivity {
         etPassword = loginView.findViewById(R.id.et_password);
         cbDisplayPassword = loginView.findViewById(R.id.cb_displayPassword);
         cbRemeber = loginView.findViewById(R.id.cb_remeber);
+        cbautoLogin = loginView.findViewById(R.id.cb_autologin);
 
         etUsernameRe = registerView.findViewById(R.id.et_username_re);
         etPasswordRe = registerView.findViewById(R.id.et_password_re);
@@ -338,12 +391,13 @@ public class  LoginActivity extends AppCompatActivity {
     }
 
 
-
-    private boolean save_user(Context context, String username, String passward) {
+    private boolean save_user(Context context, String username, String passward, Boolean autofix, Boolean autologin) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("user_info", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("username", username);
         editor.putString("password", passward);
+        editor.putBoolean("autofix", autofix);
+        editor.putBoolean("autologin", autologin);
         editor.commit();
         return true;
     }
