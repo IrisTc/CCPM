@@ -68,6 +68,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="记住账号密码" />
+            <CheckBox
+                android:id="@+id/cb_autologin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="自动登录" />
         </LinearLayout>
 
         <Button
