@@ -16,10 +16,11 @@ public class cache {
      */
     public static Map<String, Object> getCachedUserInfo(Context context) throws JSONException {
         SharedPreferences sharedPreferences = context.getSharedPreferences("user_info", context.MODE_PRIVATE);
+
         String username = sharedPreferences.getString("username", null);
         String password = sharedPreferences.getString("password", null);
-        Boolean autofix = sharedPreferences.getBoolean("autofix", true);
-        Boolean autologin = sharedPreferences.getBoolean("autologin", true);
+        Boolean autofix = sharedPreferences.getBoolean("autofix", false);
+        Boolean autologin = sharedPreferences.getBoolean("autologin", false);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("username", username);
         map.put("password", password);

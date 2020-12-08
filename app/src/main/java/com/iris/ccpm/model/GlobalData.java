@@ -1,6 +1,10 @@
 package com.iris.ccpm.model;
 
 import android.app.Application;
+import android.content.Context;
+
+import com.alibaba.fastjson.JSONObject;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 public class GlobalData extends Application {
     private String token;
@@ -12,6 +16,23 @@ public class GlobalData extends Application {
     private String position;
     private String phoneNum;
     private String synopsis;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Fresco.initialize(this);
+    }
+
+    public static void save_account(JSONObject data, Context context) {
+        final GlobalData app = (GlobalData) context.getApplicationContext();
+        app.setUsername(data.getString("username"));
+        app.setAvatarUrl(data.getString("avatarUrl"));
+        app.setNickName(data.getString("nickName"));
+        app.setRealName(data.getString("realName"));
+        app.setPhoneNum(data.getString("phoneNum"));
+        app.setSynopsis(data.getString("synopsis"));
+        app.setPosition(data.getString("position"));
+    }
 
     public String getToken() {
         return token;
@@ -59,6 +80,13 @@ public class GlobalData extends Application {
 
     public void setRealName(String realName) {
         this.realName = realName;
+    }
+
+    public String getName() {
+        if (this.realName == null) {
+            return this.nickName;
+        }
+        return this.nickName + "(" + this.realName + ")";
     }
 
     public String getPosition() {
