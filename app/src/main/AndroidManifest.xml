@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.iris.ccpm">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:name=".model.GlobalData"
         android:allowBackup="true"
@@ -36,6 +38,9 @@
 
         <activity android:name=".ui.setting.EditAccountActivity"
             android:label="修改资料" />
+
+        <activity android:name=".NotifyActivity"
+            android:label="通知" />
     </application>
 
 </manifest>

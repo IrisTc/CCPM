@@ -1,6 +1,7 @@
 package com.iris.ccpm.ui.my;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.tabs.TabLayout;
 import com.iris.ccpm.LoginActivity;
 import com.iris.ccpm.MainActivity;
@@ -27,6 +29,9 @@ import com.iris.ccpm.adapter.MypagerAdapter;
 import com.iris.ccpm.adapter.Posts;
 import com.iris.ccpm.adapter.ProjectMembersAdapter;
 import com.iris.ccpm.adapter.ProjectPostsAdapter;
+import com.iris.ccpm.model.GlobalData;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +41,12 @@ public class MyFragment extends Fragment {
     private MyViewModel myViewModel;
     TabLayout tbSelect;
     ViewPager vpChosen;
+    SimpleDraweeView ivAvatar;
     ArrayList<View> viewList;
     MypagerAdapter mAdapter;
+    TextView tvNickname;
+    TextView tvEmail;
+    GlobalData app;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,8 +54,13 @@ public class MyFragment extends Fragment {
                 new ViewModelProvider(this).get(MyViewModel.class);
         View root = inflater.inflate(R.layout.fragment_my, container, false);
 
-        vpChosen = (ViewPager) root.findViewById(R.id.vp_chosen);
-        tbSelect = (TabLayout) root.findViewById(R.id.tb_detail);
+        findView(root);
+        app = (GlobalData) getActivity().getApplication();
+
+        tvNickname.setText(app.getName());
+        tvEmail.setText(app.getUsername());
+        Uri uri = Uri.parse(app.getAvatarUrl());
+        ivAvatar.setImageURI(uri);
 
         initTabContent();
 
@@ -80,12 +94,33 @@ public class MyFragment extends Fragment {
         return root;
     }
 
+    private void findView(View root) {
+        tvNickname = root.findViewById(R.id.tv_nickname);
+        tvEmail = root.findViewById(R.id.tv_email);
+        ivAvatar = root.findViewById(R.id.iv_avatar);
+        vpChosen = (ViewPager) root.findViewById(R.id.vp_chosen);
+        tbSelect = (TabLayout) root.findViewById(R.id.tb_detail);
+    }
+
     private void initTabContent() {
         LayoutInflater li = getActivity().getLayoutInflater();
         View intro_view = li.inflate(R.layout.my_detail_intro, null, false);
         View posts_view = li.inflate(R.layout.project_detail_posts, null, false);
         View members_view = li.inflate(R.layout.project_detail_member, null, false);
 
+        TextView tvUsername = intro_view.findViewById(R.id.tv_username);
+        TextView tvNickname = intro_view.findViewById(R.id.tv_nickname);
+        TextView tvRealname = intro_view.findViewById(R.id.tv_realname);
+        TextView tvPhonenum = intro_view.findViewById(R.id.tv_phoneNum);
+        TextView tvPosition = intro_view.findViewById(R.id.tv_position);
+        TextView tvSynopsis = intro_view.findViewById(R.id.tv_synopsis);
+
+        tvUsername.setText(app.getUsername());
+        tvNickname.setText(app.getNickName());
+        tvRealname.setText(app.getRealName());
+        tvPhonenum.setText(app.getPhoneNum());
+        tvPosition.setText(app.getPosition());
+        tvSynopsis.setText(app.getSynopsis());
 
         List<Posts> postList = new ArrayList<Posts>();
         postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));

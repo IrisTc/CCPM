@@ -213,28 +213,17 @@ public class LoginActivity extends AppCompatActivity {
                     body.put("synopsis", synopsis_str);
                     body.put("position", position_str);
                     StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
-                    String url = "https://find-hdu.com/account/add";
-                    client.post(LoginActivity.this, url, entity, "application/json", new AsyncHttpResponseHandler() {
+                    Request.clientPost(LoginActivity.this, "account/add", entity, new NetCallBack() {
                         @Override
-                        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                            for (int i = 0; i < headers.length; i++) {
-                                String name = headers[i].getName();
-                                String value = headers[i].getValue();
-                                Log.d("header", "Http request: Name—>" + name + ",Value—>" + value);
-                            }
-                            String content = new String(responseBody);
-                            Log.d("response:", content);
-                            Toast.makeText(LoginActivity.this, "content", Toast.LENGTH_LONG).show();
+                        public void onMySuccess(JSONObject result) {
+                            Toast.makeText(LoginActivity.this, "注册成功！", Toast.LENGTH_LONG).show();
                         }
 
                         @Override
-                        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                        public void onMyFailure(String error) {
+                            Toast.makeText(LoginActivity.this, error, Toast.LENGTH_LONG).show();
                         }
                     });
-
-//                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                    startActivity(intent);
                 }
             }
         });
@@ -296,13 +285,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onMySuccess(JSONObject result) {
                 save_user(LoginActivity.this, username, password, autofix, autologin);
+                System.out.println(result);
                 String token = result.getString("token");
                 final GlobalData app = (GlobalData) getApplication();
                 app.setToken(token);
                 Request.clientGet(LoginActivity.this, "account/" + username, new NetCallBack() {
                     @Override
                     public void onMySuccess(JSONObject result) {
-                        save_account(result);
+                        GlobalData.save_account(result, LoginActivity.this);
                         Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
@@ -324,15 +314,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void save_account(JSONObject data) {
-        final GlobalData app = (GlobalData) getApplication();
-        app.setUsername(data.getString("username"));
-        app.setAvatarUrl(data.getString("avatarUrl"));
-        app.setNickName(data.getString("nickName"));
-        app.setPhoneNum(data.getString("phoneNum"));
-        app.setSynopsis(data.getString("synopsis"));
-        app.setPosition(data.getString("position"));
-    }
+
 
     private void autoFix() {
         etUsername.setText(username);
@@ -351,7 +333,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void getUserinfo(Context context) {
         Map<String, Object> userInfo = getCachedUserInfo(LoginActivity.this);
-        SharedPreferences sharedPreferences = context.getSharedPreferences("user_info", MODE_PRIVATE);
         username = (String) userInfo.get("username");
         password = (String) userInfo.get("password");
         autofix = (Boolean) userInfo.get("autofix");
