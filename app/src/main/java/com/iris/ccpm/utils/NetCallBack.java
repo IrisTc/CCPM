@@ -9,7 +9,6 @@ public abstract class NetCallBack extends AsyncHttpResponseHandler {
 
     @Override
     public void onStart() {
-        System.out.println("start");
         super.onStart();
     }
 
@@ -21,10 +20,10 @@ public abstract class NetCallBack extends AsyncHttpResponseHandler {
     @Override
     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
         String string = new String(responseBody);
-        String ccpmcode = headers[0].getValue();
         JSONObject response = JSONObject.parseObject(string);
+        System.out.println(response);
 
-        if (ccpmcode == "200") {
+        if (response.getInteger("code") == 200) {
             onMySuccess(response.getJSONObject("data"));
         } else {
             onMyFailure(response.getString("msg"));

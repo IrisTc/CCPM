@@ -1,14 +1,14 @@
-package com.iris.ccpm.ui.items;
+package com.iris.ccpm.ui.project;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ItemsViewModel extends ViewModel {
+public class ProjectViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ItemsViewModel() {
+    public ProjectViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is slideshow fragment");
     }

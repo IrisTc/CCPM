@@ -12,6 +12,20 @@ import java.util.Map;
 
 public class cache {
     /*
+     * 设置缓存的userInfo
+     */
+    public static boolean save_user(Context context, String username, String passward, Boolean autofix, Boolean autologin) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("user_info", context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("username", username);
+        editor.putString("password", passward);
+        editor.putBoolean("autofix", autofix);
+        editor.putBoolean("autologin", autologin);
+        editor.apply();
+        return true;
+    }
+
+    /*
      * 获取缓存的userInfo
      */
     public static Map<String, Object> getCachedUserInfo(Context context) throws JSONException {
