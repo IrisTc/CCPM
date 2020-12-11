@@ -71,13 +71,15 @@ public class MainActivity extends AppCompatActivity {
     private View initHeader() {
         View header = this.getLayoutInflater().inflate(R.layout.nav_header_main,null);
         GlobalData app = (GlobalData) getApplication();
-        TextView tvEmail = header.findViewById(R.id.tv_email);
-        tvEmail.setText("Joined at " + app.getUsername());
-        TextView tvNickname = header.findViewById(R.id.tv_name);
-        tvNickname.setText(app.getName());
-        SimpleDraweeView ivAvatar = header.findViewById(R.id.iv_avatar);
-        Uri uri = Uri.parse(app.getAvatarUrl());
-        ivAvatar.setImageURI(uri);
+        if (app.getUsername() != null) {
+            TextView tvEmail = header.findViewById(R.id.tv_email);
+            tvEmail.setText("Joined at " + app.getUsername());
+            TextView tvNickname = header.findViewById(R.id.tv_name);
+            tvNickname.setText(app.getName());
+            SimpleDraweeView ivAvatar = header.findViewById(R.id.iv_avatar);
+            Uri uri = Uri.parse(app.getAvatarUrl());
+            ivAvatar.setImageURI(uri);
+        }
         return header;
     }
 
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         switch(item.getItemId()){
             case R.id.action_add:{
-                Intent intent = new Intent(this,LoginActivity.class);
+                Intent intent = new Intent(this,CreateActivity.class);
                 this.startActivity(intent);
             }
         }

@@ -45,6 +45,7 @@ import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 
 import static com.iris.ccpm.utils.cache.getCachedUserInfo;
+import static com.iris.ccpm.utils.cache.save_user;
 
 public class LoginActivity extends AppCompatActivity {
     TabLayout tbSelect;
@@ -86,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
         getUserinfo(this);
 
         if (autofix) {
+            System.out.println("autofix");
             autoFix();
             cbRemeber.setChecked(true);
         }
@@ -285,7 +287,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onMySuccess(JSONObject result) {
                 save_user(LoginActivity.this, username, password, autofix, autologin);
-                System.out.println(result);
                 String token = result.getString("token");
                 final GlobalData app = (GlobalData) getApplication();
                 app.setToken(token);
@@ -315,20 +316,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
     private void autoFix() {
+        System.out.println(username);
         etUsername.setText(username);
         etPassword.setText(password);
     }
 
     private void autoLogin() {
-        if (autologin) {
-            JSONObject body = new JSONObject();
-            body.put("username", username);
-            body.put("password", password);
-            StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
-            login(entity);
-        }
+        JSONObject body = new JSONObject();
+        body.put("username", username);
+        body.put("password", password);
+        StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
+        login(entity);
     }
 
     private void getUserinfo(Context context) {
@@ -371,17 +370,6 @@ public class LoginActivity extends AppCompatActivity {
         vpChosen.setAdapter((mAdapter));
     }
 
-
-    private boolean save_user(Context context, String username, String passward, Boolean autofix, Boolean autologin) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("user_info", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("username", username);
-        editor.putString("password", passward);
-        editor.putBoolean("autofix", autofix);
-        editor.putBoolean("autologin", autologin);
-        editor.commit();
-        return true;
-    }
 
     private void findView() {
         vpChosen = (ViewPager) findViewById(R.id.vp_chosen);

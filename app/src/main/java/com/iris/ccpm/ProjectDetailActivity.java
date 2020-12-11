@@ -3,11 +3,13 @@ package com.iris.ccpm;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.iris.ccpm.adapter.Members;
@@ -15,6 +17,7 @@ import com.iris.ccpm.adapter.MypagerAdapter;
 import com.iris.ccpm.adapter.Posts;
 import com.iris.ccpm.adapter.ProjectMembersAdapter;
 import com.iris.ccpm.adapter.ProjectPostsAdapter;
+import com.iris.ccpm.model.Project;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +28,16 @@ public class ProjectDetailActivity extends AppCompatActivity {
     ViewPager vpChosen;
     ArrayList<View> viewList;
     MypagerAdapter mAdapter;
+    Project project;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_detail);
+
+        Intent intent  = this.getIntent();
+        project = (Project) intent.getSerializableExtra("project");
+        System.out.println(project.getProjectName());
 
         findView();
 
@@ -53,10 +61,23 @@ public class ProjectDetailActivity extends AppCompatActivity {
 
     }
 
+    private void init_intro(View view) {
+        TextView project_name_text = view.findViewById(R.id.project_name_text);
+        project_name_text.setText(project.getProjectName());
+        TextView project_date_text = view.findViewById(R.id.project_date_text);
+        project_date_text.setText(project.getProjectStartTime());
+        TextView project_motto_text = view.findViewById(R.id.project_motto_text);
+        project_motto_text.setText(project.getProjectSynopsis());
+        TextView project_time_text = view.findViewById(R.id.project_time_text);
+        project_time_text.setText(project.getProjectStartTime() + "-" + project.getProjectEndTime());
+    }
+
     private void initTabContent() {
         viewList = new ArrayList<View>();
         LayoutInflater li = getLayoutInflater();
         View intro_view = li.inflate(R.layout.project_detail_intro, null, false);
+        init_intro(intro_view);
+
         View posts_view = li.inflate(R.layout.project_detail_posts, null, false);
         View members_view = li.inflate(R.layout.project_detail_member, null, false);
 
