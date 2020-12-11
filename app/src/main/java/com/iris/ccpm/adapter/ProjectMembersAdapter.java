@@ -28,7 +28,6 @@ public class ProjectMembersAdapter extends ArrayAdapter<Members> {
         View view;
         ViewHolder viewHolder;
         if (convertView==null){
-
             view=LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
 
             viewHolder=new ViewHolder();
