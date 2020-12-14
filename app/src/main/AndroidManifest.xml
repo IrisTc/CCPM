@@ -37,7 +37,7 @@
             android:label="项目详情" />
 
         <activity
-            android:name=".CreateActivity"
+            android:name=".CreateProjectActivity"
             android:label="新建项目" />
 
         <activity

@@ -15,6 +15,8 @@ com/iris/ccpm/ui/project/ProjectViewModel.java
  com.iris.ccpm.ui.project.ProjectViewModel
 com/iris/ccpm/adapter/Members.java
  com.iris.ccpm.adapter.Members
+com/iris/ccpm/model/Dynamic.java
+ com.iris.ccpm.model.Dynamic
 com/iris/ccpm/adapter/NotifyAdapter.java
  com.iris.ccpm.adapter.NotifyAdapter
 com/iris/ccpm/utils/cache.java
@@ -40,12 +42,6 @@ com/iris/ccpm/ui/home/HomeViewModel.java
  com.iris.ccpm.ui.home.HomeViewModel
 com/iris/ccpm/BuildConfig.java
  com.iris.ccpm.BuildConfig
-com/iris/ccpm/CreateActivity.java
- com.iris.ccpm.CreateActivity
- com.iris.ccpm.CreateActivity$1
- com.iris.ccpm.CreateActivity$1$1
- com.iris.ccpm.CreateActivity$2
- com.iris.ccpm.CreateActivity$2$1
 com/iris/ccpm/TaskDetailActivity.java
  com.iris.ccpm.TaskDetailActivity
  com.iris.ccpm.TaskDetailActivity$1
@@ -58,10 +54,14 @@ com/iris/ccpm/utils/Image.java
 com/iris/ccpm/adapter/ProjectMembersAdapter.java
  com.iris.ccpm.adapter.ProjectMembersAdapter
  com.iris.ccpm.adapter.ProjectMembersAdapter$ViewHolder
-com/iris/ccpm/ui/home/HomeFragment.java
- com.iris.ccpm.ui.home.HomeFragment
- com.iris.ccpm.ui.home.HomeFragment$1
- com.iris.ccpm.ui.home.HomeFragment$Myadapter
+com/iris/ccpm/ui/my/MyFragment.java
+ com.iris.ccpm.ui.my.MyFragment
+ com.iris.ccpm.ui.my.MyFragment$1
+ com.iris.ccpm.ui.my.MyFragment$2
+ com.iris.ccpm.ui.my.MyFragment$3
+ com.iris.ccpm.ui.my.MyFragment$4
+ com.iris.ccpm.ui.my.MyFragment$4$1
+ com.iris.ccpm.ui.my.MyFragment$5
 com/iris/ccpm/model/Notify.java
  com.iris.ccpm.model.Notify
 com/iris/ccpm/ui/project/ProjectFragment.java
@@ -73,6 +73,14 @@ com/iris/ccpm/NotifyActivity.java
  com.iris.ccpm.NotifyActivity$1
 com/iris/ccpm/ui/my/MyViewModel.java
  com.iris.ccpm.ui.my.MyViewModel
+com/iris/ccpm/CreateProjectActivity.java
+ com.iris.ccpm.CreateProjectActivity
+ com.iris.ccpm.CreateProjectActivity$1
+ com.iris.ccpm.CreateProjectActivity$1$1
+ com.iris.ccpm.CreateProjectActivity$2
+ com.iris.ccpm.CreateProjectActivity$2$1
+com/iris/ccpm/adapter/DynamicAdapter.java
+ com.iris.ccpm.adapter.DynamicAdapter
 com/iris/ccpm/ui/setting/SettingFragment.java
  com.iris.ccpm.ui.setting.SettingFragment
  com.iris.ccpm.ui.setting.SettingFragment$1
@@ -92,11 +100,6 @@ com/iris/ccpm/LoginActivity.java
  com.iris.ccpm.LoginActivity$8
  com.iris.ccpm.LoginActivity$8$1
  com.iris.ccpm.LoginActivity$9
-com/iris/ccpm/ui/my/MyFragment.java
- com.iris.ccpm.ui.my.MyFragment
- com.iris.ccpm.ui.my.MyFragment$1
- com.iris.ccpm.ui.my.MyFragment$2
- com.iris.ccpm.ui.my.MyFragment$3
- com.iris.ccpm.ui.my.MyFragment$4
- com.iris.ccpm.ui.my.MyFragment$4$1
- com.iris.ccpm.ui.my.MyFragment$5
+com/iris/ccpm/ui/home/HomeFragment.java
+ com.iris.ccpm.ui.home.HomeFragment
+ com.iris.ccpm.ui.home.HomeFragment$1

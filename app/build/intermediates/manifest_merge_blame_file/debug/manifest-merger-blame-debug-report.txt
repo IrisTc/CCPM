@@ -75,8 +75,8 @@
 45-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:37:13-33
 46        <activity
 46-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:39:9-41:36
-47            android:name="com.iris.ccpm.CreateActivity"
-47-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:40:13-43
+47            android:name="com.iris.ccpm.CreateProjectActivity"
+47-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:40:13-50
 48            android:label="新建项目" />
 48-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:41:13-33
 49        <activity

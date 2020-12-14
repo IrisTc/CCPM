@@ -130,12 +130,12 @@ ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:35:9-37:36
 		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:37:13-33
 	android:name
 		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:36:13-50
-activity#com.iris.ccpm.CreateActivity
+activity#com.iris.ccpm.CreateProjectActivity
 ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:39:9-41:36
 	android:label
 		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:41:13-33
 	android:name
-		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:40:13-43
+		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:40:13-50
 activity#com.iris.ccpm.ReportActivity
 ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:43:9-45:36
 	android:label
