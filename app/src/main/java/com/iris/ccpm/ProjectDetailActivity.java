@@ -15,9 +15,7 @@ import android.widget.TextView;
 import com.google.android.material.tabs.TabLayout;
 import com.iris.ccpm.adapter.Members;
 import com.iris.ccpm.adapter.MypagerAdapter;
-import com.iris.ccpm.adapter.Posts;
 import com.iris.ccpm.adapter.ProjectMembersAdapter;
-import com.iris.ccpm.adapter.ProjectPostsAdapter;
 import com.iris.ccpm.model.Project;
 
 import java.util.ArrayList;
@@ -84,19 +82,6 @@ public class ProjectDetailActivity extends AppCompatActivity {
     }
 
     private void init_task(View task_view) {
-        List<Posts> postList = new ArrayList<Posts>();
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        ProjectPostsAdapter adapter = new ProjectPostsAdapter(this,R.layout.list_item,postList);
-        ListView list = (ListView)task_view.findViewById(R.id.task_list);
-        list.setAdapter(adapter);
     }
 
     private void init_intro(View view) {
@@ -127,19 +112,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
 
 
     private void init_new(View new_view) {
-        List<Posts> postList = new ArrayList<Posts>();
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        ProjectPostsAdapter adapter = new ProjectPostsAdapter(this,R.layout.list_item,postList);
-        ListView list = (ListView)new_view.findViewById(R.id.post_list);
-        list.setAdapter(adapter);
+
     }
 
     public void setListViewHeightBasedOnChildren(ListView listView, ProjectMembersAdapter adapter) {
