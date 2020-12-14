@@ -17,6 +17,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.iris.ccpm.MainActivity;
 import com.iris.ccpm.R;
 
+import com.iris.ccpm.utils.NetCallBack;
+import com.iris.ccpm.utils.Request;
 import com.loopj.android.http.*;
 
 import com.alibaba.fastjson.JSON;
@@ -42,6 +44,18 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        Request.clientGet(getActivity(), "dynamic", new NetCallBack() {
+            @Override
+            public void onMySuccess(JSONObject result) {
+                System.out.println("dynamic:" + result);
+            }
+
+            @Override
+            public void onMyFailure(String error) {
+
+            }
+        });
 
         MainActivity activity = (MainActivity) getActivity();
         final ListView lvNews = root.findViewById(R.id.lv_news);

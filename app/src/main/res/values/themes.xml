@@ -39,6 +39,7 @@
         <item name="android:textSize">18sp</item>
         <item name="android:layout_width">110dp</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Button">
@@ -47,6 +48,22 @@
     </style>
 
     <style name="TabTextSize">
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="ReportBar">
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
+    <style name="introTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textSize">18dp</item>
     </style>
 </resources>

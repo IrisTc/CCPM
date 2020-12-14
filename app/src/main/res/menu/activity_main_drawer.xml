@@ -10,6 +10,11 @@
             android:title="@string/menu_home" />
 
         <item
+            android:id="@+id/nav_task"
+            android:icon="@drawable/ic_task"
+            android:title="@string/menu_task" />
+
+        <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_items"
             android:title="@string/menu_items" />

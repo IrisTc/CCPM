@@ -8,10 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -19,20 +17,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.iris.ccpm.MainActivity;
 import com.iris.ccpm.ProjectDetailActivity;
 import com.iris.ccpm.R;
 import com.iris.ccpm.adapter.ProjectAdapter;
 import com.iris.ccpm.model.Project;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import java.util.List;
-
-import cz.msebera.android.httpclient.Header;
-
 
 
 public class ProjectFragment extends Fragment {
@@ -45,7 +37,7 @@ public class ProjectFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         projectViewModel =
                 new ViewModelProvider(this).get(ProjectViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_items, container, false);
+        View root = inflater.inflate(R.layout.fragment_project, container, false);
 
         Request.clientGet(getActivity(), "project?asManager=yes", new NetCallBack(){
 

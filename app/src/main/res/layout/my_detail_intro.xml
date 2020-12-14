@@ -83,7 +83,7 @@
                         android:textSize="20dp" />
 
                     <TextView
-                        android:id="@+id/projecting"
+                        android:id="@+id/ingproject"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_weight="1"
@@ -93,7 +93,7 @@
                         android:textSize="20dp" />
 
                     <TextView
-                        android:id="@+id/tasking"
+                        android:id="@+id/ingtask"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_weight="1"

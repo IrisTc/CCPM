@@ -12,12 +12,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.iris.ccpm.adapter.NotifyAdapter;
+import com.iris.ccpm.model.Notify;
+import com.iris.ccpm.model.Project;
 import com.iris.ccpm.ui.home.HomeFragment;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
 
+import java.util.List;
+
 public class NotifyActivity extends AppCompatActivity {
     private static String[] title = {"1", "2", "3", "4", "5", "6"};
+    List<Notify> notifyList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +34,13 @@ public class NotifyActivity extends AppCompatActivity {
 
             @Override
             public void onMySuccess(JSONObject result) {
-                System.out.println(result);
+                System.out.println("notify:" + result);
                 JSONArray list = result.getJSONArray("list");
-                System.out.println(list);
+                String liststring = JSONObject.toJSONString(list);
+
+                notifyList = JSONObject.parseArray(liststring, Notify.class);//把字符串转换成集合
+                final ListView lvNotify = findViewById(R.id.lv_notify);
+                lvNotify.setAdapter(new NotifyAdapter(NotifyActivity.this, notifyList));
             }
 
             @Override
@@ -38,36 +48,5 @@ public class NotifyActivity extends AppCompatActivity {
 
             }
         });
-
-        final ListView lvNotify = findViewById(R.id.lv_notify);
-        lvNotify.setAdapter(new NotifyActivity.Myadapter());
-    }
-
-    private class Myadapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return title.length;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return title[position];
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            LayoutInflater inflater = getLayoutInflater();
-            View view = inflater.inflate(R.layout.notify_item_layout, parent, false);
-            TextView titleText = (TextView) view.findViewById(R.id.content);
-            titleText.setText(title[position]);
-            return view;
-        }
     }
 }

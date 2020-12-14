@@ -8,6 +8,7 @@
 
     <string name="menu_home">动态</string>
     <string name="menu_items">我的项目</string>
+    <string name="menu_task">我的任务</string>
     <string name="menu_my">我的资料</string>
     <string name="menu_setting">设置</string>
 </resources>

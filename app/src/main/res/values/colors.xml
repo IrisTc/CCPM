@@ -11,4 +11,5 @@
     <color name="white_light">#FFE4F2</color>
     <color name="point">#536FFE</color>
     <color name="gray_light">#cccccc</color>
+    <color name="back_gray">#F0F0F0</color>
 </resources>

@@ -15,7 +15,13 @@
         android:id="@+id/nav_slideshow"
         android:name="com.iris.ccpm.ui.project.ProjectFragment"
         android:label="@string/menu_items"
-        tools:layout="@layout/fragment_items" />
+        tools:layout="@layout/fragment_project" />
+
+    <fragment
+        android:id="@+id/nav_task"
+        android:name="com.iris.ccpm.ui.task.TaskFragment"
+        android:label="@string/menu_task"
+        tools:layout="@layout/fragment_task" />
 
     <fragment
         android:id="@+id/nav_gallery"

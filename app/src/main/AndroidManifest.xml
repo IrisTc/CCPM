@@ -40,6 +40,10 @@
             android:name=".CreateActivity"
             android:label="新建项目" />
 
+        <activity
+            android:name=".ReportActivity"
+            android:label="汇报任务" />
+
         <activity android:name=".ui.setting.EditAccountActivity"
             android:label="修改资料" />
 

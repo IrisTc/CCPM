@@ -6,32 +6,33 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.tabs.TabLayout;
 import com.iris.ccpm.LoginActivity;
-import com.iris.ccpm.MainActivity;
+import com.iris.ccpm.ProjectDetailActivity;
 import com.iris.ccpm.R;
 import com.iris.ccpm.adapter.Members;
 import com.iris.ccpm.adapter.MypagerAdapter;
 import com.iris.ccpm.adapter.Posts;
+import com.iris.ccpm.adapter.ProjectAdapter;
 import com.iris.ccpm.adapter.ProjectMembersAdapter;
 import com.iris.ccpm.adapter.ProjectPostsAdapter;
 import com.iris.ccpm.model.GlobalData;
-
-import org.w3c.dom.Text;
+import com.iris.ccpm.model.Project;
+import com.iris.ccpm.utils.NetCallBack;
+import com.iris.ccpm.utils.Request;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,16 +105,85 @@ public class MyFragment extends Fragment {
 
     private void initTabContent() {
         LayoutInflater li = getActivity().getLayoutInflater();
-        View intro_view = li.inflate(R.layout.my_detail_intro, null, false);
-        View posts_view = li.inflate(R.layout.project_detail_posts, null, false);
-        View members_view = li.inflate(R.layout.project_detail_member, null, false);
 
+        View intro_view = li.inflate(R.layout.my_detail_intro, null, false);
+        init_intro(intro_view);
+
+        View project_view = li.inflate(R.layout.my_detail_project, null, false);
+        init_project(project_view);
+
+        View task_view = li.inflate(R.layout.my_detail_task, null, false);
+        init_task(task_view);
+
+        viewList = new ArrayList<View>();
+        viewList.add(intro_view);
+        viewList.add(project_view);
+        viewList.add(task_view);
+        mAdapter = new MypagerAdapter(viewList);
+        vpChosen.setAdapter((mAdapter));
+    }
+
+    private void init_task(View task_view) {
+        Request.clientGet(getActivity(), "task", new NetCallBack(){
+            @Override
+            public void onMySuccess(JSONObject result) {
+                System.out.println("task:" + result);
+                JSONArray list = result.getJSONArray("list");
+                String liststring = JSONObject.toJSONString(list);
+                List<Project> projectList = JSONObject.parseArray(liststring, Project.class);//把字符串转换成集合
+            }
+
+            @Override
+            public void onMyFailure(String error) {
+
+            }
+        });
+    }
+
+    private void init_project(View project_view) {
+        ListView project_list = project_view.findViewById(R.id.lv_project);
+
+        Request.clientGet(getActivity(), "project?asManager=yes", new NetCallBack(){
+            @Override
+            public void onMySuccess(JSONObject result) {
+                System.out.println("project:" + result);
+                JSONArray list = result.getJSONArray("list");
+                String liststring = JSONObject.toJSONString(list);
+                List<Project> projectList = JSONObject.parseArray(liststring, Project.class);//把字符串转换成集合
+                project_list.setAdapter(new ProjectAdapter(getActivity(), projectList));
+                project_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Project project = projectList.get(position);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("project", project);
+
+                        Intent intent = new Intent(getActivity(), ProjectDetailActivity.class);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            @Override
+            public void onMyFailure(String error) {
+
+            }
+        });
+    }
+
+    private void init_intro(View intro_view) {
         TextView tvUsername = intro_view.findViewById(R.id.tv_username);
         TextView tvNickname = intro_view.findViewById(R.id.tv_nickname);
         TextView tvRealname = intro_view.findViewById(R.id.tv_realname);
         TextView tvPhonenum = intro_view.findViewById(R.id.tv_phoneNum);
         TextView tvPosition = intro_view.findViewById(R.id.tv_position);
         TextView tvSynopsis = intro_view.findViewById(R.id.tv_synopsis);
+
+        TextView tvProjectCount = intro_view.findViewById(R.id.project_count);
+        TextView tvTaskCount = intro_view.findViewById(R.id.task_count);
+        TextView tvIngProject = intro_view.findViewById(R.id.ingproject);
+        TextView tvIngTask = intro_view.findViewById(R.id.ingtask);
 
         tvUsername.setText(app.getUsername());
         tvNickname.setText(app.getNickName());
@@ -122,38 +192,20 @@ public class MyFragment extends Fragment {
         tvPosition.setText(app.getPosition());
         tvSynopsis.setText(app.getSynopsis());
 
-        List<Posts> postList = new ArrayList<Posts>();
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        ProjectPostsAdapter adapter = new ProjectPostsAdapter(getActivity(),R.layout.list_item,postList);
-        ListView list = (ListView)posts_view.findViewById(R.id.post_list);
-        list.setAdapter(adapter);
+        Request.clientGet(getActivity(), "statistics?projectNum=yes&taskNum=yes&ingProject=yes&ingTask=yes", new NetCallBack() {
+            @Override
+            public void onMySuccess(JSONObject result) {
+                System.out.println("statistics:" + result);
+                tvProjectCount.setText(result.getString("projectNum"));
+                tvTaskCount.setText(result.getString("taskNum"));
+                tvIngProject.setText(result.getString("ingProject"));
+                tvIngTask.setText(result.getString("ingTask"));
+            }
 
-        List<Members> memberList = new ArrayList<Members>();
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        ProjectMembersAdapter member_adapter = new ProjectMembersAdapter(getActivity(),R.layout.member_item,memberList);
-        ListView member_list = (ListView)members_view.findViewById(R.id.member_list);
-        member_list.setAdapter(member_adapter);
+            @Override
+            public void onMyFailure(String error) {
 
-        viewList = new ArrayList<View>();
-        viewList.add(intro_view);
-        viewList.add(posts_view);
-        viewList.add(members_view);
-        mAdapter = new MypagerAdapter(viewList);
-        vpChosen.setAdapter((mAdapter));
+            }
+        });
     }
 }
