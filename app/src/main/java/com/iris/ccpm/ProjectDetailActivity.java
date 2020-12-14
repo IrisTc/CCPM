@@ -17,7 +17,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.iris.ccpm.adapter.Members;
 import com.iris.ccpm.adapter.MypagerAdapter;
 import com.iris.ccpm.adapter.ProjectMembersAdapter;
-import com.iris.ccpm.adapter.ProjectPostsAdapter;
+//import com.iris.ccpm.adapter.ProjectPostsAdapter;
 import com.iris.ccpm.model.Project;
 
 import java.util.ArrayList;
@@ -29,6 +29,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
     ViewPager vpChosen;
     ArrayList<View> viewList;
     MypagerAdapter mAdapter;
+    String[] title={"1","2","3"};
     Project project;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

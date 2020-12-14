@@ -45,6 +45,9 @@
 
         <activity android:name=".NotifyActivity"
             android:label="通知" />
+
+        <activity android:name=".TaskDetailActivity"
+            android:label="任务详情"/>
     </application>
 
 </manifest>
