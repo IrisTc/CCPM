@@ -26,9 +26,9 @@ import com.iris.ccpm.MainActivity;
 import com.iris.ccpm.R;
 import com.iris.ccpm.adapter.Members;
 import com.iris.ccpm.adapter.MypagerAdapter;
-import com.iris.ccpm.adapter.Posts;
+//import com.iris.ccpm.adapter.Posts;
 import com.iris.ccpm.adapter.ProjectMembersAdapter;
-import com.iris.ccpm.adapter.ProjectPostsAdapter;
+//import com.iris.ccpm.adapter.ProjectPostsAdapter;
 import com.iris.ccpm.model.GlobalData;
 
 import org.w3c.dom.Text;
@@ -122,19 +122,19 @@ public class MyFragment extends Fragment {
         tvPosition.setText(app.getPosition());
         tvSynopsis.setText(app.getSynopsis());
 
-        List<Posts> postList = new ArrayList<Posts>();
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
-        ProjectPostsAdapter adapter = new ProjectPostsAdapter(getActivity(),R.layout.list_item,postList);
-        ListView list = (ListView)posts_view.findViewById(R.id.post_list);
-        list.setAdapter(adapter);
+//        List<Posts> postList = new ArrayList<Posts>();
+//        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+//        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+//        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+//        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+//        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+//        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+//        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+//        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+//        postList.add(new Posts("用户名","xxxx年xx月xx日",R.drawable.logo));
+////        ProjectPostsAdapter adapter = new ProjectPostsAdapter(getActivity(),R.layout.list_item,postList);
+//        ListView list = (ListView)posts_view.findViewById(R.id.post_list);
+//        list.setAdapter(adapter);
 
         List<Members> memberList = new ArrayList<Members>();
         memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
