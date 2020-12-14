@@ -1,6 +1,7 @@
 package com.iris.ccpm.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,8 @@ public class DynamicAdapter extends BaseAdapter {
         TextView tvProject = view.findViewById(R.id.tv_projectName);
         TextView tvDynamicTime = view.findViewById(R.id.lv_dynamicTime);
         TextView tvEvent = view.findViewById(R.id.tv_event);
+        TextView tvAccountName = view.findViewById(R.id.tv_accountName);
+        TextView tvTaskName = view.findViewById(R.id.tv_taskName);
 
         int eventID = 0;
         String event = "";
@@ -61,6 +64,10 @@ public class DynamicAdapter extends BaseAdapter {
         Dynamic dynamic = this.dynamicList.get(position);
         tvProject.setText(dynamic.getProjectName());
         tvDynamicTime.setText(dynamic.getDynamicTime());
+        tvAccountName.setText(dynamic.getAccountNickName());
+        if (!TextUtils.isEmpty(dynamic.getTaskName())) {
+            tvTaskName.setText(dynamic.getTaskName());
+        }
         tvEvent.setText(event);
 
         return view;
