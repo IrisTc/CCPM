@@ -1,326 +1,326 @@
 [
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\menu_main.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\menu\\main.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_news.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_news.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_logo.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\logo.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_items.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_items.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_my.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_my.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_logout.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_logout.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_project_detail_intro.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\project_detail_intro.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_task_spinner_item.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\task_spinner_item.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_side_nav_bar.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\side_nav_bar.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_slideshow.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_menu_slideshow.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_gallery.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_menu_gallery.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_prio.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_prio.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\navigation_mobile_navigation.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\navigation\\mobile_navigation.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_my_detail_task.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\my_detail_task.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_project_detail_intro.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\project_detail_intro.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_progress_bar.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\progress_bar.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_camera.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_menu_camera.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_project_detail_new.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\project_detail_new.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_executor.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_executor.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_copyright.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\copyright.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_login_register.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\login_register.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_textarea_bg.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\textarea_bg.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_login_background.jpg.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\login_background.jpg"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_notify_item_layout.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\notify_item_layout.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_add.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_add.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_nav_header_main.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\nav_header_main.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_account_edit.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\activity_account_edit.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_camera.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_menu_camera.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_my_detail_intro.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\my_detail_intro.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\menu_activity_main_drawer.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\menu\\activity_main_drawer.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_setting.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\fragment_setting.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_project.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\fragment_project.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_delete.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\delete.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_logoo.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\logoo.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_gallery.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_menu_gallery.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_personal.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\personal.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_account_edit.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\activity_account_edit.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_arrow_right.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_arrow_right.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_create.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\activity_create.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_project_detail_task.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\project_detail_task.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_items.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_items.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_report_add.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\activity_report_add.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_content_main.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\content_main.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_report_add.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\report_add.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_executor.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_executor.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_news.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_news.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_my.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\fragment_my.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_icon_sprites.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\icon_sprites.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_task.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\fragment_task.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_setting.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\fragment_setting.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_complete.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_complete.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_my.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_my.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_nav_header_main.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\nav_header_main.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_login.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\activity_login.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_task.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_task.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_project.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\fragment_project.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_notify_invite.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\activity_notify_invite.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_note.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_note.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_note.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_note.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_task.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_task.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_remaining_time.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_remaining_time.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_delete.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\delete.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_item.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\fragment_item.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\menu_activity_main_drawer.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\menu\\activity_main_drawer.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_login_background.jpg.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\login_background.jpg"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_my_detail_project.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\my_detail_project.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_progress_bar.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\progress_bar.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_view.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\view.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_my_detail_project.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\my_detail_project.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_home.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\fragment_home.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_logoo.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\logoo.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_news_item_layout.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\news_item_layout.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_notification.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_notification.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_app_bar_main.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\app_bar_main.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_textarea_bg.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\textarea_bg.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_task_spinner_item_drop.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\task_spinner_item_drop.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_content_main.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\content_main.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_notify.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\activity_notify.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_border1.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\border1.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_project_detail.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\activity_project_detail.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_personal.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\personal.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_notify.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\activity_notify.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_project_item_layout.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\project_item_layout.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_news_item_layout.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\news_item_layout.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_setting.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_setting.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_border1.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\border1.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_project_detail_task.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\project_detail_task.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_arrow_right.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_arrow_right.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_copyright.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\copyright.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_view.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\view.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_time.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_time.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\menu_main.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\menu\\main.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\activity_main.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_task_item_layout.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\task_item_layout.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_logo.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\logo.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_side_nav_bar.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\side_nav_bar.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_login_login.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\login_login.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_my_detail_task.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\my_detail_task.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_member_item.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\member_item.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_login_register.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\login_register.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_login.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\activity_login.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_report_add.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\report_add.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_time.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_time.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_icon_sprites.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\icon_sprites.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_task_item_layout.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\task_item_layout.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_setting.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_setting.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_complete.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_complete.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_task_spinner_item.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\task_spinner_item.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_notification.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_notification.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_task_spinner_item_drop.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\task_spinner_item_drop.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_slideshow.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_menu_slideshow.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_task.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\fragment_task.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_login_login.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\login_login.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\navigation_mobile_navigation.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\navigation\\mobile_navigation.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_create.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\activity_create.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_task_detail.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\activity_task_detail.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_project_detail_new.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\project_detail_new.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_my_detail_intro.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\my_detail_intro.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_item.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\fragment_item.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_task_detail.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\activity_task_detail.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_project_detail.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\activity_project_detail.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_app_bar_main.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\app_bar_main.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_project_item_layout.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\project_item_layout.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_report_add.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\activity_report_add.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_notify_invite.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\activity_notify_invite.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_remaining_time.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_remaining_time.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_home.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\fragment_home.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_my.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\fragment_my.xml"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_member_item.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\member_item.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_logout.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_logout.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_prio.png.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\drawable\\ic_prio.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_add.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_add.png"
+        "merged": "E:\\CCPM\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_notify_item_layout.xml.flat",
+        "source": "E:\\CCPM\\CCPM\\app\\src\\main\\res\\layout\\notify_item_layout.xml"
     }
 ]

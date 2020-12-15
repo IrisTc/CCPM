@@ -135,6 +135,7 @@ public class TaskDetailActivity extends AppCompatActivity {
             @Override
             public void onMySuccess(JSONObject result) {
                 JSONArray list=result.getJSONArray("list");
+                index=getIntent().getIntExtra("taskIndex",0);
                 JSONObject obj=list.getJSONObject(index);
                 data.setClaimState(obj.getInteger("claimState"));
                 data.setClaim_uid(obj.getInteger("claim_uid"));
@@ -148,8 +149,6 @@ public class TaskDetailActivity extends AppCompatActivity {
                 data.setTaskState(obj.getInteger("taskState"));
                 data.setTaskSynopsis(obj.getString("taskSynopsis"));
                 data.setTask_uid(obj.getInteger("task_uid"));
-//                String logStr=data.claimState+data.claim_uid+data.project_uid+data.taskEmergent+data.taskEndTime+data.taskName+data.taskPredictHours+data.taskRestHours+data.taskStartTime+data.taskStartTime+data.taskState+data.taskSynopsis+data.task_uid;
-//                Log.d("TaskJson",logStr);
                 LoadData();
             }
 

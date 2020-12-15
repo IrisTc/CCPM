@@ -1,9 +1,9 @@
 package com.iris.ccpm.model;
 
 public class TaskModel {
-        private int claimState;
-        private int claim_uid;
-        private String project_uid;
+    private int claimState;
+    private int claim_uid;
+    private String project_uid;
     private int taskEmergent;
     private String taskEndTime;
     private String taskName;
@@ -13,6 +13,21 @@ public class TaskModel {
     private int taskState;
     private String taskSynopsis;
     private int task_uid;
+
+    public TaskModel(){
+        claimState=0;
+        claim_uid=0;
+        project_uid="0";
+        taskEmergent=0;
+        taskEndTime="2020-12-1";
+        taskName="taskName";
+        taskPredictHours="0";
+        taskRestHours="0";
+        taskStartTime="2020-12-01";
+        taskState=0;
+        taskSynopsis="taskSynopsis";
+        task_uid=0;
+    }
 
     public int getClaimState() {
         return claimState;
