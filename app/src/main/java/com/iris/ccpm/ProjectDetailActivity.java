@@ -16,10 +16,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.tabs.TabLayout;
 import com.iris.ccpm.adapter.DynamicAdapter;
-import com.iris.ccpm.adapter.Members;
+import com.iris.ccpm.adapter.MemberAdapter;
 import com.iris.ccpm.adapter.MypagerAdapter;
-import com.iris.ccpm.adapter.ProjectMembersAdapter;
 import com.iris.ccpm.model.Dynamic;
+import com.iris.ccpm.model.Member;
 import com.iris.ccpm.model.Project;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
@@ -94,27 +94,67 @@ public class ProjectDetailActivity extends AppCompatActivity {
     private void init_intro(View view) {
         ImageView post_avatar=(ImageView)view.findViewById(R.id.project_icon);
         post_avatar.setImageResource(R.drawable.logo);
+
         TextView project_name_text = view.findViewById(R.id.project_name_text);
-        project_name_text.setText(project.getProjectName());
         TextView project_date_text = view.findViewById(R.id.project_date_text);
-        project_date_text.setText(project.getProjectStartTime());
         TextView project_motto_text = view.findViewById(R.id.project_motto_text);
-        project_motto_text.setText(project.getProjectSynopsis());
         TextView project_time_text = view.findViewById(R.id.project_time_text);
+        TextView project_plan_text = view.findViewById(R.id.project_plan);
+
+        project_name_text.setText(project.getProjectName());
+        project_date_text.setText(project.getManagerNickName() + " 创建于 " + project.getProjectCreateTime());
+        project_motto_text.setText(project.getProjectSynopsis());
         project_time_text.setText(project.getProjectStartTime() + "-" + project.getProjectEndTime());
-        List<Members> memberList = new ArrayList<Members>();
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        memberList.add(new Members("用户名","xxxxxx@xx.com","xx部门",R.drawable.logo));
-        ProjectMembersAdapter member_adapter = new ProjectMembersAdapter(this,R.layout.member_item,memberList);
-        ListView member_list = (ListView)view.findViewById(R.id.member_list);
-        member_list.setAdapter(member_adapter);
-        setListViewHeightBasedOnChildren(member_list, member_adapter);
+        project_plan_text.setText(project.getProjectPlan());
+
+        Request.clientGet(ProjectDetailActivity.this, "statistics?project_id=" + project_id, new NetCallBack() {
+            @Override
+            public void onMySuccess(JSONObject result) {
+                System.out.println("statistics:" + result);
+                TextView tvIngNumber = view.findViewById(R.id.ing_number);
+                TextView tvDoneNumber = view.findViewById(R.id.done_number);
+                TextView tvOverNumber = view.findViewById(R.id.overdue_number);
+                TextView tvNoClaimNumber = view.findViewById(R.id.noclaim_number);
+                TextView tvExpireNumber = view.findViewById(R.id.expiretoday_number);
+                TextView tvCountNumber = view.findViewById(R.id.count_number);
+                TextView tvMemberNumber = view.findViewById(R.id.member_number);
+
+                tvMemberNumber.setText("项目成员（" + result.getString("proMemNum") + " 人）");
+                tvIngNumber.setText(result.getString("ingTaskPro"));
+                tvDoneNumber.setText(result.getString("doneTaskPro"));
+                tvOverNumber.setText(result.getString("hasOverdue"));
+                tvNoClaimNumber.setText(result.getString("noClaimTask"));
+                tvExpireNumber.setText(result.getString("expireToday"));
+
+                Integer count = result.getInteger("ingTaskPro") + result.getInteger("doneTaskPro") + result.getInteger("hasOverdue") + result.getInteger("noClaimTask");
+                tvCountNumber.setText(String.valueOf(count));
+            }
+
+            @Override
+            public void onMyFailure(String error) {
+
+            }
+        });
+
+        Request.clientGet(ProjectDetailActivity.this, "project/" + project_id + "/member", new NetCallBack() {
+            @Override
+            public void onMySuccess(JSONObject result) {
+                System.out.println("member:" +result);
+                JSONArray list = result.getJSONArray("list");
+                String liststring = JSONObject.toJSONString(list);
+
+                List<Member> memberList = JSONObject.parseArray(liststring, Member.class);//把字符串转换成集合
+                ListView lvMember = view.findViewById(R.id.lv_member);
+                MemberAdapter adapter = new MemberAdapter(ProjectDetailActivity.this, memberList);
+                lvMember.setAdapter(adapter);
+                setListViewHeightBasedOnChildren(lvMember, adapter);
+            }
+
+            @Override
+            public void onMyFailure(String error) {
+
+            }
+        });
     }
 
 
@@ -122,7 +162,6 @@ public class ProjectDetailActivity extends AppCompatActivity {
         Request.clientGet(ProjectDetailActivity.this, "dynamic?project_uid=" + project_id, new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
-                System.out.println("projectnews:" + result);
                 JSONArray list = result.getJSONArray("list");
                 String liststring = JSONObject.toJSONString(list);
 
@@ -138,7 +177,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
         });
     }
 
-    public void setListViewHeightBasedOnChildren(ListView listView, ProjectMembersAdapter adapter) {
+    public void setListViewHeightBasedOnChildren(ListView listView, MemberAdapter adapter) {
         // 获取ListView对应的Adapter
         if (adapter == null) {
             return;

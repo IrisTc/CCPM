@@ -6,11 +6,29 @@ public class Project implements Serializable {
     private Integer project_uid;
     private String projectName;
     private Integer manager_uid;
+    private String managerNickName;
     private String projectSynopsis;
     private String projectPlan;
     private Integer projectRate;
     private String projectStartTime;
     private String projectEndTime;
+    private String projectCreateTime;
+
+    public String getProjectCreateTime() {
+        return projectCreateTime;
+    }
+
+    public void setProjectCreateTime(String projectCreateTime) {
+        this.projectCreateTime = projectCreateTime;
+    }
+
+    public String getManagerNickName() {
+        return managerNickName;
+    }
+
+    public void setManagerNickName(String managerNickName) {
+        this.managerNickName = managerNickName;
+    }
 
     public Integer getProject_uid() {
         return project_uid;

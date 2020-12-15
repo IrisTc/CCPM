@@ -1,5 +1,6 @@
 package com.iris.ccpm.utils;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -24,12 +25,19 @@ public abstract class NetCallBack extends AsyncHttpResponseHandler {
         System.out.println(response);
 
         if (response.getInteger("code") == 200) {
-            onMySuccess(response.getJSONObject("data"));
+            String data = response.getString("data");
+
+            if (data.substring(0,1).equals("[")) {
+                JSONObject object = new JSONObject();
+                object.put("list", response.getJSONArray("data"));
+                onMySuccess(object);
+            } else {
+                onMySuccess(response.getJSONObject("data"));
+            }
         } else {
             onMyFailure(response.getString("msg"));
         }
     }
-
 
     public abstract void onMySuccess(JSONObject result);
 

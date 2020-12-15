@@ -1,17 +1,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:padding="10dp"
     android:orientation="horizontal">
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/member_avatar"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_weight="2"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:contentDescription="@string/nav_header_desc"
+        fresco:roundAsCircle="true"/>
+
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -43,7 +45,7 @@
                 android:text="TextView" />
 
             <TextView
-                android:id="@+id/member_department"
+                android:id="@+id/member_position"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -64,6 +66,7 @@
             android:id="@+id/member_delete_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:padding="2dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="0.5"
             android:background="#FFFFFF"
@@ -74,6 +77,8 @@
             android:id="@+id/member_personal_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:padding="2dp"
+
             android:layout_gravity="center_vertical"
             android:layout_weight="0.5"
             android:background="#FFFFFF"
