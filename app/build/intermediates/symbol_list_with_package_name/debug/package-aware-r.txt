@@ -2030,7 +2030,6 @@ id percent
 id pin
 id position
 id postLayout
-id post_list
 id predictEdit
 id predictLabel
 id prioritySpinner

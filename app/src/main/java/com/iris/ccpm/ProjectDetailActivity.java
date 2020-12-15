@@ -12,17 +12,24 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.tabs.TabLayout;
+import com.iris.ccpm.adapter.DynamicAdapter;
 import com.iris.ccpm.adapter.Members;
 import com.iris.ccpm.adapter.MypagerAdapter;
 import com.iris.ccpm.adapter.ProjectMembersAdapter;
+import com.iris.ccpm.model.Dynamic;
 import com.iris.ccpm.model.Project;
+import com.iris.ccpm.utils.NetCallBack;
+import com.iris.ccpm.utils.Request;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectDetailActivity extends AppCompatActivity {
 
+    Integer project_id;
     TabLayout tbSelect;
     ViewPager vpChosen;
     ArrayList<View> viewList;
@@ -36,7 +43,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
 
         Intent intent  = this.getIntent();
         project = (Project) intent.getSerializableExtra("project");
-        System.out.println(project.getProjectName());
+        project_id = project.getProject_uid();
 
         findView();
 
@@ -112,7 +119,23 @@ public class ProjectDetailActivity extends AppCompatActivity {
 
 
     private void init_new(View new_view) {
+        Request.clientGet(ProjectDetailActivity.this, "dynamic?project_uid=" + project_id, new NetCallBack() {
+            @Override
+            public void onMySuccess(JSONObject result) {
+                System.out.println("projectnews:" + result);
+                JSONArray list = result.getJSONArray("list");
+                String liststring = JSONObject.toJSONString(list);
 
+                List<Dynamic> dynamicList = JSONObject.parseArray(liststring, Dynamic.class);//把字符串转换成集合
+                ListView lvNew = new_view.findViewById(R.id.lv_news);
+                lvNew.setAdapter(new DynamicAdapter(ProjectDetailActivity.this, dynamicList));
+            }
+
+            @Override
+            public void onMyFailure(String error) {
+
+            }
+        });
     }
 
     public void setListViewHeightBasedOnChildren(ListView listView, ProjectMembersAdapter adapter) {
