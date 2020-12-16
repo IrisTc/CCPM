@@ -44,7 +44,7 @@
             android:name="com.iris.ccpm.ProjectDetailActivity"
             android:label="项目详情" />
         <activity
-            android:name="com.iris.ccpm.CreateActivity"
+            android:name="com.iris.ccpm.CreateProjectActivity"
             android:label="新建项目" />
         <activity
             android:name="com.iris.ccpm.ReportActivity"

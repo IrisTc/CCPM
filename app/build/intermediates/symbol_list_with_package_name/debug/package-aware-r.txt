@@ -1641,6 +1641,7 @@ drawable ic_remaining_time
 drawable ic_setting
 drawable ic_task
 drawable ic_time
+drawable ic_warn
 drawable icon_sprites
 drawable login_background
 drawable logo
@@ -1818,14 +1819,13 @@ id clip_vertical
 id collapseActionView
 id completeSpinner
 id completeSpinner1
-id complete_number
-id complete_number2
 id confirm_button
 id container
 id content
 id contentPanel
 id coordinator
 id cos
+id count_number
 id create_project
 id custom
 id customPanel
@@ -1850,6 +1850,7 @@ id direct
 id disableHome
 id disablePostScroll
 id disableScroll
+id done_number
 id dragDown
 id dragEnd
 id dragLeft
@@ -1883,6 +1884,7 @@ id et_username_re
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id expiretoday_number
 id fab
 id fade
 id fill
@@ -1926,9 +1928,8 @@ id imageView6
 id imageView7
 id imageView8
 id imageView9
-id incomplete_number
-id incomplete_number2
 id info
+id ing_number
 id ingproject
 id ingtask
 id invisible
@@ -1946,6 +1947,8 @@ id line3
 id linear
 id listMode
 id list_item
+id lv_dynamicTime
+id lv_member
 id lv_news
 id lv_notify
 id lv_project
@@ -1953,12 +1956,11 @@ id lv_task
 id masked
 id member_avatar
 id member_delete_button
-id member_department
 id member_email
-id member_list
 id member_name
+id member_number
 id member_personal_button
-id memo
+id member_position
 id message
 id middle
 id mini
@@ -2004,6 +2006,7 @@ id nav_view
 id navigation_header_container
 id never
 id noScroll
+id noclaim_number
 id none
 id normal
 id notification_background
@@ -2013,7 +2016,6 @@ id off
 id on
 id outline
 id overdue_number
-id overdue_number2
 id packed
 id parallax
 id parent
@@ -2029,7 +2031,6 @@ id percent
 id pin
 id position
 id postLayout
-id post_list
 id predictEdit
 id predictLabel
 id priority
@@ -2041,6 +2042,7 @@ id project_date_text
 id project_icon
 id project_motto_text
 id project_name_text
+id project_plan
 id project_time_text
 id radio
 id ratio
@@ -2169,9 +2171,11 @@ id transition_scene_layoutid_cache
 id transition_transform
 id triangle
 id tv1
+id tv_accountName
 id tv_complete
 id tv_content
 id tv_email
+id tv_event
 id tv_logout
 id tv_managerNickName
 id tv_name
@@ -2183,6 +2187,7 @@ id tv_projectName
 id tv_rate
 id tv_realname
 id tv_synopsis
+id tv_taskName
 id tv_username
 id unchecked
 id uniform

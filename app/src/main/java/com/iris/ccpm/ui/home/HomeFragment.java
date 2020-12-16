@@ -17,6 +17,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.iris.ccpm.MainActivity;
 import com.iris.ccpm.R;
 
+import com.iris.ccpm.adapter.DynamicAdapter;
+import com.iris.ccpm.adapter.ProjectAdapter;
+import com.iris.ccpm.model.Dynamic;
+import com.iris.ccpm.model.Project;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
 import com.loopj.android.http.*;
@@ -37,7 +41,7 @@ import cz.msebera.android.httpclient.Header;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    private static String[] title = {"1", "2", "3", "4", "5", "6"};
+    List<Dynamic> dynamicList;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +52,13 @@ public class HomeFragment extends Fragment {
         Request.clientGet(getActivity(), "dynamic", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
-                System.out.println("dynamic:" + result);
+                System.out.println("project:" + result);
+                JSONArray list = result.getJSONArray("list");
+                String liststring = JSONObject.toJSONString(list);
+
+                dynamicList = JSONObject.parseArray(liststring, Dynamic.class);//把字符串转换成集合
+                ListView lvNew = root.findViewById(R.id.lv_news);
+                lvNew.setAdapter(new DynamicAdapter(getActivity(), dynamicList));
             }
 
             @Override
@@ -57,38 +67,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        MainActivity activity = (MainActivity) getActivity();
-        final ListView lvNews = root.findViewById(R.id.lv_news);
-        lvNews.setAdapter(new Myadapter());
-
         return root;
-    }
-
-    private class Myadapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return title.length;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return title[position];
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            LayoutInflater inflater = getActivity().getLayoutInflater();
-            View view = inflater.inflate(R.layout.news_item_layout, parent, false);
-            TextView titleText = (TextView) view.findViewById(R.id.title);
-            titleText.setText(title[position]);
-            return view;
-        }
     }
 }

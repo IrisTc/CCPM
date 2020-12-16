@@ -6,12 +6,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="133dp"
+            android:layout_height="100dp"
+            android:padding="15dp"
             android:orientation="horizontal">
 
 
@@ -19,14 +20,12 @@
                 android:id="@+id/project_icon"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="50dp"
                 android:contentDescription="项目图标"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="131dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
@@ -34,8 +33,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginEnd="52dp"
                     android:ems="10"
                     android:text="项目名称"
                     android:textColor="@color/black"
@@ -47,7 +44,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="14dp"
-                    android:layout_marginEnd="42dp"
                     android:text="xxx创建于xxxx年xx月xx日"
                     android:textSize="14dp" />
             </LinearLayout>
@@ -59,7 +55,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
             android:text="项目项目项目项目项目项目"
             android:textColor="@color/black"
             android:textSize="14dp" />
@@ -73,7 +68,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
             android:text="xxxx年xx月xx日 - xxxx年xx月xx日"
             android:textColor="@color/black"
@@ -81,12 +76,26 @@
 
         <TextView
             style="@style/introTitle"
-            android:text="项目统计" />
+            android:text="项目计划" />
+
+        <TextView
+            android:id="@+id/project_plan"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:text="plan"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+
+        <TextView
+            style="@style/introTitle"
+            android:text="任务统计" />
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="170dp"
-            android:layout_marginTop="20dp"
             android:padding="10dp">
 
             <TableRow
@@ -123,7 +132,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/incomplete_number"
+                    android:id="@+id/ing_number"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_weight="0.33"
@@ -133,7 +142,7 @@
                     android:textSize="30dp" />
 
                 <TextView
-                    android:id="@+id/complete_number"
+                    android:id="@+id/done_number"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_weight="0.33"
@@ -145,7 +154,7 @@
                 <TextView
                     android:id="@+id/overdue_number"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.33"
                     android:text="01"
                     android:textAlignment="center"
@@ -178,7 +187,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="30dp"
                     android:layout_weight="0.33"
-                    android:text="逾期完成"
+                    android:text="任务总数"
                     android:textAlignment="center" />
             </TableRow>
 
@@ -187,7 +196,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/overdue_number2"
+                    android:id="@+id/noclaim_number"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_weight="0.33"
@@ -197,7 +206,7 @@
                     android:textSize="30dp" />
 
                 <TextView
-                    android:id="@+id/complete_number2"
+                    android:id="@+id/expiretoday_number"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_weight="0.33"
@@ -207,7 +216,7 @@
                     android:textSize="30dp" />
 
                 <TextView
-                    android:id="@+id/incomplete_number2"
+                    android:id="@+id/count_number"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_weight="0.33"
@@ -219,11 +228,13 @@
         </TableLayout>
 
         <TextView
+            android:id="@+id/member_number"
             style="@style/introTitle"
+            android:layout_marginBottom="10dp"
             android:text="项目成员"/>
 
         <ListView
-            android:id="@+id/member_list"
+            android:id="@+id/lv_member"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

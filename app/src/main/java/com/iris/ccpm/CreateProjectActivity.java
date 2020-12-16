@@ -22,17 +22,12 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpRequest;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.HeaderElement;
-import cz.msebera.android.httpclient.ParseException;
 import cz.msebera.android.httpclient.entity.StringEntity;
-import cz.msebera.android.httpclient.impl.cookie.BasicClientCookie;
 
-public class CreateActivity extends AppCompatActivity {
+public class CreateProjectActivity extends AppCompatActivity {
 
     private EditText et_project_name;
     private TextView date_picker;
@@ -71,7 +66,7 @@ public class CreateActivity extends AppCompatActivity {
                 System.out.println(project_synopsis);
 
                 if(project_name.equals("") || end_date.equals("")){
-                    Toast.makeText(CreateActivity.this,"请填写完整信息", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CreateProjectActivity.this,"请填写完整信息", Toast.LENGTH_LONG).show();
                 }
                 else{
                     GlobalData app = (GlobalData) getApplicationContext();
@@ -85,7 +80,7 @@ public class CreateActivity extends AppCompatActivity {
                     body.put("projectSynopsis", project_synopsis);
                     StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
                     client.addHeader("Token", app.getToken());
-                    client.post(CreateActivity.this, url, entity, "application/json", new AsyncHttpResponseHandler() {
+                    client.post(CreateProjectActivity.this, url, entity, "application/json", new AsyncHttpResponseHandler() {
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                             for (int i = 0; i < headers.length; i++) {
@@ -99,16 +94,16 @@ public class CreateActivity extends AppCompatActivity {
                             Integer code = jsonObject.getInteger("code");
                             Log.d("code:", code.toString());
                             if(code != 200){
-                                Toast.makeText(CreateActivity.this, "创建失败", Toast.LENGTH_LONG).show();
+                                Toast.makeText(CreateProjectActivity.this, "创建失败", Toast.LENGTH_LONG).show();
                             }else{
-                                Toast.makeText(CreateActivity.this, "创建成功", Toast.LENGTH_LONG).show();
+                                Toast.makeText(CreateProjectActivity.this, "创建成功", Toast.LENGTH_LONG).show();
                                 back();
                             }
                         }
 
                         @Override
                         public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                            Toast.makeText(CreateActivity.this, "请检查网络设置", Toast.LENGTH_LONG).show();
+                            Toast.makeText(CreateProjectActivity.this, "请检查网络设置", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -125,7 +120,7 @@ public class CreateActivity extends AppCompatActivity {
                         System.out.println(selected_year+"年"+selected_month+"月"+selected_day+"日");
                     }
                 };
-                DatePickerDialog dialog=new DatePickerDialog(CreateActivity.this, 0,listener,year,month-1,day);//后边三个参数为显示dialog时默认的日期，月份从0开始，0-11对应1-12个月
+                DatePickerDialog dialog=new DatePickerDialog(CreateProjectActivity.this, 0,listener,year,month-1,day);//后边三个参数为显示dialog时默认的日期，月份从0开始，0-11对应1-12个月
                 dialog.show();
             }
         });
