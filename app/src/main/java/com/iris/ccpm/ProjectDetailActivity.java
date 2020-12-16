@@ -1,8 +1,10 @@
 package com.iris.ccpm;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -27,7 +30,9 @@ import com.iris.ccpm.utils.Request;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectDetailActivity extends AppCompatActivity {
+import cz.msebera.android.httpclient.entity.StringEntity;
+
+public class ProjectDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     Integer project_id;
     TabLayout tbSelect;
@@ -35,6 +40,9 @@ public class ProjectDetailActivity extends AppCompatActivity {
     ArrayList<View> viewList;
     MypagerAdapter mAdapter;
     Project project;
+    List<Member> memberList;
+    MemberAdapter memberAdapter;
+    View intro_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +79,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
         viewList = new ArrayList<View>();
         LayoutInflater li = getLayoutInflater();
 
-        View intro_view = li.inflate(R.layout.project_detail_intro, null, false);
+        intro_view = li.inflate(R.layout.project_detail_intro, null, false);
         init_intro(intro_view);
 
         View new_view = li.inflate(R.layout.project_detail_new, null, false);
@@ -107,7 +115,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
         project_time_text.setText(project.getProjectStartTime() + "-" + project.getProjectEndTime());
         project_plan_text.setText(project.getProjectPlan());
 
-        Request.clientGet(ProjectDetailActivity.this, "statistics?project_id=" + project_id, new NetCallBack() {
+        Request.clientGet(ProjectDetailActivity.this, "statistics?ingTaskPro=yes&doneTaskPro=yes&hasOverdue=yes&noClaimTask&expireToday=yes&proMemNum=yes&project_uid=" + project_id, new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 System.out.println("statistics:" + result);
@@ -136,23 +144,25 @@ public class ProjectDetailActivity extends AppCompatActivity {
             }
         });
 
+        getMember();
+        ListView lvMember = view.findViewById(R.id.lv_member);
+        MemberAdapter memberAdapter = new MemberAdapter(ProjectDetailActivity.this, project_id, memberList, ProjectDetailActivity.this);
+        lvMember.setAdapter(memberAdapter);
+        setListViewHeightBasedOnChildren(lvMember, memberAdapter);
+    }
+
+    private void getMember() {
         Request.clientGet(ProjectDetailActivity.this, "project/" + project_id + "/member", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
-                System.out.println("member:" +result);
                 JSONArray list = result.getJSONArray("list");
                 String liststring = JSONObject.toJSONString(list);
-
-                List<Member> memberList = JSONObject.parseArray(liststring, Member.class);//把字符串转换成集合
-                ListView lvMember = view.findViewById(R.id.lv_member);
-                MemberAdapter adapter = new MemberAdapter(ProjectDetailActivity.this, memberList);
-                lvMember.setAdapter(adapter);
-                setListViewHeightBasedOnChildren(lvMember, adapter);
+                memberList = JSONObject.parseArray(liststring, Member.class);//把字符串转换成集合
+                System.out.println("memeber:" + memberList);
             }
 
             @Override
             public void onMyFailure(String error) {
-
             }
         });
     }
@@ -175,6 +185,50 @@ public class ProjectDetailActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.member_delete_button:
+                int pos = (int) v.getTag();
+                Member member = memberList.get(pos);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ProjectDetailActivity.this);
+                builder.setIcon(R.drawable.ic_warn);
+                builder.setTitle("警告");
+                builder.setMessage("确定移除该成员【" + member.getNickName() + "】吗？");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        JSONObject body = new JSONObject();
+                        body.put("project_uid", project_id);
+                        body.put("username", member.getUsername());
+                        StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
+                        Request.clientPost(ProjectDetailActivity.this, "/project/" + project_id + "/remove/" + member.getUsername(), entity, new NetCallBack() {
+                            @Override
+                            public void onMySuccess(JSONObject result) {
+                                Toast.makeText(ProjectDetailActivity.this, "移除成功！", Toast.LENGTH_SHORT).show();
+                                getMember();
+                                memberAdapter.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onMyFailure(String error) {
+
+                            }
+                        });
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which){}
+                });
+                builder.show();
+                break;
+        }
     }
 
     public void setListViewHeightBasedOnChildren(ListView listView, MemberAdapter adapter) {

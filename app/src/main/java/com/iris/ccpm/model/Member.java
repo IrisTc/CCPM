@@ -1,6 +1,7 @@
 package com.iris.ccpm.model;
 
 public class Member {
+    private Integer account_uid;
     private String username;
     private String password;
     private String avatarUrl;
@@ -9,6 +10,14 @@ public class Member {
     private String position;
     private String phoneNum;
     private String synopsis;
+
+    public Integer getAccount_uid() {
+        return account_uid;
+    }
+
+    public void setAccount_uid(Integer account_uid) {
+        this.account_uid = account_uid;
+    }
 
     public String getName() {
         if (this.realName == null) {

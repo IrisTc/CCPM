@@ -1,6 +1,7 @@
 package com.iris.ccpm.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,20 +9,32 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+
+import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.iris.ccpm.R;
 import com.iris.ccpm.model.Member;
+import com.iris.ccpm.utils.NetCallBack;
+import com.iris.ccpm.utils.Request;
 
 import java.util.List;
 
+import cz.msebera.android.httpclient.entity.StringEntity;
+
 public class MemberAdapter extends BaseAdapter {
     Context context;
+    Integer product_id;
     List<Member> memberList;
+    View.OnClickListener listener;        //定义点击事件
 
-    public MemberAdapter(Context context, List<Member> members) {
+    public MemberAdapter(Context context, Integer product_id, List<Member> members, View.OnClickListener listener) {
         this.context = context;
+        this.product_id = product_id;
         this.memberList = members;
+        this.listener = listener;
     }
 
 
@@ -57,6 +70,14 @@ public class MemberAdapter extends BaseAdapter {
         tvPosition.setText(member.getPosition());
         Uri uri = Uri.parse(member.getAvatarUrl());
         ivAvatar.setImageURI(uri);
+
+        Integer member_id = member.getAccount_uid();
+        ImageView btDelete = view.findViewById(R.id.member_delete_button);
+        ImageView btShow = view.findViewById(R.id.member_personal_button);
+        btDelete.setOnClickListener(listener);
+        btShow.setOnClickListener(listener);
+        btDelete.setTag(position);
+        btShow.setTag(position);
 
         return view;
     }

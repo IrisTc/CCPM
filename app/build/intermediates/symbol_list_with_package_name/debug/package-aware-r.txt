@@ -1641,6 +1641,7 @@ drawable ic_remaining_time
 drawable ic_setting
 drawable ic_task
 drawable ic_time
+drawable ic_warn
 drawable icon_sprites
 drawable login_background
 drawable logo

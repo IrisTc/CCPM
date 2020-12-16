@@ -1,27 +1,27 @@
 [
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_items.png.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_items.png"
+        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\menu_main.xml.flat",
+        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\menu\\main.xml"
     },
     {
         "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_news.png.flat",
         "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_news.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\menu_main.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\menu\\main.xml"
+        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_items.png.flat",
+        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_items.png"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_side_nav_bar.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\side_nav_bar.xml"
+        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
         "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_project_detail_intro.xml.flat",
         "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\project_detail_intro.xml"
     },
     {
-        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_side_nav_bar.xml.flat",
+        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\side_nav_bar.xml"
     },
     {
         "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_slideshow.xml.flat",
@@ -254,6 +254,10 @@
     {
         "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_time.png.flat",
         "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_time.png"
+    },
+    {
+        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_warn.png.flat",
+        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_warn.png"
     },
     {
         "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_task_item_layout.xml.flat",
