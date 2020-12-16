@@ -1743,7 +1743,6 @@ id accessibility_custom_action_6
 id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
-id action
 id action_add
 id action_bar
 id action_bar_activity_content
@@ -1765,6 +1764,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id addTaskButton
 id alertTitle
 id aligned
 id all
@@ -2032,6 +2032,7 @@ id postLayout
 id post_list
 id predictEdit
 id predictLabel
+id priority
 id prioritySpinner
 id progress_circular
 id progress_horizontal

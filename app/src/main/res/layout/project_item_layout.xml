@@ -63,7 +63,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/action"
+                    android:id="@+id/priority"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -79,7 +79,7 @@
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginVertical="8dp"
                     android:layout_toLeftOf="@+id/tv_rate"
-                    android:layout_toRightOf="@+id/action"
+                    android:layout_toRightOf="@+id/priority"
                     android:gravity="center_vertical"
                     android:progress="6"
                     android:progressDrawable="@drawable/progress_bar" />
