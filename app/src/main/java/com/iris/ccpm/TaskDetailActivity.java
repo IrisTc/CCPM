@@ -26,7 +26,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class TaskDetailActivity extends AppCompatActivity {
-    private int index=0;
     private Spinner prioritySpinner;
     private Spinner completeSpinner;
     private Spinner executeSpinner;
@@ -60,7 +59,7 @@ public class TaskDetailActivity extends AppCompatActivity {
 
         startYear=startMonth=startDay=endYear=endMonth=endDay=-1;
 
-        getData();
+        LoadData();
 
         InitSpinner();
         StartTimeView.setOnClickListener(new View.OnClickListener() {
@@ -130,37 +129,6 @@ public class TaskDetailActivity extends AppCompatActivity {
         });
     }
 
-    public void getData(){
-        Request.clientGet(TaskDetailActivity.this, "task", new NetCallBack() {
-            @Override
-            public void onMySuccess(JSONObject result) {
-                JSONArray list=result.getJSONArray("list");
-                JSONObject obj=list.getJSONObject(index);
-                data.setClaimState(obj.getInteger("claimState"));
-                data.setClaim_uid(obj.getInteger("claim_uid"));
-                data.setProject_uid(obj.getString("project_uid"));
-                data.setTaskEmergent(obj.getInteger("taskEmergent"));
-                data.setTaskEndTime(obj.getString("taskEndTime"));
-                data.setTaskName(obj.getString("taskName"));
-                data.setTaskPredictHours(obj.getString("taskPredictHours"));
-                data.setTaskRestHours(obj.getString("taskRestHours"));
-                data.setTaskStartTime(obj.getString("taskStartTime"));
-                data.setTaskState(obj.getInteger("taskState"));
-                data.setTaskSynopsis(obj.getString("taskSynopsis"));
-                data.setTask_uid(obj.getInteger("task_uid"));
-//                String logStr=data.claimState+data.claim_uid+data.project_uid+data.taskEmergent+data.taskEndTime+data.taskName+data.taskPredictHours+data.taskRestHours+data.taskStartTime+data.taskStartTime+data.taskState+data.taskSynopsis+data.task_uid;
-//                Log.d("TaskJson",logStr);
-                LoadData();
-            }
-
-            @Override
-            public void onMyFailure(String error) {
-                Log.d("jsonError",error);
-                Toast.makeText(TaskDetailActivity.this, error, Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
     public void InitSpinner(){
         prioritySpinner.setDropDownWidth(400);
         prioritySpinner.setDropDownHorizontalOffset(100);
@@ -212,6 +180,20 @@ public class TaskDetailActivity extends AppCompatActivity {
     }
 
     public void LoadData(){
+        TaskModel task=(TaskModel) getIntent().getSerializableExtra("task");
+        data=task;
+        System.out.println(data.getProject_uid());
+//        Request.clientGet(TaskDetailActivity.this, "project/"+data.getProject_uid()+"/member", new NetCallBack() {
+//            @Override
+//            public void onMySuccess(JSONObject result) {
+//                System.out.println(result.toString());
+//            }
+//
+//            @Override
+//            public void onMyFailure(String error) {
+//
+//            }
+//        });
         String[] startStr=data.getTaskStartTime().split("-");
         startYear=Integer.parseInt(startStr[0]);
         startMonth=Integer.parseInt(startStr[1]);

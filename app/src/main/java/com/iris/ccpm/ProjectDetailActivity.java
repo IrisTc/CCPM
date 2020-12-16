@@ -7,14 +7,16 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.tabs.TabLayout;
@@ -24,13 +26,19 @@ import com.iris.ccpm.adapter.MypagerAdapter;
 import com.iris.ccpm.model.Dynamic;
 import com.iris.ccpm.model.Member;
 import com.iris.ccpm.model.Project;
+import com.iris.ccpm.adapter.TaskAdapter;
+import com.iris.ccpm.model.Project;
+import com.iris.ccpm.model.TaskModel;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import cz.msebera.android.httpclient.entity.StringEntity;
+
+import static com.loopj.android.http.AsyncHttpClient.log;
 
 public class ProjectDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -44,6 +52,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     MemberAdapter memberAdapter;
     View intro_view;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +63,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         project_id = project.getProject_uid();
 
         findView();
-
         initTabContent();
         tbSelect.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -74,6 +82,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         });
 
     }
+
 
     private void initTabContent() {
         viewList = new ArrayList<View>();
@@ -97,6 +106,84 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void init_task(View task_view) {
+        ArrayList<TaskModel> tasks;
+        tasks=new ArrayList<>();
+        ListView taskList=task_view.findViewById(R.id.task_list);
+        Request.clientGet(ProjectDetailActivity.this, "task", new NetCallBack() {
+            @Override
+            public void onMySuccess(JSONObject result) {
+                System.out.println("task" + result);
+                TaskModel data=new TaskModel();
+                JSONArray list=result.getJSONArray("list");
+                for(int i=0;i<list.size();++i) {
+                    JSONObject obj = list.getJSONObject(i);
+                    data.setClaimState(obj.getInteger("claimState"));
+                    data.setClaim_uid(obj.getInteger("claim_uid"));
+                    data.setProject_uid(obj.getString("project_uid"));
+                    data.setTaskEmergent(obj.getInteger("taskEmergent"));
+                    data.setTaskEndTime(obj.getString("taskEndTime"));
+                    data.setTaskName(obj.getString("taskName"));
+                    data.setTaskPredictHours(obj.getString("taskPredictHours"));
+                    data.setTaskRestHours(obj.getString("taskRestHours"));
+                    data.setTaskStartTime(obj.getString("taskStartTime"));
+                    data.setTaskState(obj.getInteger("taskState"));
+                    data.setTaskSynopsis(obj.getString("taskSynopsis"));
+                    data.setTask_uid(obj.getInteger("task_uid"));
+                    tasks.add(data);
+                    System.out.println(data.getTaskName());
+                }
+                TaskAdapter adapter=new TaskAdapter(ProjectDetailActivity.this,R.layout.task_item_layout,tasks);
+                taskList.setAdapter(adapter);
+                taskList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        TaskModel task=tasks.get(position);
+                        Intent intent = new Intent(ProjectDetailActivity.this, TaskDetailActivity.class);
+                        intent.putExtra("task",task);
+                        System.out.println(position);
+                        startActivity(intent);
+                    }
+                });
+            }
+            @Override
+            public void onMyFailure(String error) {
+                Toast.makeText(ProjectDetailActivity.this, error, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        Button addBtn=task_view.findViewById(R.id.addTaskButton);
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TaskModel task=new TaskModel();
+                JSONObject obj=new JSONObject();
+                obj.put("claimState",task.getClaimState());
+                obj.put("claim_uid",task.getClaim_uid());
+                obj.put("project_uid",1336756231);
+                obj.put("taskEmergent",task.getTaskEmergent());
+                obj.put("taskEndTime",task.getTaskEmergent());
+                obj.put("taskName",task.getTaskName());
+                obj.put("taskPredictHours",task.getTaskPredictHours());
+                obj.put("taskRestHours",task.getTaskRestHours());
+                obj.put("taskStartTime",task.getTaskStartTime());
+                obj.put("taskState",task.getTaskState());
+                obj.put("taskSynopsis",task.getTaskSynopsis());
+                obj.put("task_uid",task.getTask_uid());
+                StringEntity entity=new StringEntity(obj.toJSONString(),"UTF-8");
+//                Request.clientPost(ProjectDetailActivity.this,"project/1336756231/task",entity,new NetCallBack(){
+//                    @Override
+//                    public void onMySuccess(JSONObject result) {
+//                        Toast.makeText(ProjectDetailActivity.this, "创建成功", Toast.LENGTH_LONG).show();
+//                    }
+//
+//                    @Override
+//                    public void onMyFailure(String error) {
+//                        System.out.println(obj.toJSONString());
+//                        Toast.makeText(ProjectDetailActivity.this, error, Toast.LENGTH_LONG).show();
+//                    }
+//                });
+            }
+        });
     }
 
     private void init_intro(View view) {
@@ -143,22 +230,20 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
 
             }
         });
-
-        getMember();
         ListView lvMember = view.findViewById(R.id.lv_member);
-        MemberAdapter memberAdapter = new MemberAdapter(ProjectDetailActivity.this, project_id, memberList, ProjectDetailActivity.this);
-        lvMember.setAdapter(memberAdapter);
-        setListViewHeightBasedOnChildren(lvMember, memberAdapter);
+        getMember(lvMember);
     }
 
-    private void getMember() {
+    private void getMember(ListView lvMember) {
         Request.clientGet(ProjectDetailActivity.this, "project/" + project_id + "/member", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 JSONArray list = result.getJSONArray("list");
                 String liststring = JSONObject.toJSONString(list);
                 memberList = JSONObject.parseArray(liststring, Member.class);//把字符串转换成集合
-                System.out.println("memeber:" + memberList);
+                MemberAdapter memberAdapter = new MemberAdapter(ProjectDetailActivity.this, project_id, memberList, ProjectDetailActivity.this);
+                lvMember.setAdapter(memberAdapter);
+                setListViewHeightBasedOnChildren(lvMember, memberAdapter);
             }
 
             @Override
@@ -210,7 +295,18 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                             @Override
                             public void onMySuccess(JSONObject result) {
                                 Toast.makeText(ProjectDetailActivity.this, "移除成功！", Toast.LENGTH_SHORT).show();
-                                getMember();
+                                Request.clientGet(ProjectDetailActivity.this, "project/" + project_id + "/member", new NetCallBack() {
+                                    @Override
+                                    public void onMySuccess(JSONObject result) {
+                                        JSONArray list = result.getJSONArray("list");
+                                        String liststring = JSONObject.toJSONString(list);
+                                        memberList = JSONObject.parseArray(liststring, Member.class);//把字符串转换成集合
+                                    }
+
+                                    @Override
+                                    public void onMyFailure(String error) {
+                                    }
+                                });
                                 memberAdapter.notifyDataSetChanged();
                             }
 

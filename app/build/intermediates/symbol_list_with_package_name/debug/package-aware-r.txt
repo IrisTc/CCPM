@@ -1744,7 +1744,6 @@ id accessibility_custom_action_6
 id accessibility_custom_action_7
 id accessibility_custom_action_8
 id accessibility_custom_action_9
-id action
 id action_add
 id action_bar
 id action_bar_activity_content
@@ -1766,6 +1765,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id addTaskButton
 id alertTitle
 id aligned
 id all
@@ -1961,7 +1961,6 @@ id member_name
 id member_number
 id member_personal_button
 id member_position
-id memo
 id message
 id middle
 id mini
@@ -2034,6 +2033,7 @@ id position
 id postLayout
 id predictEdit
 id predictLabel
+id priority
 id prioritySpinner
 id progress_circular
 id progress_horizontal
