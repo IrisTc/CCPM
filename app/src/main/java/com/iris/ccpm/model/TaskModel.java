@@ -1,6 +1,8 @@
 package com.iris.ccpm.model;
 
-public class TaskModel {
+import java.io.Serializable;
+
+public class TaskModel implements Serializable {
     private int claimState;
     private int claim_uid;
     private String project_uid;

@@ -29,6 +29,7 @@ import com.iris.ccpm.model.TaskModel;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,57 +122,60 @@ public class ProjectDetailActivity extends AppCompatActivity {
                     data.setTaskSynopsis(obj.getString("taskSynopsis"));
                     data.setTask_uid(obj.getInteger("task_uid"));
                     tasks.add(data);
+                    System.out.println(data.getTaskName());
                 }
                 TaskAdapter adapter=new TaskAdapter(ProjectDetailActivity.this,R.layout.task_item_layout,tasks);
                 taskList.setAdapter(adapter);
                 taskList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        TaskModel task=tasks.get(position);
                         Intent intent = new Intent(ProjectDetailActivity.this, TaskDetailActivity.class);
-                        intent.putExtra("taskIndex",position);
+                        intent.putExtra("task",task);
+                        System.out.println(position);
                         startActivity(intent);
                     }
                 });
             }
             @Override
             public void onMyFailure(String error) {
-                Log.d("jsonError",error);
                 Toast.makeText(ProjectDetailActivity.this, error, Toast.LENGTH_LONG).show();
             }
         });
 
         Button addBtn=task_view.findViewById(R.id.addTaskButton);
-//        addBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                TaskModel task=new TaskModel();
-//                JSONObject obj=new JSONObject();
-//                obj.put("claimState",task.getClaimState());
-//                obj.put("claim_uid",task.getClaim_uid());
-//                obj.put("project_uid",task.getProject_uid());
-//                obj.put("taskEmergent",task.getTaskEmergent());
-//                obj.put("taskEndTime",task.getTaskEmergent());
-//                obj.put("taskName",task.getTaskName());
-//                obj.put("taskPredictHours",task.getTaskPredictHours());
-//                obj.put("taskRestHours",task.getTaskRestHours());
-//                obj.put("taskStartTime",task.getTaskStartTime());
-//                obj.put("taskState",task.getTaskState());
-//                obj.put("taskSynopsis",task.getTaskSynopsis());
-//                obj.put("task_uid",task.getTask_uid());
-//                StringEntity entity=new StringEntity(obj.toJSONString(),"UTF-8");
-//                Request.clientPost(ProjectDetailActivity.this,"task",entity,new NetCallBack(){
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TaskModel task=new TaskModel();
+                JSONObject obj=new JSONObject();
+                obj.put("claimState",task.getClaimState());
+                obj.put("claim_uid",task.getClaim_uid());
+                obj.put("project_uid",1336756231);
+                obj.put("taskEmergent",task.getTaskEmergent());
+                obj.put("taskEndTime",task.getTaskEmergent());
+                obj.put("taskName",task.getTaskName());
+                obj.put("taskPredictHours",task.getTaskPredictHours());
+                obj.put("taskRestHours",task.getTaskRestHours());
+                obj.put("taskStartTime",task.getTaskStartTime());
+                obj.put("taskState",task.getTaskState());
+                obj.put("taskSynopsis",task.getTaskSynopsis());
+                obj.put("task_uid",task.getTask_uid());
+                StringEntity entity=new StringEntity(obj.toJSONString(),"UTF-8");
+//                Request.clientPost(ProjectDetailActivity.this,"project/1336756231/task",entity,new NetCallBack(){
 //                    @Override
 //                    public void onMySuccess(JSONObject result) {
-//
+//                        Toast.makeText(ProjectDetailActivity.this, "创建成功", Toast.LENGTH_LONG).show();
 //                    }
 //
 //                    @Override
 //                    public void onMyFailure(String error) {
+//                        System.out.println(obj.toJSONString());
 //                        Toast.makeText(ProjectDetailActivity.this, error, Toast.LENGTH_LONG).show();
 //                    }
 //                });
-//            }
-//        });
+            }
+        });
     }
 
     private void init_intro(View view) {
