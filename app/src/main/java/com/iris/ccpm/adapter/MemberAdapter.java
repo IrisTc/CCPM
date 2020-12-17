@@ -26,11 +26,11 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 
 public class MemberAdapter extends BaseAdapter {
     Context context;
-    Integer product_id;
+    String product_id;
     List<Member> memberList;
     View.OnClickListener listener;        //定义点击事件
 
-    public MemberAdapter(Context context, Integer product_id, List<Member> members, View.OnClickListener listener) {
+    public MemberAdapter(Context context, String product_id, List<Member> members, View.OnClickListener listener) {
         this.context = context;
         this.product_id = product_id;
         this.memberList = members;
@@ -71,7 +71,6 @@ public class MemberAdapter extends BaseAdapter {
         Uri uri = Uri.parse(member.getAvatarUrl());
         ivAvatar.setImageURI(uri);
 
-        Integer member_id = member.getAccount_uid();
         ImageView btDelete = view.findViewById(R.id.member_delete_button);
         ImageView btShow = view.findViewById(R.id.member_personal_button);
         btDelete.setOnClickListener(listener);

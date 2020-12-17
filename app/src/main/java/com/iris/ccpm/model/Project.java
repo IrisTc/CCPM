@@ -3,7 +3,7 @@ package com.iris.ccpm.model;
 import java.io.Serializable;
 
 public class Project implements Serializable {
-    private Integer project_uid;
+    private String project_uid;
     private String projectName;
     private Integer manager_uid;
     private String managerNickName;
@@ -30,11 +30,11 @@ public class Project implements Serializable {
         this.managerNickName = managerNickName;
     }
 
-    public Integer getProject_uid() {
+    public String getProject_uid() {
         return project_uid;
     }
 
-    public void setProject_uid(Integer project_uid) {
+    public void setProject_uid(String project_uid) {
         this.project_uid = project_uid;
     }
 

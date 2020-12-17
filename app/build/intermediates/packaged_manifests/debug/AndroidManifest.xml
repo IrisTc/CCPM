@@ -58,6 +58,9 @@
         <activity
             android:name="com.iris.ccpm.TaskDetailActivity"
             android:label="任务详情" />
+        <activity
+            android:name="com.iris.ccpm.MemberDetailActivity"
+            android:label="成员资料" />
     </application>
 
 </manifest>

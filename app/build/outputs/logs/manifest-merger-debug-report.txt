@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-57:12
-INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-57:12
-INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-57:12
-INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-57:12
+ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-60:12
+INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-60:12
+INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-60:12
+INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-60:12
 MERGED from [com.facebook.fresco:fresco:0.14.1] C:\Users\10109\.gradle\caches\transforms-2\files-2.1\5f4f1f98d7c7cbd95403765970809f81\jetified-fresco-0.14.1\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.navigation:navigation-ui:2.3.1] C:\Users\10109\.gradle\caches\transforms-2\files-2.1\e3d7830f778f31330c967610f2dc1b90\navigation-ui-2.3.1\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\10109\.gradle\caches\transforms-2\files-2.1\b988cdf40af7cdf3e0317011f8e5bfe7\material-1.2.1\AndroidManifest.xml:17:1-24:12
@@ -49,20 +49,20 @@ MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\10109\.gradle\ca
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\10109\.gradle\caches\transforms-2\files-2.1\3e9337dfc055970a9422bc379c54bdcb\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\10109\.gradle\caches\transforms-2\files-2.1\48eb1e8d8b8ad7006b2f3cf24b65d608\print-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\10109\.gradle\caches\transforms-2\files-2.1\01339aeadc2379d14234ec1725fb1d1d\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
-INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-57:12
-INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-57:12
-INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-60:12
+INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-60:12
+INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-60:12
 	package
 		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:3:5-28
 		INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml
 		INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml
-		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-57:12
+		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-60:12
 		INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml
-		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-57:12
+		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:1-60:12
 		INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:2:11-69
@@ -75,7 +75,7 @@ ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:6:5-80
 	android:name
 		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:6:22-78
 application
-ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:8:5-55:19
+ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:8:5-58:19
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\10109\.gradle\caches\transforms-2\files-2.1\b988cdf40af7cdf3e0317011f8e5bfe7\material-1.2.1\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.2.1] C:\Users\10109\.gradle\caches\transforms-2\files-2.1\b988cdf40af7cdf3e0317011f8e5bfe7\material-1.2.1\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.2] C:\Users\10109\.gradle\caches\transforms-2\files-2.1\ef65eb46079c4e4e8fdff66f1cfdf6a0\constraintlayout-2.0.2\AndroidManifest.xml:9:5-20
@@ -160,6 +160,12 @@ ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:53:9-54:35
 		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:54:13-33
 	android:name
 		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:53:19-53
+activity#com.iris.ccpm.MemberDetailActivity
+ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:56:9-57:35
+	android:label
+		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:57:13-33
+	android:name
+		ADDED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:56:19-55
 uses-sdk
 INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\androidProject\CCPM\app\src\main\AndroidManifest.xml

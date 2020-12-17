@@ -18,7 +18,7 @@
 12-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:6:22-78
 13
 14    <application
-14-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:8:5-55:19
+14-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:8:5-58:19
 15        android:name="com.iris.ccpm.model.GlobalData"
 15-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:9:9-41
 16        android:allowBackup="true"
@@ -103,6 +103,12 @@
 59-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:53:19-53
 60            android:label="任务详情" />
 60-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:54:13-33
-61    </application>
-62
-63</manifest>
+61        <activity
+61-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:56:9-57:35
+62            android:name="com.iris.ccpm.MemberDetailActivity"
+62-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:56:19-55
+63            android:label="成员资料" />
+63-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:57:13-33
+64    </application>
+65
+66</manifest>
