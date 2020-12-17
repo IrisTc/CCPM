@@ -1788,7 +1788,6 @@ id bounce
 id bt_Register
 id bt_edit
 id bt_login
-id bt_logout
 id buttonPanel
 id cache_measures
 id cancel_button
@@ -2270,6 +2269,7 @@ layout activity_account_edit
 layout activity_create
 layout activity_login
 layout activity_main
+layout activity_member
 layout activity_notify
 layout activity_notify_invite
 layout activity_project_detail

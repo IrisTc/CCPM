@@ -325,6 +325,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                 break;
             case R.id.member_personal_button:
                 Intent intent = new Intent(ProjectDetailActivity.this, MemberDetailActivity.class);
+                intent.putExtra("account_id", member.getAccount_uid());
                 startActivity(intent);
         }
     }

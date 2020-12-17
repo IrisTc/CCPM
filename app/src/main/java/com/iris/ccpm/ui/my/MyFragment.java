@@ -81,16 +81,6 @@ public class MyFragment extends Fragment {
             }
         });
 
-        Button btLogout = root.findViewById(R.id.bt_logout);
-        btLogout.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                System.out.println("logout");
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
         return root;
     }
 

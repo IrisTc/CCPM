@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.fastjson.JSONArray;
@@ -24,6 +25,8 @@ import com.iris.ccpm.adapter.MypagerAdapter;
 import com.iris.ccpm.adapter.TaskAdapter;
 import com.iris.ccpm.model.Member;
 import com.iris.ccpm.model.TaskModel;
+import com.iris.ccpm.ui.my.MyViewModel;
+import com.iris.ccpm.ui.project.ProjectViewModel;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
 
@@ -31,11 +34,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskFragment extends Fragment {
+
+    private TaskViewModel taskViewModel;
     ViewPager vpTask;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        taskViewModel = new ViewModelProvider(this).get(TaskViewModel.class);
         View root = inflater.inflate(R.layout.fragment_task, container, false);
 
         vpTask = root.findViewById(R.id.vp_task);

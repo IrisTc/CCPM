@@ -76,6 +76,10 @@
         "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\menu\\activity_main_drawer.xml"
     },
     {
+        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_member.xml.flat",
+        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\activity_member.xml"
+    },
+    {
         "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
         "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
     },
