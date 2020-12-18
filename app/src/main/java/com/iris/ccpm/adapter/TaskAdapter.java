@@ -43,7 +43,7 @@ public class TaskAdapter extends ArrayAdapter<TaskModel> {
         }
 
         viewHolder.title.setText(task.getTaskName());
-        viewHolder.date.setText(task.getTaskStartTime());
+        viewHolder.date.setText(task.getTaskStartTime() + " - " + task.getTaskEndTime());
         String prio="普通";
         int color=0xFF7FFFAA;
         int textColor=Color.BLACK;

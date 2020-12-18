@@ -42,7 +42,7 @@ import static com.loopj.android.http.AsyncHttpClient.log;
 
 public class ProjectDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Integer project_id;
+    String project_id;
     TabLayout tbSelect;
     ViewPager vpChosen;
     ArrayList<View> viewList;
@@ -83,7 +83,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
 
     }
 
-
     private void initTabContent() {
         viewList = new ArrayList<View>();
         LayoutInflater li = getLayoutInflater();
@@ -109,7 +108,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         ArrayList<TaskModel> tasks;
         tasks=new ArrayList<>();
         ListView taskList=task_view.findViewById(R.id.task_list);
-        Request.clientGet(ProjectDetailActivity.this, "task", new NetCallBack() {
+        Request.clientGet(ProjectDetailActivity.this, "task?project=" + project_id , new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 System.out.println("task" + result);
@@ -274,10 +273,10 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
+        int pos = (int) v.getTag();
+        Member member = memberList.get(pos);
         switch (v.getId()) {
             case R.id.member_delete_button:
-                int pos = (int) v.getTag();
-                Member member = memberList.get(pos);
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProjectDetailActivity.this);
                 builder.setIcon(R.drawable.ic_warn);
                 builder.setTitle("警告");
@@ -324,6 +323,10 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                 });
                 builder.show();
                 break;
+            case R.id.member_personal_button:
+                Intent intent = new Intent(ProjectDetailActivity.this, MemberDetailActivity.class);
+                intent.putExtra("account_id", member.getAccount_uid());
+                startActivity(intent);
         }
     }
 

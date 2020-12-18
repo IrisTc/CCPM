@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:text="nickname"
+            android:textSize="20dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintLeft_toRightOf="@+id/iv_avatar"
             android:layout_marginLeft="20dp"
@@ -46,6 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Joined at xxxx"
+            android:textSize="17dp"
             app:layout_constraintLeft_toRightOf="@+id/iv_avatar"
             android:layout_marginLeft="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -68,7 +70,7 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="我的资料" />
+                android:text="基本信息" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -87,12 +89,5 @@
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/bt_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="退出登录"
-        tools:ignore="MissingConstraints" />
 
 </LinearLayout>

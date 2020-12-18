@@ -23,10 +23,13 @@ import com.google.android.material.tabs.TabLayout;
 import com.iris.ccpm.LoginActivity;
 import com.iris.ccpm.ProjectDetailActivity;
 import com.iris.ccpm.R;
+import com.iris.ccpm.TaskDetailActivity;
 import com.iris.ccpm.adapter.MypagerAdapter;
 import com.iris.ccpm.adapter.ProjectAdapter;
+import com.iris.ccpm.adapter.TaskAdapter;
 import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.model.Project;
+import com.iris.ccpm.model.TaskModel;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
 
@@ -78,16 +81,6 @@ public class MyFragment extends Fragment {
             }
         });
 
-        Button btLogout = root.findViewById(R.id.bt_logout);
-        btLogout.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                System.out.println("logout");
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
         return root;
     }
 
@@ -120,18 +113,29 @@ public class MyFragment extends Fragment {
     }
 
     private void init_task(View task_view) {
-        Request.clientGet(getActivity(), "task", new NetCallBack(){
+        ListView lvTask = task_view.findViewById(R.id.lv_task);
+        Request.clientGet(getActivity(), "task?asMember=yes&asManager=no", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
-                System.out.println("task:" + result);
                 JSONArray list = result.getJSONArray("list");
                 String liststring = JSONObject.toJSONString(list);
-                List<Project> projectList = JSONObject.parseArray(liststring, Project.class);//把字符串转换成集合
-            }
+                List<TaskModel> taskList = JSONObject.parseArray(liststring, TaskModel.class);//把字符串转换成集合
+                TaskAdapter adapter = new TaskAdapter(getActivity(),R.layout.task_item_layout,taskList);
 
+                lvTask.setAdapter(adapter);
+                lvTask.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        TaskModel task = taskList.get(position);
+                        Intent intent = new Intent(getActivity(), TaskDetailActivity.class);
+                        intent.putExtra("task",task);
+                        System.out.println(position);
+                        startActivity(intent);
+                    }
+                });
+            }
             @Override
             public void onMyFailure(String error) {
-
             }
         });
     }

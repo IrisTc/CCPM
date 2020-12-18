@@ -47,7 +47,9 @@ public class DynamicAdapter extends BaseAdapter {
         TextView tvAccountName = view.findViewById(R.id.tv_accountName);
         TextView tvTaskName = view.findViewById(R.id.tv_taskName);
 
-        int eventID = 0;
+        Dynamic dynamic = this.dynamicList.get(position);
+
+        int eventID = dynamic.getEventID();
         String event = "";
         switch (eventID){
             case 0: event = "[拒绝认领任务]"; break;
@@ -58,10 +60,9 @@ public class DynamicAdapter extends BaseAdapter {
             case 100:   event = "[创建了项目]"; break;
             case 300:   event = "[加入了项目]"; break;
             case 301:   event = "[退出了项目]"; break;
-            case 302:   event = "[移出了项目]"; break;
+            case 302:   event = "[被移出了项目]"; break;
         }
 
-        Dynamic dynamic = this.dynamicList.get(position);
         tvProject.setText(dynamic.getProjectName());
         tvDynamicTime.setText(dynamic.getDynamicTime());
         tvAccountName.setText(dynamic.getAccountNickName());
