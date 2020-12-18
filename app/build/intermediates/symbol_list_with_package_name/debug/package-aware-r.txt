@@ -1861,6 +1861,8 @@ id dropdown_menu
 id easeIn
 id easeInOut
 id easeOut
+id editClaimer
+id editName
 id editTextTextPersonName2
 id edit_query
 id end
@@ -2278,6 +2280,7 @@ layout activity_task_detail
 layout app_bar_main
 layout content_main
 layout copyright
+layout create_task_dialog
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
