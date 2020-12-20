@@ -2,6 +2,7 @@ package com.iris.ccpm;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.DialogInterface;
@@ -107,36 +108,19 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     private void init_task(View task_view) {
         ArrayList<TaskModel> tasks;
         tasks=new ArrayList<>();
-        ListView taskList=task_view.findViewById(R.id.task_list);
+        ListView lvTask =task_view.findViewById(R.id.task_list);
         Request.clientGet(ProjectDetailActivity.this, "task?project=" + project_id , new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
-                System.out.println("task" + result);
-                TaskModel data=new TaskModel();
-                JSONArray list=result.getJSONArray("list");
-                for(int i=0;i<list.size();++i) {
-                    JSONObject obj = list.getJSONObject(i);
-                    data.setClaimState(obj.getInteger("claimState"));
-                    data.setClaim_uid(obj.getInteger("claim_uid"));
-                    data.setProject_uid(obj.getString("project_uid"));
-                    data.setTaskEmergent(obj.getInteger("taskEmergent"));
-                    data.setTaskEndTime(obj.getString("taskEndTime"));
-                    data.setTaskName(obj.getString("taskName"));
-                    data.setTaskPredictHours(obj.getString("taskPredictHours"));
-                    data.setTaskRestHours(obj.getString("taskRestHours"));
-                    data.setTaskStartTime(obj.getString("taskStartTime"));
-                    data.setTaskState(obj.getInteger("taskState"));
-                    data.setTaskSynopsis(obj.getString("taskSynopsis"));
-                    data.setTask_uid(obj.getInteger("task_uid"));
-                    tasks.add(data);
-                    System.out.println(data.getTaskName());
-                }
-                TaskAdapter adapter=new TaskAdapter(ProjectDetailActivity.this,R.layout.task_item_layout,tasks);
-                taskList.setAdapter(adapter);
-                taskList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                JSONArray list = result.getJSONArray("list");
+                String liststring = JSONObject.toJSONString(list);
+                List<TaskModel> taskList = JSONObject.parseArray(liststring, TaskModel.class);//把字符串转换成集合
+                TaskAdapter adapter = new TaskAdapter(ProjectDetailActivity.this ,R.layout.task_item_layout,taskList);
+                lvTask.setAdapter(adapter);
+                lvTask.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        TaskModel task=tasks.get(position);
+                        TaskModel task = taskList.get(position);
                         Intent intent = new Intent(ProjectDetailActivity.this, TaskDetailActivity.class);
                         intent.putExtra("task",task);
                         System.out.println(position);
