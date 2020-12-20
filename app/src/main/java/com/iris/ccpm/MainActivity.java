@@ -1,16 +1,17 @@
 package com.iris.ccpm;
 
-import android.content.ClipData;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.iris.ccpm.model.GlobalData;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -28,23 +29,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MainActivity.this, NotifyActivity.class);
+                startActivity(intent);
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+        View header = initHeader();
+        navigationView.addHeaderView(header);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_task,R.id.nav_setting)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -52,10 +58,25 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
+    private View initHeader() {
+        View header = this.getLayoutInflater().inflate(R.layout.nav_header_main,null);
+        GlobalData app = (GlobalData) getApplication();
+        if (app.getUsername() != null) {
+            TextView tvEmail = header.findViewById(R.id.tv_email);
+            tvEmail.setText("Joined at " + app.getUsername());
+            TextView tvNickname = header.findViewById(R.id.tv_name);
+            tvNickname.setText(app.getName());
+            SimpleDraweeView ivAvatar = header.findViewById(R.id.iv_avatar);
+            Uri uri = Uri.parse(app.getAvatarUrl());
+            ivAvatar.setImageURI(uri);
+        }
+        return header;
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
@@ -66,19 +87,18 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public void viewProgram(View view){
-        Intent intent = new Intent();
-        intent.setClass(this, LoginActivity.class);
-        this.startActivity(intent);
-    }
-
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         switch(item.getItemId()){
             case R.id.action_add:{
-                Intent intent = new Intent(this,LoginActivity.class);
+                Intent intent = new Intent(this, CreateProjectActivity.class);
                 this.startActivity(intent);
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

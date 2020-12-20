@@ -10,6 +10,11 @@
             android:title="@string/menu_home" />
 
         <item
+            android:id="@+id/nav_task"
+            android:icon="@drawable/ic_task"
+            android:title="@string/menu_task" />
+
+        <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_items"
             android:title="@string/menu_items" />
@@ -18,6 +23,11 @@
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_my"
             android:title="@string/menu_my" />
+
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/ic_setting"
+            android:title="@string/menu_setting" />
 
     </group>
 </menu>

@@ -10,22 +10,21 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="5dp"
+        android:padding="5dp"
         android:background="@color/white"
         android:elevation="5dp">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginRight="5dp"
+            android:layout_height="40dp"
             >
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:contentDescription="@string/nav_header_desc"
-                android:paddingTop="@dimen/nav_header_vertical_spacing"
                 app:srcCompat="@drawable/logoo" />
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/tv_projectName"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/imageView"
@@ -36,7 +35,7 @@
                 android:textColor="@color/black"
                 android:text="hello" />
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/lv_dynamicTime"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
@@ -48,27 +47,29 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:padding="5dp">
             <TextView
-                android:id="@+id/action"
+                android:id="@+id/tv_accountName"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical"
+                android:textSize="16dp"
+                android:text="xxx" />
+            <TextView
+                android:id="@+id/tv_event"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="5dp"
                 android:textSize="16dp"
                 android:textColor="@color/pink"
                 android:text="[发布了任务]" />
-            <TextView
-                android:id="@+id/memo"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:textSize="14dp"
-                android:textColor="@color/black"
-                android:text="无备注" />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tv_taskName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:layout_marginLeft="5dp"/>
+
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
