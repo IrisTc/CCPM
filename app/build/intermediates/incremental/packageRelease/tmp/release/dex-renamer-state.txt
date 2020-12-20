@@ -1,0 +1,4 @@
+#Tue Dec 15 18:49:00 CST 2020
+base.0=D\:\\androidProject\\CCPM\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
