@@ -1766,6 +1766,7 @@ id actions
 id activity_chooser_view_content
 id add
 id addTaskButton
+id add_member
 id alertTitle
 id aligned
 id all
@@ -1862,6 +1863,7 @@ id easeIn
 id easeInOut
 id easeOut
 id editTextTextPersonName2
+id edit_project
 id edit_query
 id end
 id enterAlways
@@ -1874,6 +1876,7 @@ id et_position
 id et_project_name
 id et_project_plan
 id et_project_synopsis
+id et_rate
 id et_realname
 id et_repassword_re
 id et_report_text
@@ -2043,6 +2046,7 @@ id project_motto_text
 id project_name_text
 id project_plan
 id project_time_text
+id project_toolbar
 id radio
 id ratio
 id rectangles
@@ -2108,6 +2112,7 @@ id staticPostLayout
 id stop
 id stretch
 id submenuarrow
+id submit
 id submit_area
 id tabMode
 id tag_accessibility_actions
@@ -2145,7 +2150,6 @@ id textView3
 id textView4
 id text_input_end_icon
 id text_input_start_icon
-id text_slideshow
 id textinput_counter
 id textinput_error
 id textinput_helper_text
@@ -2266,7 +2270,9 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_account_edit
+layout activity_add_member
 layout activity_create
+layout activity_edit_project
 layout activity_login
 layout activity_main
 layout activity_member
@@ -2372,7 +2378,8 @@ layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
 menu activity_main_drawer
-menu main
+menu main_menu
+menu project_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 navigation mobile_navigation

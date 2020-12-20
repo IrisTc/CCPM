@@ -42,7 +42,8 @@
             android:theme="@style/Theme.CCPM.NoActionBar" />
         <activity
             android:name="com.iris.ccpm.ProjectDetailActivity"
-            android:label="项目详情" />
+            android:label="项目详情"
+            android:theme="@style/Theme.CCPM.NoActionBar" />
         <activity
             android:name="com.iris.ccpm.CreateProjectActivity"
             android:label="新建项目" />
@@ -61,6 +62,12 @@
         <activity
             android:name="com.iris.ccpm.MemberDetailActivity"
             android:label="成员资料" />
+        <activity
+            android:name="com.iris.ccpm.AddMemberActivity"
+            android:label="添加成员" />
+        <activity
+            android:name="com.iris.ccpm.EditProjectActivity"
+            android:label="更新项目" />
     </application>
 
 </manifest>
