@@ -1625,6 +1625,7 @@ drawable ic_items
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_logout
+drawable ic_member
 drawable ic_menu_camera
 drawable ic_menu_gallery
 drawable ic_menu_slideshow
@@ -1638,6 +1639,7 @@ drawable ic_note
 drawable ic_notification
 drawable ic_prio
 drawable ic_remaining_time
+drawable ic_search
 drawable ic_setting
 drawable ic_task
 drawable ic_time
@@ -1677,6 +1679,7 @@ drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable personal
 drawable progress_bar
+drawable radius
 drawable side_nav_bar
 drawable test_custom_background
 drawable textarea_bg
@@ -1788,6 +1791,8 @@ id bounce
 id bt_Register
 id bt_edit
 id bt_login
+id bt_member_add
+id bt_search
 id buttonPanel
 id cache_measures
 id cancel_button
@@ -1861,6 +1866,8 @@ id dropdown_menu
 id easeIn
 id easeInOut
 id easeOut
+id editClaimer
+id editName
 id editTextTextPersonName2
 id edit_query
 id end
@@ -1877,6 +1884,7 @@ id et_project_synopsis
 id et_realname
 id et_repassword_re
 id et_report_text
+id et_search
 id et_synopsis
 id et_username
 id et_username_re
@@ -1952,6 +1960,7 @@ id lv_news
 id lv_notify
 id lv_project
 id lv_task
+id ly_find
 id masked
 id member_avatar
 id member_delete_button
@@ -1960,6 +1969,7 @@ id member_name
 id member_number
 id member_personal_button
 id member_position
+id menu_member
 id message
 id middle
 id mini
@@ -2188,6 +2198,7 @@ id tv_rate
 id tv_realname
 id tv_synopsis
 id tv_taskName
+id tv_uid
 id tv_username
 id unchecked
 id uniform
@@ -2270,6 +2281,7 @@ layout activity_create
 layout activity_login
 layout activity_main
 layout activity_member
+layout activity_member_search
 layout activity_notify
 layout activity_notify_invite
 layout activity_project_detail
@@ -2278,6 +2290,7 @@ layout activity_task_detail
 layout app_bar_main
 layout content_main
 layout copyright
+layout create_task_dialog
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -2372,6 +2385,7 @@ layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
 menu activity_main_drawer
+menu activity_project_detail
 menu main
 mipmap ic_launcher
 mipmap ic_launcher_round

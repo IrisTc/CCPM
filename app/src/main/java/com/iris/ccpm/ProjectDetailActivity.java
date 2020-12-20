@@ -5,19 +5,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.tabs.TabLayout;
@@ -33,13 +40,10 @@ import com.iris.ccpm.model.TaskModel;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import cz.msebera.android.httpclient.entity.StringEntity;
-
-import static com.loopj.android.http.AsyncHttpClient.log;
 
 public class ProjectDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -53,13 +57,13 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     MemberAdapter memberAdapter;
     View intro_view;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_detail);
 
-        Intent intent  = this.getIntent();
+
+        Intent intent = this.getIntent();
         project = (Project) intent.getSerializableExtra("project");
         project_id = project.getProject_uid();
 
@@ -84,6 +88,13 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_project_detail, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     private void initTabContent() {
         viewList = new ArrayList<View>();
         LayoutInflater li = getLayoutInflater();
@@ -106,8 +117,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void init_task(View task_view) {
-        ArrayList<TaskModel> tasks;
-        tasks=new ArrayList<>();
         ListView lvTask =task_view.findViewById(R.id.task_list);
         Request.clientGet(ProjectDetailActivity.this, "task?project=" + project_id , new NetCallBack() {
             @Override
@@ -122,55 +131,101 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         TaskModel task = taskList.get(position);
                         Intent intent = new Intent(ProjectDetailActivity.this, TaskDetailActivity.class);
-                        intent.putExtra("task",task);
+                        intent.putExtra("task", task);
                         System.out.println(position);
                         startActivity(intent);
                     }
                 });
             }
+
             @Override
             public void onMyFailure(String error) {
                 Toast.makeText(ProjectDetailActivity.this, error, Toast.LENGTH_LONG).show();
             }
         });
 
-        Button addBtn=task_view.findViewById(R.id.addTaskButton);
+        Button addBtn = task_view.findViewById(R.id.addTaskButton);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TaskModel task=new TaskModel();
-                JSONObject obj=new JSONObject();
-                obj.put("claimState",task.getClaimState());
-                obj.put("claim_uid",task.getClaim_uid());
-                obj.put("project_uid",1336756231);
-                obj.put("taskEmergent",task.getTaskEmergent());
-                obj.put("taskEndTime",task.getTaskEmergent());
-                obj.put("taskName",task.getTaskName());
-                obj.put("taskPredictHours",task.getTaskPredictHours());
-                obj.put("taskRestHours",task.getTaskRestHours());
-                obj.put("taskStartTime",task.getTaskStartTime());
-                obj.put("taskState",task.getTaskState());
-                obj.put("taskSynopsis",task.getTaskSynopsis());
-                obj.put("task_uid",task.getTask_uid());
-                StringEntity entity=new StringEntity(obj.toJSONString(),"UTF-8");
-//                Request.clientPost(ProjectDetailActivity.this,"project/1336756231/task",entity,new NetCallBack(){
-//                    @Override
-//                    public void onMySuccess(JSONObject result) {
-//                        Toast.makeText(ProjectDetailActivity.this, "创建成功", Toast.LENGTH_LONG).show();
-//                    }
-//
-//                    @Override
-//                    public void onMyFailure(String error) {
-//                        System.out.println(obj.toJSONString());
-//                        Toast.makeText(ProjectDetailActivity.this, error, Toast.LENGTH_LONG).show();
-//                    }
-//                });
+                showCreateDialog();
             }
         });
     }
 
+    private void showCreateDialog() {
+        AlertDialog.Builder customizeDialog =
+                new AlertDialog.Builder(ProjectDetailActivity.this);
+        final View dialogView = LayoutInflater.from(ProjectDetailActivity.this)
+                .inflate(R.layout.create_task_dialog, null);
+        List<Integer> claimers_uid=new ArrayList<>(0);
+        EditText editName = (EditText) dialogView.findViewById(R.id.editName);
+        Spinner editClaimer = (Spinner) dialogView.findViewById(R.id.editClaimer);
+        customizeDialog.setTitle("创建任务");
+        customizeDialog.setView(dialogView);
+        Request.clientGet(ProjectDetailActivity.this, "project/" + project_id + "/member", new NetCallBack() {
+            @Override
+            public void onMySuccess(JSONObject result) {
+                JSONArray list = result.getJSONArray("list");
+                String[] claimers = new String[list.size()];
+                for (int i = 0; i < list.size(); ++i) {
+                    claimers[i] = list.getJSONObject(i).getString("nickName");
+                    claimers_uid.add(list.getJSONObject(i).getInteger("account_uid"));
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(ProjectDetailActivity.this, R.layout.task_spinner_item_drop, R.id.spinnerDrop, claimers);
+                editClaimer.setAdapter(adapter);
+            }
+
+            @Override
+            public void onMyFailure(String error) {
+                System.out.println(error);
+            }
+        });
+        customizeDialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        TaskModel task = new TaskModel();
+                        JSONObject obj = new JSONObject();
+                        obj.put("claimState", task.getClaimState());
+                        obj.put("claim_uid",claimers_uid.get(editClaimer.getSelectedItemPosition()));
+                        obj.put("project_uid", project_id);
+                        obj.put("taskEmergent", task.getTaskEmergent());
+                        obj.put("taskEndTime", task.getTaskEmergent());
+                        obj.put("taskName", editName.getText());
+                        obj.put("taskPredictHours", task.getTaskPredictHours());
+                        obj.put("taskRestHours", task.getTaskRestHours());
+                        obj.put("taskStartTime", task.getTaskStartTime());
+                        obj.put("taskState", task.getTaskState());
+                        obj.put("taskSynopsis", task.getTaskSynopsis());
+                        obj.put("task_uid", task.getTask_uid());
+//                        System.out.println(obj.get("claim_uid"));
+                        StringEntity entity = new StringEntity(obj.toJSONString(), "UTF-8");
+                        Request.clientPost(ProjectDetailActivity.this, "project/"+project_id+"/task", entity, new NetCallBack() {
+                            @Override
+                            public void onMySuccess(JSONObject result) {
+                                Toast.makeText(ProjectDetailActivity.this, "创建成功", Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onMyFailure(String error) {
+                                System.out.println(error);
+                                Toast.makeText(ProjectDetailActivity.this, error, Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                });
+        customizeDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        customizeDialog.show();
+    }
+
     private void init_intro(View view) {
-        ImageView post_avatar=(ImageView)view.findViewById(R.id.project_icon);
+        ImageView post_avatar = (ImageView) view.findViewById(R.id.project_icon);
         post_avatar.setImageResource(R.drawable.logo);
 
         TextView project_name_text = view.findViewById(R.id.project_name_text);
@@ -215,6 +270,15 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         });
         ListView lvMember = view.findViewById(R.id.lv_member);
         getMember(lvMember);
+        Button btMemberAdd = view.findViewById(R.id.bt_member_add);
+        btMemberAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("add");
+                Intent intent = new Intent(ProjectDetailActivity.this, MemberSearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getMember(ListView lvMember) {
@@ -265,11 +329,9 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                 builder.setIcon(R.drawable.ic_warn);
                 builder.setTitle("警告");
                 builder.setMessage("确定移除该成员【" + member.getNickName() + "】吗？");
-                builder.setPositiveButton("确定", new DialogInterface.OnClickListener()
-                {
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
+                    public void onClick(DialogInterface dialog, int which) {
                         JSONObject body = new JSONObject();
                         body.put("project_uid", project_id);
                         body.put("username", member.getUsername());
@@ -300,10 +362,10 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                         });
                     }
                 });
-                builder.setNegativeButton("取消", new DialogInterface.OnClickListener()
-                {
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which){}
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
                 });
                 builder.show();
                 break;

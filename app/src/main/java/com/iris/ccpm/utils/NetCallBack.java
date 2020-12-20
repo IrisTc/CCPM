@@ -22,6 +22,7 @@ public abstract class NetCallBack extends AsyncHttpResponseHandler {
     public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
         String string = new String(responseBody);
         JSONObject response = JSONObject.parseObject(string);
+        System.out.println(response);
 
         if (response.getInteger("code") == 200) {
             String data = response.getString("data");

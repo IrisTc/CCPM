@@ -56,12 +56,20 @@
         "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\copyright.xml"
     },
     {
+        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_create_task_dialog.xml.flat",
+        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\create_task_dialog.xml"
+    },
+    {
         "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_textarea_bg.xml.flat",
         "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\textarea_bg.xml"
     },
     {
         "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_notify_item_layout.xml.flat",
         "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\notify_item_layout.xml"
+    },
+    {
+        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\menu_activity_project_detail.xml.flat",
+        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\menu\\activity_project_detail.xml"
     },
     {
         "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_nav_header_main.xml.flat",
@@ -96,6 +104,14 @@
         "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\activity_account_edit.xml"
     },
     {
+        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_radius.xml.flat",
+        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\radius.xml"
+    },
+    {
+        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_member_search.xml.flat",
+        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\activity_member_search.xml"
+    },
+    {
         "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_create.xml.flat",
         "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\activity_create.xml"
     },
@@ -114,6 +130,10 @@
     {
         "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_executor.png.flat",
         "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_executor.png"
+    },
+    {
+        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_search.png.flat",
+        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_search.png"
     },
     {
         "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
@@ -142,6 +162,10 @@
     {
         "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_login.xml.flat",
         "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_member.png.flat",
+        "source": "D:\\androidProject\\CCPM\\app\\src\\main\\res\\drawable\\ic_member.png"
     },
     {
         "merged": "D:\\androidProject\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_project.xml.flat",

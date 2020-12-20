@@ -36,6 +36,7 @@ public class TaskDetailActivity extends AppCompatActivity {
     private EditText predictTime;
     private EditText restTime;
     private EditText taskSynopsis;
+    private String[] claimers;
     private TaskModel data=new TaskModel();
 
 
@@ -60,8 +61,6 @@ public class TaskDetailActivity extends AppCompatActivity {
         startYear=startMonth=startDay=endYear=endMonth=endDay=-1;
 
         LoadData();
-
-        InitSpinner();
         StartTimeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,7 +157,7 @@ public class TaskDetailActivity extends AppCompatActivity {
         int[] exeColors={Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT};
         int[] exeTextColors={Color.BLACK,Color.BLACK,Color.BLACK};
 
-        String[] ClaimerItems = {"成员1","成员2","成员3","成员4","成员5"};
+        String[] ClaimerItems = claimers;
         int[] ClaimerColors={Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT};
         int[] ClaimerTextColors={Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK};
 
@@ -183,17 +182,23 @@ public class TaskDetailActivity extends AppCompatActivity {
         TaskModel task=(TaskModel) getIntent().getSerializableExtra("task");
         data=task;
         System.out.println(data.getProject_uid());
-//        Request.clientGet(TaskDetailActivity.this, "project/"+data.getProject_uid()+"/member", new NetCallBack() {
-//            @Override
-//            public void onMySuccess(JSONObject result) {
-//                System.out.println(result.toString());
-//            }
-//
-//            @Override
-//            public void onMyFailure(String error) {
-//
-//            }
-//        });
+        Request.clientGet(TaskDetailActivity.this, "project/"+data.getProject_uid()+"/member", new NetCallBack() {
+            @Override
+            public void onMySuccess(JSONObject result) {
+                JSONArray list=result.getJSONArray("list");
+                claimers=new String[list.size()];
+                for(int i=0;i<list.size();++i) {
+                    claimers[i]=list.getJSONObject(i).getString("nickName");
+                    System.out.println(claimers[i]);
+                    InitSpinner();
+                }
+            }
+
+            @Override
+            public void onMyFailure(String error) {
+
+            }
+        });
         String[] startStr=data.getTaskStartTime().split("-");
         startYear=Integer.parseInt(startStr[0]);
         startMonth=Integer.parseInt(startStr[1]);

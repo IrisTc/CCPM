@@ -56,7 +56,7 @@ public class DynamicAdapter extends BaseAdapter {
             case 1: event = "[接受了任务]"; break;
             case 3: event = "[完成了任务]"; break;
             case 4: event = "[汇报了任务]"; break;
-            case 5: event = "[发布了任务]"; break;
+            case 5: event = "[被指派了任务]"; break;
             case 100:   event = "[创建了项目]"; break;
             case 300:   event = "[加入了项目]"; break;
             case 301:   event = "[退出了项目]"; break;
