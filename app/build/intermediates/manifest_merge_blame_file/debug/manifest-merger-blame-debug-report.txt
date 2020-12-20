@@ -6,109 +6,109 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="23"
-8-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml
+8-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="30" />
-9-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml
+9-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:5:5-66
-11-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:5:22-64
+11-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:5:5-66
+11-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:5:22-64
 12    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-12-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:6:5-80
-12-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:6:22-78
+12-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:6:5-80
+12-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:6:22-78
 13
 14    <application
-14-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:8:5-58:19
+14-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:8:5-58:19
 15        android:name="com.iris.ccpm.model.GlobalData"
-15-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:9:9-41
+15-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:9:9-41
 16        android:allowBackup="true"
-16-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:10:9-35
+16-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:10:9-35
 17        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-17-->[androidx.core:core:1.3.1] C:\Users\10109\.gradle\caches\transforms-2\files-2.1\ff37b710ecf84191a2687617c776753e\core-1.3.1\AndroidManifest.xml:24:18-86
+17-->[androidx.core:core:1.3.1] C:\Users\VULCAN\.gradle\caches\transforms-2\files-2.1\ff37b710ecf84191a2687617c776753e\core-1.3.1\AndroidManifest.xml:24:18-86
 18        android:debuggable="true"
 19        android:extractNativeLibs="false"
 20        android:icon="@mipmap/ic_launcher"
-20-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:11:9-43
+20-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:11:9-43
 21        android:label="@string/app_name"
-21-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:12:9-41
+21-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:12:9-41
 22        android:roundIcon="@mipmap/ic_launcher_round"
-22-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:13:9-54
+22-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:13:9-54
 23        android:supportsRtl="true"
-23-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:14:9-35
+23-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:14:9-35
 24        android:testOnly="true"
 25        android:theme="@style/Theme.CCPM" >
-25-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:15:9-42
+25-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:15:9-42
 26
 27        <!-- 登录界面 -->
 28        <activity
-28-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:18:9-27:20
+28-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:18:9-27:20
 29            android:name="com.iris.ccpm.LoginActivity"
-29-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:19:13-42
+29-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:19:13-42
 30            android:theme="@style/Theme.CCPM.NoActionBar" >
-30-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:20:13-58
+30-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:20:13-58
 31            <intent-filter>
-31-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:22:13-26:29
+31-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:22:13-26:29
 32                <action android:name="android.intent.action.MAIN" />
-32-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:23:17-69
-32-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:23:25-66
+32-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:23:17-69
+32-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:23:25-66
 33
 34                <category android:name="android.intent.category.LAUNCHER" />
-34-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:25:17-77
-34-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:25:27-74
+34-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:25:17-77
+34-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:25:27-74
 35            </intent-filter>
 36        </activity>
 37
 38        <!-- 主页面 -->
 39        <activity
-39-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:30:9-33:61
+39-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:30:9-33:61
 40            android:name="com.iris.ccpm.MainActivity"
-40-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:31:13-41
+40-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:31:13-41
 41            android:label="@string/app_name"
-41-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:32:13-45
+41-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:32:13-45
 42            android:theme="@style/Theme.CCPM.NoActionBar" />
-42-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:33:13-58
+42-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:33:13-58
 43        <activity
-43-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:35:9-37:36
+43-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:35:9-37:36
 44            android:name="com.iris.ccpm.ProjectDetailActivity"
-44-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:36:13-50
+44-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:36:13-50
 45            android:label="项目详情" />
-45-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:37:13-33
+45-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:37:13-33
 46        <activity
-46-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:39:9-41:36
+46-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:39:9-41:36
 47            android:name="com.iris.ccpm.CreateProjectActivity"
-47-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:40:13-50
+47-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:40:13-50
 48            android:label="新建项目" />
-48-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:41:13-33
+48-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:41:13-33
 49        <activity
-49-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:43:9-45:36
+49-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:43:9-45:36
 50            android:name="com.iris.ccpm.ReportActivity"
-50-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:44:13-43
+50-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:44:13-43
 51            android:label="汇报任务" />
-51-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:45:13-33
+51-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:45:13-33
 52        <activity
-52-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:47:9-48:36
+52-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:47:9-48:36
 53            android:name="com.iris.ccpm.ui.setting.EditAccountActivity"
-53-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:47:19-65
+53-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:47:19-65
 54            android:label="修改资料" />
-54-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:48:13-33
+54-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:48:13-33
 55        <activity
-55-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:50:9-51:34
+55-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:50:9-51:34
 56            android:name="com.iris.ccpm.NotifyActivity"
-56-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:50:19-49
+56-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:50:19-49
 57            android:label="通知" />
-57-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:51:13-31
+57-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:51:13-31
 58        <activity
-58-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:53:9-54:35
+58-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:53:9-54:35
 59            android:name="com.iris.ccpm.TaskDetailActivity"
-59-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:53:19-53
+59-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:53:19-53
 60            android:label="任务详情" />
-60-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:54:13-33
+60-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:54:13-33
 61        <activity
-61-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:56:9-57:35
+61-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:56:9-57:35
 62            android:name="com.iris.ccpm.MemberDetailActivity"
-62-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:56:19-55
+62-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:56:19-55
 63            android:label="成员资料" />
-63-->D:\androidProject\CCPM\app\src\main\AndroidManifest.xml:57:13-33
+63-->E:\CCPM\CCPM\app\src\main\AndroidManifest.xml:57:13-33
 64    </application>
 65
 66</manifest>
