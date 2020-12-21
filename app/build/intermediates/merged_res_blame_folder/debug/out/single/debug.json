@@ -4,12 +4,12 @@
         "source": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
-        "merged": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_task.xml.flat",
-        "source": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\src\\main\\res\\layout\\fragment_task.xml"
-    },
-    {
         "merged": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\drawable_logo.png.flat",
         "source": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\src\\main\\res\\drawable\\logo.png"
+    },
+    {
+        "merged": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_task.xml.flat",
+        "source": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\src\\main\\res\\layout\\fragment_task.xml"
     },
     {
         "merged": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_add_member.xml.flat",
@@ -20,12 +20,12 @@
         "source": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\src\\main\\res\\layout\\activity_notify.xml"
     },
     {
-        "merged": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_login_login.xml.flat",
-        "source": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\src\\main\\res\\layout\\login_login.xml"
-    },
-    {
         "merged": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
         "source": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_login_login.xml.flat",
+        "source": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\src\\main\\res\\layout\\login_login.xml"
     },
     {
         "merged": "D:\\Coding\\AndroidStudioProjects\\CCPM\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_setting.xml.flat",

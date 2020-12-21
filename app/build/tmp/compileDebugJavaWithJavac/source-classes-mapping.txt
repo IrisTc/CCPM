@@ -38,8 +38,19 @@ com/iris/ccpm/adapter/NotifyAdapter.java
  com.iris.ccpm.adapter.NotifyAdapter
 com/iris/ccpm/utils/cache.java
  com.iris.ccpm.utils.cache
-com/iris/ccpm/adapter/MypagerAdapter.java
- com.iris.ccpm.adapter.MypagerAdapter
+com/iris/ccpm/ProjectDetailActivity.java
+ com.iris.ccpm.ProjectDetailActivity
+ com.iris.ccpm.ProjectDetailActivity$1
+ com.iris.ccpm.ProjectDetailActivity$2
+ com.iris.ccpm.ProjectDetailActivity$2$1
+ com.iris.ccpm.ProjectDetailActivity$3
+ com.iris.ccpm.ProjectDetailActivity$4
+ com.iris.ccpm.ProjectDetailActivity$5
+ com.iris.ccpm.ProjectDetailActivity$6
+ com.iris.ccpm.ProjectDetailActivity$7
+ com.iris.ccpm.ProjectDetailActivity$7$1
+ com.iris.ccpm.ProjectDetailActivity$7$1$1
+ com.iris.ccpm.ProjectDetailActivity$8
 com/iris/ccpm/utils/Request.java
  com.iris.ccpm.utils.Request
 com/iris/ccpm/ui/my/MyFragment.java
@@ -75,9 +86,11 @@ com/iris/ccpm/adapter/MemberAdapter.java
  com.iris.ccpm.adapter.MemberAdapter
 com/iris/ccpm/model/Member.java
  com.iris.ccpm.model.Member
-com/iris/ccpm/MainActivity.java
- com.iris.ccpm.MainActivity
- com.iris.ccpm.MainActivity$1
+com/iris/ccpm/AddMemberActivity.java
+ com.iris.ccpm.AddMemberActivity
+ com.iris.ccpm.AddMemberActivity$1
+ com.iris.ccpm.AddMemberActivity$2
+ com.iris.ccpm.AddMemberActivity$2$1
 com/iris/ccpm/MemberDetailActivity.java
  com.iris.ccpm.MemberDetailActivity
  com.iris.ccpm.MemberDetailActivity$1
@@ -123,21 +136,8 @@ com/iris/ccpm/adapter/DynamicAdapter.java
  com.iris.ccpm.adapter.DynamicAdapter
 com/iris/ccpm/model/TaskModel.java
  com.iris.ccpm.model.TaskModel
-com/iris/ccpm/AddMemberActivity.java
- com.iris.ccpm.AddMemberActivity
- com.iris.ccpm.AddMemberActivity$1
- com.iris.ccpm.AddMemberActivity$2
- com.iris.ccpm.AddMemberActivity$2$1
-com/iris/ccpm/ProjectDetailActivity.java
- com.iris.ccpm.ProjectDetailActivity
- com.iris.ccpm.ProjectDetailActivity$1
- com.iris.ccpm.ProjectDetailActivity$2
- com.iris.ccpm.ProjectDetailActivity$2$1
- com.iris.ccpm.ProjectDetailActivity$3
- com.iris.ccpm.ProjectDetailActivity$4
- com.iris.ccpm.ProjectDetailActivity$5
- com.iris.ccpm.ProjectDetailActivity$6
- com.iris.ccpm.ProjectDetailActivity$7
- com.iris.ccpm.ProjectDetailActivity$7$1
- com.iris.ccpm.ProjectDetailActivity$7$1$1
- com.iris.ccpm.ProjectDetailActivity$8
+com/iris/ccpm/adapter/MypagerAdapter.java
+ com.iris.ccpm.adapter.MypagerAdapter
+com/iris/ccpm/MainActivity.java
+ com.iris.ccpm.MainActivity
+ com.iris.ccpm.MainActivity$1

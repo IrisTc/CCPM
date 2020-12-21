@@ -35,94 +35,93 @@
 22-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:13:9-54
 23        android:supportsRtl="true"
 23-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:14:9-35
-24        android:testOnly="true"
-25        android:theme="@style/Theme.CCPM" >
-25-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:15:9-42
-26
-27        <!-- 登录界面 -->
-28        <activity
-28-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:18:9-27:20
-29            android:name="com.iris.ccpm.LoginActivity"
-29-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:19:13-42
-30            android:theme="@style/Theme.CCPM.NoActionBar" >
-30-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:20:13-58
-31            <intent-filter>
-31-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:22:13-26:29
-32                <action android:name="android.intent.action.MAIN" />
-32-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:23:17-69
-32-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:23:25-66
-33
-34                <category android:name="android.intent.category.LAUNCHER" />
-34-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:25:17-77
-34-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:25:27-74
-35            </intent-filter>
-36        </activity>
-37
-38        <!-- 主页面 -->
-39        <activity
-39-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:30:9-33:61
-40            android:name="com.iris.ccpm.MainActivity"
-40-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:31:13-41
-41            android:label="@string/app_name"
-41-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:32:13-45
-42            android:theme="@style/Theme.CCPM.NoActionBar" />
-42-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:33:13-58
-43        <activity
-43-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:35:9-38:60
-44            android:name="com.iris.ccpm.ProjectDetailActivity"
-44-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:36:13-50
-45            android:label="项目详情"
-45-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:37:13-33
-46            android:theme="@style/Theme.CCPM.NoActionBar" />
-46-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:38:13-58
-47        <activity
-47-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:40:9-42:36
-48            android:name="com.iris.ccpm.CreateProjectActivity"
-48-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:41:13-50
-49            android:label="新建项目" />
-49-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:42:13-33
-50        <activity
-50-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:44:9-46:36
-51            android:name="com.iris.ccpm.ReportActivity"
-51-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:45:13-43
-52            android:label="汇报任务" />
-52-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:46:13-33
-53        <activity
-53-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:48:9-49:36
-54            android:name="com.iris.ccpm.ui.setting.EditAccountActivity"
-54-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:48:19-65
-55            android:label="修改资料" />
-55-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:49:13-33
-56        <activity
-56-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:51:9-52:34
-57            android:name="com.iris.ccpm.NotifyActivity"
-57-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:51:19-49
-58            android:label="通知" />
-58-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:52:13-31
-59        <activity
-59-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:54:9-55:35
-60            android:name="com.iris.ccpm.TaskDetailActivity"
-60-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:54:19-53
-61            android:label="任务详情" />
-61-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:55:13-33
-62        <activity
-62-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:57:9-58:35
-63            android:name="com.iris.ccpm.MemberDetailActivity"
-63-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:57:19-55
-64            android:label="成员资料" />
-64-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:58:13-33
-65        <activity
-65-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:59:9-61:36
-66            android:name="com.iris.ccpm.AddMemberActivity"
-66-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:60:13-46
-67            android:label="添加成员" />
-67-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:61:13-33
-68        <activity
-68-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:62:9-64:36
-69            android:name="com.iris.ccpm.EditProjectActivity"
-69-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:63:13-48
-70            android:label="更新项目" />
-70-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:64:13-33
-71    </application>
-72
-73</manifest>
+24        android:theme="@style/Theme.CCPM" >
+24-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:15:9-42
+25
+26        <!-- 登录界面 -->
+27        <activity
+27-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:18:9-27:20
+28            android:name="com.iris.ccpm.LoginActivity"
+28-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:19:13-42
+29            android:theme="@style/Theme.CCPM.NoActionBar" >
+29-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:20:13-58
+30            <intent-filter>
+30-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:22:13-26:29
+31                <action android:name="android.intent.action.MAIN" />
+31-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:23:17-69
+31-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:23:25-66
+32
+33                <category android:name="android.intent.category.LAUNCHER" />
+33-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:25:17-77
+33-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:25:27-74
+34            </intent-filter>
+35        </activity>
+36
+37        <!-- 主页面 -->
+38        <activity
+38-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:30:9-33:61
+39            android:name="com.iris.ccpm.MainActivity"
+39-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:31:13-41
+40            android:label="@string/app_name"
+40-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:32:13-45
+41            android:theme="@style/Theme.CCPM.NoActionBar" />
+41-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:33:13-58
+42        <activity
+42-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:35:9-38:60
+43            android:name="com.iris.ccpm.ProjectDetailActivity"
+43-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:36:13-50
+44            android:label="项目详情"
+44-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:37:13-33
+45            android:theme="@style/Theme.CCPM.NoActionBar" />
+45-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:38:13-58
+46        <activity
+46-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:40:9-42:36
+47            android:name="com.iris.ccpm.CreateProjectActivity"
+47-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:41:13-50
+48            android:label="新建项目" />
+48-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:42:13-33
+49        <activity
+49-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:44:9-46:36
+50            android:name="com.iris.ccpm.ReportActivity"
+50-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:45:13-43
+51            android:label="汇报任务" />
+51-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:46:13-33
+52        <activity
+52-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:48:9-49:36
+53            android:name="com.iris.ccpm.ui.setting.EditAccountActivity"
+53-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:48:19-65
+54            android:label="修改资料" />
+54-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:49:13-33
+55        <activity
+55-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:51:9-52:34
+56            android:name="com.iris.ccpm.NotifyActivity"
+56-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:51:19-49
+57            android:label="通知" />
+57-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:52:13-31
+58        <activity
+58-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:54:9-55:35
+59            android:name="com.iris.ccpm.TaskDetailActivity"
+59-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:54:19-53
+60            android:label="任务详情" />
+60-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:55:13-33
+61        <activity
+61-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:57:9-58:35
+62            android:name="com.iris.ccpm.MemberDetailActivity"
+62-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:57:19-55
+63            android:label="成员资料" />
+63-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:58:13-33
+64        <activity
+64-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:59:9-61:36
+65            android:name="com.iris.ccpm.AddMemberActivity"
+65-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:60:13-46
+66            android:label="添加成员" />
+66-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:61:13-33
+67        <activity
+67-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:62:9-64:36
+68            android:name="com.iris.ccpm.EditProjectActivity"
+68-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:63:13-48
+69            android:label="更新项目" />
+69-->D:\Coding\AndroidStudioProjects\CCPM\app\src\main\AndroidManifest.xml:64:13-33
+70    </application>
+71
+72</manifest>
