@@ -37,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:padding="10dp"
+        android:layout_margin="20dp"
         android:orientation="horizontal">
 
         <com.facebook.drawee.view.SimpleDraweeView
@@ -88,24 +89,14 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="2"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/member_personal_button"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0.5"
-                android:background="#FFFFFF"
-                android:scaleType="centerInside"
-                app:srcCompat="@drawable/personal" />
-        </LinearLayout>
+        <ImageButton
+            android:id="@+id/member_personal_button"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:background="#FFFFFF"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/personal" />
 
     </LinearLayout>
 </LinearLayout>
