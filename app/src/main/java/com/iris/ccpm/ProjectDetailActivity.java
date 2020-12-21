@@ -57,7 +57,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     List<Member> memberList;
     MemberAdapter memberAdapter;
     View intro_view;
-    Boolean isManager;
+    Boolean isManager = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +68,10 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         Intent intent = this.getIntent();
         project = (Project) intent.getSerializableExtra("project");
         project_id = project.getProject_uid();
+        GlobalData app = (GlobalData) getApplication();
+        if (project.getManager_uid().equals(app.getUid())) {
+            isManager = true;
+        }
 
         findView();
         initTabContent();
@@ -133,6 +137,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         TaskModel task = taskList.get(position);
                         Intent intent = new Intent(ProjectDetailActivity.this, TaskDetailActivity.class);
+                        intent.putExtra("isManager", isManager);
                         intent.putExtra("isCreate",false);
                         intent.putExtra("task", task);
                         startActivity(intent);
@@ -147,8 +152,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         });
 
         Button addBtn = task_view.findViewById(R.id.addTaskButton);
-        GlobalData app = (GlobalData) getApplication();
-        if (project.getManager_uid().equals(app.getUid())) {
+        if (isManager) {
             addBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
