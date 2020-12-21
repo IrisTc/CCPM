@@ -40,3 +40,4 @@ captures/
 *.jks
 /app/build/
 /app/build/
+/local.properties
