@@ -118,7 +118,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
 
     private void init_task(View task_view) {
         ListView lvTask =task_view.findViewById(R.id.task_list);
-        Request.clientGet(ProjectDetailActivity.this, "task?project=" + project_id , new NetCallBack() {
+        System.out.println(project_id);
+        Request.clientGet(ProjectDetailActivity.this, "task?claimState=3&project_uid=" + project_id , new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 JSONArray list = result.getJSONArray("list");
@@ -134,7 +135,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                         intent.putExtra("isCreate",false);
                         intent.putExtra("project_id",project_id);
                         intent.putExtra("task", task);
-                        System.out.println(position);
                         startActivity(intent);
                     }
                 });
