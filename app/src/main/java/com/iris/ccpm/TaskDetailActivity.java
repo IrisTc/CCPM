@@ -38,7 +38,7 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 public class TaskDetailActivity extends AppCompatActivity {
     private Spinner prioritySpinner;
     private Spinner completeSpinner;
-    private Spinner executeSpinner;
+    private TextView tvExe;
     private Button saveBtn;
     private EditText taskName;
     private TextView StartTimeView;
@@ -63,7 +63,7 @@ public class TaskDetailActivity extends AppCompatActivity {
         taskName=(EditText) findViewById(R.id.TaskName);
         prioritySpinner=(Spinner)findViewById(R.id.prioritySpinner);
         completeSpinner=(Spinner)findViewById(R.id.completeSpinner);
-        executeSpinner=(Spinner)findViewById(R.id.ExecuteState);
+        tvExe=(TextView)findViewById(R.id.ExecuteState);
         saveBtn=(Button)findViewById(R.id.saveBtn);
         StartTimeView=(TextView)findViewById(R.id.StartTime);
         EndTimeView=(TextView)findViewById(R.id.EndTime);
@@ -210,10 +210,6 @@ public class TaskDetailActivity extends AppCompatActivity {
         completeSpinner.setDropDownHorizontalOffset(100);
         completeSpinner.setDropDownVerticalOffset(100);
 
-        executeSpinner.setDropDownWidth(400);
-        executeSpinner.setDropDownHorizontalOffset(100);
-        executeSpinner.setDropDownVerticalOffset(100);
-
         claimerSpinner.setDropDownWidth(400);
         claimerSpinner.setDropDownHorizontalOffset(100);
         claimerSpinner.setDropDownVerticalOffset(100);
@@ -225,10 +221,6 @@ public class TaskDetailActivity extends AppCompatActivity {
         String[] completeItems = {"未完成","已完成"};
         int[] completeColors={Color.RED,0xFF7FFFAA};
         int[] completeTextColors={Color.WHITE,Color.BLACK};
-
-        String[] exeItems = {"拒绝","接受","未处理"};
-        int[] exeColors={Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT};
-        int[] exeTextColors={Color.BLACK,Color.BLACK,Color.BLACK};
 
         String[] ClaimerItems = claimers;
         int[] ClaimerColors={Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT};
@@ -242,17 +234,15 @@ public class TaskDetailActivity extends AppCompatActivity {
         prioAdapter.setDropDownViewResource(R.layout.task_spinner_item_drop);
         prioritySpinner.setAdapter(prioAdapter);
 
-        TaskDetailSpinnerAdapter exeAdapter = new TaskDetailSpinnerAdapter(this,exeItems,exeColors,exeTextColors);
-        exeAdapter.setDropDownViewResource(R.layout.task_spinner_item_drop);
-        executeSpinner.setAdapter(exeAdapter);
-
         TaskDetailSpinnerAdapter ClaimerAdapter = new TaskDetailSpinnerAdapter(this,ClaimerItems,ClaimerColors,ClaimerTextColors);
         ClaimerAdapter.setDropDownViewResource(R.layout.task_spinner_item_drop);
         claimerSpinner.setAdapter(ClaimerAdapter);
     }
 
     public void LoadData(){
+        String[] exeItems = {"拒绝","接受","未处理"};
         TaskModel task=(TaskModel) getIntent().getSerializableExtra("task");
+        String project_id=getIntent().getStringExtra("project_id");
         Boolean isCreate = getIntent().getBooleanExtra("isCreate",true);
         isManager = getIntent().getBooleanExtra("isManager",false);
         GlobalData app = (GlobalData) getApplication();
@@ -262,25 +252,42 @@ public class TaskDetailActivity extends AppCompatActivity {
             isClaimer = true;
         }
         TextView saveBtn = findViewById(R.id.saveBtn);
-        if(isCreate){
-            executeSpinner.setClickable(false);
-            executeSpinner.setEnabled(false);
-            saveBtn.setText("发布");
-        }
-        String project_id = task.getProject_uid();
+        if(isCreate) saveBtn.setText("发布");
         data=task;
-        //System.out.println(data.getProject_uid());
+        data.setProject_uid(project_id);
+        System.out.println(data.getProject_uid());
         Request.clientGet(TaskDetailActivity.this, "project/"+project_id+"/member", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 JSONArray list=result.getJSONArray("list");
+                int claimerIndex=0;
                 claimers=new String[list.size()];
                 for(int i=0;i<list.size();++i) {
                     claimers[i]=list.getJSONObject(i).getString("nickName");
                     claimers_uid.add(list.getJSONObject(i).getInteger("account_uid"));
-                    System.out.println(claimers[i]);
+                    if(list.getJSONObject(i).getInteger("account_uid")==data.getClaim_uid()) claimerIndex=i;
                     InitSpinner();
                 }
+                System.out.println("startDate:"+data.getTaskStartTime());
+                System.out.println("endDate:"+data.getTaskEndTime());
+                String[] startStr=data.getTaskStartTime().split("-");
+                startYear=Integer.parseInt(startStr[0]);
+                startMonth=Integer.parseInt(startStr[1]);
+                startDay=Integer.parseInt(startStr[2]);
+                String[] endStr=data.getTaskEndTime().split("-");
+                endYear=Integer.parseInt(endStr[0]);
+                endMonth=Integer.parseInt(endStr[1]);
+                endDay=Integer.parseInt(endStr[2]);
+                taskName.setText(data.getTaskName());
+                completeSpinner.setSelection(data.getTaskState());
+                claimerSpinner.setSelection(claimerIndex);
+                tvExe.setText(exeItems[data.getClaimState()]);
+                prioritySpinner.setSelection(data.getTaskEmergent());
+                restTime.setText(data.getTaskRestHours());
+                predictTime.setText(data.getTaskPredictHours());
+                taskSynopsis.setText(data.getTaskSynopsis());
+                StartTimeView.setText(data.getTaskStartTime());
+                EndTimeView.setText(data.getTaskEndTime());
             }
 
             @Override
@@ -288,23 +295,6 @@ public class TaskDetailActivity extends AppCompatActivity {
 
             }
         });
-        String[] startStr=data.getTaskStartTime().split("-");
-        startYear=Integer.parseInt(startStr[0]);
-        startMonth=Integer.parseInt(startStr[1]);
-        startDay=Integer.parseInt(startStr[2]);
-        String[] endStr=data.getTaskEndTime().split("-");
-        endYear=Integer.parseInt(endStr[0]);
-        endMonth=Integer.parseInt(endStr[1]);
-        endDay=Integer.parseInt(endStr[2]);
-        taskName.setText(data.getTaskName());
-        completeSpinner.setSelection(data.getTaskState());
-        executeSpinner.setSelection(data.getClaimState());
-        prioritySpinner.setSelection(data.getTaskEmergent());
-        restTime.setText(data.getTaskRestHours());
-        predictTime.setText(data.getTaskPredictHours());
-        taskSynopsis.setText(data.getTaskSynopsis());
-        StartTimeView.setText(data.getTaskStartTime());
-        EndTimeView.setText(data.getTaskEndTime());
     }
 
 }
