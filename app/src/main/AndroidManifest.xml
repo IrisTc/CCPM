@@ -34,7 +34,8 @@
 
         <activity
             android:name=".ProjectDetailActivity"
-            android:label="项目详情" />
+            android:label="项目详情"
+            android:theme="@style/Theme.CCPM.NoActionBar"/>
 
         <activity
             android:name=".CreateProjectActivity"
@@ -55,6 +56,12 @@
 
         <activity android:name=".MemberDetailActivity"
             android:label="成员资料"/>
+        <activity
+            android:name=".AddMemberActivity"
+            android:label="添加成员" />
+        <activity
+            android:name=".EditProjectActivity"
+            android:label="更新项目" />
 
         <activity android:name=".MemberSearchActivity"
             android:label="搜索用户"/>

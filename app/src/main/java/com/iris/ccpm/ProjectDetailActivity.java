@@ -1,17 +1,15 @@
 package com.iris.ccpm;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
-
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,18 +22,17 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.tabs.TabLayout;
 import com.iris.ccpm.adapter.DynamicAdapter;
 import com.iris.ccpm.adapter.MemberAdapter;
 import com.iris.ccpm.adapter.MypagerAdapter;
+import com.iris.ccpm.adapter.TaskAdapter;
 import com.iris.ccpm.model.Dynamic;
 import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.model.Member;
-import com.iris.ccpm.model.Project;
-import com.iris.ccpm.adapter.TaskAdapter;
 import com.iris.ccpm.model.Project;
 import com.iris.ccpm.model.TaskModel;
 import com.iris.ccpm.utils.NetCallBack;
@@ -64,8 +61,10 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_detail);
 
+        Toolbar toolbar = findViewById(R.id.project_toolbar);
+        setSupportActionBar(toolbar);
 
-        Intent intent = this.getIntent();
+        Intent intent  = this.getIntent();
         project = (Project) intent.getSerializableExtra("project");
         project_id = project.getProject_uid();
         GlobalData app = (GlobalData) getApplication();
@@ -342,5 +341,42 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     private void findView() {
         vpChosen = (ViewPager) findViewById(R.id.vp_chosen);
         tbSelect = (TabLayout) findViewById(R.id.tb_detail);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.project_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        switch(item.getItemId()){
+            case R.id.edit_project:{
+                editProject();  //点击跳转至更新项目
+                break;
+            }
+            case R.id.add_member:{
+                addMember();    //点击跳转至添加成员
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void editProject() {
+        Intent intent = new Intent(this,EditProjectActivity.class);     //页面跳转至更新项目
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("project", project);
+        intent.putExtras(bundle);
+        this.startActivity(intent);
+    }
+
+    private void addMember() {
+        Intent intent = new Intent(this,AddMemberActivity.class);       //页面跳转至添加成员
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("project", project);
+        intent.putExtras(bundle);
+        this.startActivity(intent);
     }
 }
