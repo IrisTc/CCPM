@@ -131,6 +131,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         TaskModel task = taskList.get(position);
                         Intent intent = new Intent(ProjectDetailActivity.this, TaskDetailActivity.class);
+                        intent.putExtra("isCreate",false);
+                        intent.putExtra("project_id",project_id);
                         intent.putExtra("task", task);
                         System.out.println(position);
                         startActivity(intent);
@@ -148,80 +150,13 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCreateDialog();
+                Intent intent=new Intent(ProjectDetailActivity.this,TaskDetailActivity.class);
+                intent.putExtra("isCreate",true);
+                intent.putExtra("project_id",project_id);
+                intent.putExtra("task",new TaskModel());
+                startActivity(intent);
             }
         });
-    }
-
-    private void showCreateDialog() {
-        AlertDialog.Builder customizeDialog =
-                new AlertDialog.Builder(ProjectDetailActivity.this);
-        final View dialogView = LayoutInflater.from(ProjectDetailActivity.this)
-                .inflate(R.layout.create_task_dialog, null);
-        List<Integer> claimers_uid=new ArrayList<>(0);
-        EditText editName = (EditText) dialogView.findViewById(R.id.editName);
-        Spinner editClaimer = (Spinner) dialogView.findViewById(R.id.editClaimer);
-        customizeDialog.setTitle("创建任务");
-        customizeDialog.setView(dialogView);
-        Request.clientGet(ProjectDetailActivity.this, "project/" + project_id + "/member", new NetCallBack() {
-            @Override
-            public void onMySuccess(JSONObject result) {
-                JSONArray list = result.getJSONArray("list");
-                String[] claimers = new String[list.size()];
-                for (int i = 0; i < list.size(); ++i) {
-                    claimers[i] = list.getJSONObject(i).getString("nickName");
-                    claimers_uid.add(list.getJSONObject(i).getInteger("account_uid"));
-                }
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(ProjectDetailActivity.this, R.layout.task_spinner_item_drop, R.id.spinnerDrop, claimers);
-                editClaimer.setAdapter(adapter);
-            }
-
-            @Override
-            public void onMyFailure(String error) {
-                System.out.println(error);
-            }
-        });
-        customizeDialog.setPositiveButton("确定",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        TaskModel task = new TaskModel();
-                        JSONObject obj = new JSONObject();
-                        obj.put("claimState", task.getClaimState());
-                        obj.put("claim_uid",claimers_uid.get(editClaimer.getSelectedItemPosition()));
-                        obj.put("project_uid", project_id);
-                        obj.put("taskEmergent", task.getTaskEmergent());
-                        obj.put("taskEndTime", task.getTaskEmergent());
-                        obj.put("taskName", editName.getText());
-                        obj.put("taskPredictHours", task.getTaskPredictHours());
-                        obj.put("taskRestHours", task.getTaskRestHours());
-                        obj.put("taskStartTime", task.getTaskStartTime());
-                        obj.put("taskState", task.getTaskState());
-                        obj.put("taskSynopsis", task.getTaskSynopsis());
-                        obj.put("task_uid", task.getTask_uid());
-//                        System.out.println(obj.get("claim_uid"));
-                        StringEntity entity = new StringEntity(obj.toJSONString(), "UTF-8");
-                        Request.clientPost(ProjectDetailActivity.this, "project/"+project_id+"/task", entity, new NetCallBack() {
-                            @Override
-                            public void onMySuccess(JSONObject result) {
-                                Toast.makeText(ProjectDetailActivity.this, "创建成功", Toast.LENGTH_LONG).show();
-                            }
-
-                            @Override
-                            public void onMyFailure(String error) {
-                                System.out.println(error);
-                                Toast.makeText(ProjectDetailActivity.this, error, Toast.LENGTH_LONG).show();
-                            }
-                        });
-                    }
-                });
-        customizeDialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        customizeDialog.show();
     }
 
     private void init_intro(View view) {

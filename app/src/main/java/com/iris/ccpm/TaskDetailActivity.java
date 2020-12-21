@@ -3,12 +3,15 @@ package com.iris.ccpm;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -19,24 +22,32 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.iris.ccpm.adapter.TaskDetailSpinnerAdapter;
 import com.iris.ccpm.model.TaskModel;
+import com.iris.ccpm.ui.project.ProjectFragment;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
+import bolts.Task;
+import cz.msebera.android.httpclient.entity.StringEntity;
 
 public class TaskDetailActivity extends AppCompatActivity {
     private Spinner prioritySpinner;
     private Spinner completeSpinner;
     private Spinner executeSpinner;
+    private Button saveBtn;
+    private EditText taskName;
     private TextView StartTimeView;
     private TextView EndTimeView;
     private Spinner claimerSpinner;
-    private TextView taskNameView;
     private EditText predictTime;
     private EditText restTime;
     private EditText taskSynopsis;
     private String[] claimers;
+    private List<Integer> claimers_uid=new ArrayList<>(0);
     private TaskModel data=new TaskModel();
 
 
@@ -47,10 +58,11 @@ public class TaskDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_detail);
 
-        taskNameView=(TextView)findViewById(R.id.TaskName);
+        taskName=(EditText) findViewById(R.id.TaskName);
         prioritySpinner=(Spinner)findViewById(R.id.prioritySpinner);
         completeSpinner=(Spinner)findViewById(R.id.completeSpinner);
         executeSpinner=(Spinner)findViewById(R.id.ExecuteState);
+        saveBtn=(Button)findViewById(R.id.saveBtn);
         StartTimeView=(TextView)findViewById(R.id.StartTime);
         EndTimeView=(TextView)findViewById(R.id.EndTime);
         claimerSpinner=(Spinner)findViewById(R.id.claimerSpinner);
@@ -61,6 +73,48 @@ public class TaskDetailActivity extends AppCompatActivity {
         startYear=startMonth=startDay=endYear=endMonth=endDay=-1;
 
         LoadData();
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Boolean isCreate=getIntent().getBooleanExtra("isCreate",true);
+                String project_id=getIntent().getStringExtra("project_id");
+                if(isCreate) {
+                    JSONObject obj = new JSONObject();
+                    if(Integer.parseInt(String.valueOf(restTime.getText()))<0||Integer.parseInt(String.valueOf(predictTime.getText()))<=0) {
+                        Toast.makeText(TaskDetailActivity.this, "预估/剩余工时不得小于0", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    //obj.put("claimState", executeSpinner.getSelectedItemPosition());
+                    obj.put("claim_uid", claimers_uid.get(claimerSpinner.getSelectedItemPosition()));
+                    obj.put("project_uid", project_id);
+                    obj.put("taskEmergent", prioritySpinner.getSelectedItemPosition());
+                    obj.put("taskEndTime", endYear+"-"+endMonth+"-"+endDay);
+                    obj.put("taskName", taskName.getText());
+                    obj.put("taskPredictHours", predictTime.getText());
+                    obj.put("taskRestHours", restTime.getText());
+                    obj.put("taskStartTime", startYear+"-"+startMonth+"-"+startDay);
+                    obj.put("taskState", completeSpinner.getSelectedItemPosition());
+                    obj.put("taskSynopsis", taskSynopsis.getText());
+                    System.out.println(obj.toJSONString());
+                    StringEntity entity = new StringEntity(obj.toJSONString(), "UTF-8");
+                    Request.clientPost(TaskDetailActivity.this, "project/" + project_id + "/task", entity, new NetCallBack() {
+                        @Override
+                        public void onMySuccess(JSONObject result) {
+                            Toast.makeText(TaskDetailActivity.this, "创建成功", Toast.LENGTH_LONG).show();
+                            TaskDetailActivity.this.finish();
+                        }
+
+                        @Override
+                        public void onMyFailure(String error) {
+                            System.out.println(error);
+                            Toast.makeText(TaskDetailActivity.this, error, Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }else{
+
+                }
+            }
+        });
         StartTimeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,15 +234,23 @@ public class TaskDetailActivity extends AppCompatActivity {
 
     public void LoadData(){
         TaskModel task=(TaskModel) getIntent().getSerializableExtra("task");
+        Boolean isCreate=getIntent().getBooleanExtra("isCreate",true);
+        if(isCreate){
+            executeSpinner.setClickable(false);
+            executeSpinner.setEnabled(false);
+        }
+        String project_id=getIntent().getStringExtra("project_id");
+        task.setProject_uid(project_id);
         data=task;
-        System.out.println(data.getProject_uid());
-        Request.clientGet(TaskDetailActivity.this, "project/"+data.getProject_uid()+"/member", new NetCallBack() {
+        //System.out.println(data.getProject_uid());
+        Request.clientGet(TaskDetailActivity.this, "project/"+project_id+"/member", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 JSONArray list=result.getJSONArray("list");
                 claimers=new String[list.size()];
                 for(int i=0;i<list.size();++i) {
                     claimers[i]=list.getJSONObject(i).getString("nickName");
+                    claimers_uid.add(list.getJSONObject(i).getInteger("account_uid"));
                     System.out.println(claimers[i]);
                     InitSpinner();
                 }
@@ -207,7 +269,7 @@ public class TaskDetailActivity extends AppCompatActivity {
         endYear=Integer.parseInt(endStr[0]);
         endMonth=Integer.parseInt(endStr[1]);
         endDay=Integer.parseInt(endStr[2]);
-        taskNameView.setText(data.getTaskName());
+        taskName.setText(data.getTaskName());
         completeSpinner.setSelection(data.getTaskState());
         executeSpinner.setSelection(data.getClaimState());
         prioritySpinner.setSelection(data.getTaskEmergent());
