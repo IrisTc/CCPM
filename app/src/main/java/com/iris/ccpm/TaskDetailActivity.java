@@ -235,12 +235,13 @@ public class TaskDetailActivity extends AppCompatActivity {
     public void LoadData(){
         TaskModel task=(TaskModel) getIntent().getSerializableExtra("task");
         Boolean isCreate=getIntent().getBooleanExtra("isCreate",true);
+        TextView saveBtn = findViewById(R.id.saveBtn);
         if(isCreate){
             executeSpinner.setClickable(false);
             executeSpinner.setEnabled(false);
+            saveBtn.setText("发布");
         }
-        String project_id=getIntent().getStringExtra("project_id");
-        task.setProject_uid(project_id);
+        String project_id = task.getProject_uid();
         data=task;
         //System.out.println(data.getProject_uid());
         Request.clientGet(TaskDetailActivity.this, "project/"+project_id+"/member", new NetCallBack() {
