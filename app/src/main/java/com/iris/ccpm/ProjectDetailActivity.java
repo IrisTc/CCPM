@@ -32,6 +32,7 @@ import com.iris.ccpm.adapter.DynamicAdapter;
 import com.iris.ccpm.adapter.MemberAdapter;
 import com.iris.ccpm.adapter.MypagerAdapter;
 import com.iris.ccpm.model.Dynamic;
+import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.model.Member;
 import com.iris.ccpm.model.Project;
 import com.iris.ccpm.adapter.TaskAdapter;
@@ -56,6 +57,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     List<Member> memberList;
     MemberAdapter memberAdapter;
     View intro_view;
+    Boolean isManager = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,10 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         Intent intent = this.getIntent();
         project = (Project) intent.getSerializableExtra("project");
         project_id = project.getProject_uid();
+        GlobalData app = (GlobalData) getApplication();
+        if (project.getManager_uid().equals(app.getUid())) {
+            isManager = true;
+        }
 
         findView();
         initTabContent();
@@ -118,7 +124,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
 
     private void init_task(View task_view) {
         ListView lvTask =task_view.findViewById(R.id.task_list);
-        Request.clientGet(ProjectDetailActivity.this, "task?project=" + project_id , new NetCallBack() {
+        Request.clientGet(ProjectDetailActivity.this, "task?claimState=3&project_uid=" + project_id , new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 JSONArray list = result.getJSONArray("list");
@@ -131,10 +137,9 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         TaskModel task = taskList.get(position);
                         Intent intent = new Intent(ProjectDetailActivity.this, TaskDetailActivity.class);
+                        intent.putExtra("isManager", isManager);
                         intent.putExtra("isCreate",false);
-                        intent.putExtra("project_id",project_id);
                         intent.putExtra("task", task);
-                        System.out.println(position);
                         startActivity(intent);
                     }
                 });
@@ -147,16 +152,20 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         });
 
         Button addBtn = task_view.findViewById(R.id.addTaskButton);
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(ProjectDetailActivity.this,TaskDetailActivity.class);
-                intent.putExtra("isCreate",true);
-                intent.putExtra("project_id",project_id);
-                intent.putExtra("task",new TaskModel());
-                startActivity(intent);
-            }
-        });
+        if (isManager) {
+            addBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(ProjectDetailActivity.this,TaskDetailActivity.class);
+                    intent.putExtra("isCreate",true);
+                    intent.putExtra("project_id",project_id);
+                    intent.putExtra("task",new TaskModel());
+                    startActivity(intent);
+                }
+            });
+        } else {
+            addBtn.setVisibility(View.GONE);
+        }
     }
 
     private void init_intro(View view) {
@@ -178,7 +187,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         Request.clientGet(ProjectDetailActivity.this, "statistics?ingTaskPro=yes&doneTaskPro=yes&hasOverdue=yes&noClaimTask&expireToday=yes&proMemNum=yes&project_uid=" + project_id, new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
-                System.out.println("statistics:" + result);
                 TextView tvIngNumber = view.findViewById(R.id.ing_number);
                 TextView tvDoneNumber = view.findViewById(R.id.done_number);
                 TextView tvOverNumber = view.findViewById(R.id.overdue_number);
@@ -209,7 +217,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         btMemberAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("add");
                 Intent intent = new Intent(ProjectDetailActivity.this, MemberSearchActivity.class);
                 startActivity(intent);
             }
@@ -327,7 +334,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         }
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
-        System.out.println(params.height);
         listView.setLayoutParams(params);
     }
 

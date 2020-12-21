@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.iris.ccpm.adapter.TaskDetailSpinnerAdapter;
+import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.model.TaskModel;
 import com.iris.ccpm.ui.project.ProjectFragment;
 import com.iris.ccpm.utils.NetCallBack;
@@ -49,7 +50,8 @@ public class TaskDetailActivity extends AppCompatActivity {
     private String[] claimers;
     private List<Integer> claimers_uid=new ArrayList<>(0);
     private TaskModel data=new TaskModel();
-
+    Boolean isManager = false;
+    Boolean isClaimer = false;
 
     private int startYear,endYear,startMonth,endMonth,startDay,endDay;
 
@@ -73,48 +75,65 @@ public class TaskDetailActivity extends AppCompatActivity {
         startYear=startMonth=startDay=endYear=endMonth=endDay=-1;
 
         LoadData();
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Boolean isCreate=getIntent().getBooleanExtra("isCreate",true);
-                String project_id=getIntent().getStringExtra("project_id");
-                if(isCreate) {
-                    JSONObject obj = new JSONObject();
-                    if(Integer.parseInt(String.valueOf(restTime.getText()))<0||Integer.parseInt(String.valueOf(predictTime.getText()))<=0) {
-                        Toast.makeText(TaskDetailActivity.this, "预估/剩余工时不得小于0", Toast.LENGTH_LONG).show();
-                        return;
+
+        if (isManager) {
+            saveBtn.setVisibility(View.VISIBLE);
+            saveBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Boolean isCreate = getIntent().getBooleanExtra("isCreate", true);
+                    String project_id = getIntent().getStringExtra("project_id");
+                    if (isCreate) {
+                        JSONObject obj = new JSONObject();
+                        if (Integer.parseInt(String.valueOf(restTime.getText())) < 0 || Integer.parseInt(String.valueOf(predictTime.getText())) <= 0) {
+                            Toast.makeText(TaskDetailActivity.this, "预估/剩余工时不得小于0", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        //obj.put("claimState", executeSpinner.getSelectedItemPosition());
+                        obj.put("claim_uid", claimers_uid.get(claimerSpinner.getSelectedItemPosition()));
+                        obj.put("project_uid", project_id);
+                        obj.put("taskEmergent", prioritySpinner.getSelectedItemPosition());
+                        obj.put("taskEndTime", endYear + "-" + endMonth + "-" + endDay);
+                        obj.put("taskName", taskName.getText());
+                        obj.put("taskPredictHours", predictTime.getText());
+                        obj.put("taskRestHours", restTime.getText());
+                        obj.put("taskStartTime", startYear + "-" + startMonth + "-" + startDay);
+                        obj.put("taskState", completeSpinner.getSelectedItemPosition());
+                        obj.put("taskSynopsis", taskSynopsis.getText());
+                        System.out.println(obj.toJSONString());
+                        StringEntity entity = new StringEntity(obj.toJSONString(), "UTF-8");
+                        Request.clientPost(TaskDetailActivity.this, "project/" + project_id + "/task", entity, new NetCallBack() {
+                            @Override
+                            public void onMySuccess(JSONObject result) {
+                                Toast.makeText(TaskDetailActivity.this, "创建成功", Toast.LENGTH_LONG).show();
+                                TaskDetailActivity.this.finish();
+                            }
+
+                            @Override
+                            public void onMyFailure(String error) {
+                                System.out.println(error);
+                                Toast.makeText(TaskDetailActivity.this, error, Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    } else {
+
                     }
-                    //obj.put("claimState", executeSpinner.getSelectedItemPosition());
-                    obj.put("claim_uid", claimers_uid.get(claimerSpinner.getSelectedItemPosition()));
-                    obj.put("project_uid", project_id);
-                    obj.put("taskEmergent", prioritySpinner.getSelectedItemPosition());
-                    obj.put("taskEndTime", endYear+"-"+endMonth+"-"+endDay);
-                    obj.put("taskName", taskName.getText());
-                    obj.put("taskPredictHours", predictTime.getText());
-                    obj.put("taskRestHours", restTime.getText());
-                    obj.put("taskStartTime", startYear+"-"+startMonth+"-"+startDay);
-                    obj.put("taskState", completeSpinner.getSelectedItemPosition());
-                    obj.put("taskSynopsis", taskSynopsis.getText());
-                    System.out.println(obj.toJSONString());
-                    StringEntity entity = new StringEntity(obj.toJSONString(), "UTF-8");
-                    Request.clientPost(TaskDetailActivity.this, "project/" + project_id + "/task", entity, new NetCallBack() {
-                        @Override
-                        public void onMySuccess(JSONObject result) {
-                            Toast.makeText(TaskDetailActivity.this, "创建成功", Toast.LENGTH_LONG).show();
-                            TaskDetailActivity.this.finish();
-                        }
-
-                        @Override
-                        public void onMyFailure(String error) {
-                            System.out.println(error);
-                            Toast.makeText(TaskDetailActivity.this, error, Toast.LENGTH_LONG).show();
-                        }
-                    });
-                }else{
-
                 }
-            }
-        });
+            });
+        }
+
+        if (isClaimer) {
+            TextView reportBtn = findViewById(R.id.reportBtn);
+            reportBtn.setVisibility(View.VISIBLE);
+            reportBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(TaskDetailActivity.this, ReportActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
         StartTimeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -234,13 +253,21 @@ public class TaskDetailActivity extends AppCompatActivity {
 
     public void LoadData(){
         TaskModel task=(TaskModel) getIntent().getSerializableExtra("task");
-        Boolean isCreate=getIntent().getBooleanExtra("isCreate",true);
+        Boolean isCreate = getIntent().getBooleanExtra("isCreate",true);
+        isManager = getIntent().getBooleanExtra("isManager",false);
+        GlobalData app = (GlobalData) getApplication();
+        System.out.println(task.getClaim_uid());
+        System.out.println(app.getUid());
+        if (task.getClaim_uid() == app.getUid()) {
+            isClaimer = true;
+        }
+        TextView saveBtn = findViewById(R.id.saveBtn);
         if(isCreate){
             executeSpinner.setClickable(false);
             executeSpinner.setEnabled(false);
+            saveBtn.setText("发布");
         }
-        String project_id=getIntent().getStringExtra("project_id");
-        task.setProject_uid(project_id);
+        String project_id = task.getProject_uid();
         data=task;
         //System.out.println(data.getProject_uid());
         Request.clientGet(TaskDetailActivity.this, "project/"+project_id+"/member", new NetCallBack() {
