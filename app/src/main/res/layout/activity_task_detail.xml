@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="20dp"
     android:orientation="vertical"
     tools:context=".TaskDetailActivity">
 
@@ -11,7 +12,6 @@
         android:id="@+id/TaskName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:hint="任务名称"
         android:textColor="@color/black"
@@ -20,7 +20,6 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp">
 
         <ImageView
@@ -32,11 +31,8 @@
 
         <TextView
             android:id="@+id/CompleteStateLabel"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="完成状态"
-            android:textColor="#888888" />
+            style="@style/taskTitle"
+            android:text="完成状态"/>
 
         <Spinner
             android:id="@+id/completeSpinner"
@@ -49,7 +45,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp">
 
         <ImageView
@@ -61,11 +56,8 @@
 
         <TextView
             android:id="@+id/ExecuteStateLabel"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="执行状态"
-            android:textColor="#888888" />
+            style="@style/taskTitle"
+            android:text="执行状态" />
 
         <Spinner
             android:id="@+id/ExecuteState"
@@ -78,7 +70,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp">
 
         <ImageView
@@ -90,9 +81,7 @@
 
         <TextView
             android:id="@+id/ExecuterLabel"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            style="@style/taskTitle"
             android:text="执行者" />
 
         <Spinner
@@ -107,7 +96,6 @@
         android:id="@+id/timeSetLayout"
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp">
 
         <ImageView
@@ -119,9 +107,7 @@
 
         <TextView
             android:id="@+id/TimeLabel"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            style="@style/taskTitle"
             android:text="时间" />
 
         <TextView
@@ -144,7 +130,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp">
 
         <ImageView
@@ -156,9 +141,8 @@
 
         <TextView
             android:id="@+id/NoteLabel"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
+            style="@style/taskTitle"
+
             android:text="备注" />
 
         <EditText
@@ -179,7 +163,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp">
 
         <ImageView
@@ -191,9 +174,7 @@
 
         <TextView
             android:id="@+id/PriorityLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            style="@style/taskTitle"
             android:text="紧急程度" />
 
         <Spinner
@@ -207,14 +188,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp">
 
         <TextView
             android:id="@+id/predictLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            style="@style/taskTitle"
             android:text="预估工时" />
 
         <TextView
