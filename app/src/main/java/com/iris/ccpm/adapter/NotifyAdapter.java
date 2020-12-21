@@ -45,6 +45,7 @@ public class NotifyAdapter extends BaseAdapter {
         TextView tvProject = view.findViewById(R.id.tv_projectName);
         TextView tvManager = view.findViewById(R.id.tv_managerNickName);
         TextView tvTime = view.findViewById(R.id.tv_notiryTime);
+        TextView tvDeal = view.findViewById(R.id.tv_deal);
 
         Notify notify = this.notifyList.get(position);
         int event = notify.getEventID();
@@ -52,13 +53,17 @@ public class NotifyAdapter extends BaseAdapter {
         switch (event){
             case 0:
                 content = notify.getAccountNickName() + " 拒绝了任务 [" + notify.getTaskName() + "]";
-
+                break;
             case 1:
                 content = notify.getAccountNickName() + " 接受了任务 [" + notify.getTaskName() + "]";
+                break;
             case 2:
                 content = "项目经理" + notify.getManagerNickName() +  "给你指派了任务 [" + notify.getTaskName() + "]";
+                tvDeal.setText("需处理");
+                break;
             case 3:
                 content = notify.getAccountNickName() + " 完成了任务 [" + notify.getTaskName() + "]";
+                break;
         }
         tvContent.setText(content);
         tvProject.setText(notify.getProjectName());

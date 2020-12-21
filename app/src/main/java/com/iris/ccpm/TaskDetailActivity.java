@@ -3,12 +3,15 @@ package com.iris.ccpm;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -18,26 +21,37 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.iris.ccpm.adapter.TaskDetailSpinnerAdapter;
+import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.model.TaskModel;
+import com.iris.ccpm.ui.project.ProjectFragment;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
+import bolts.Task;
+import cz.msebera.android.httpclient.entity.StringEntity;
 
 public class TaskDetailActivity extends AppCompatActivity {
     private Spinner prioritySpinner;
     private Spinner completeSpinner;
-    private Spinner executeSpinner;
+    private TextView tvExe;
+    private Button saveBtn;
+    private EditText taskName;
     private TextView StartTimeView;
     private TextView EndTimeView;
     private Spinner claimerSpinner;
-    private TextView taskNameView;
     private EditText predictTime;
     private EditText restTime;
     private EditText taskSynopsis;
+    private String[] claimers;
+    private List<Integer> claimers_uid=new ArrayList<>(0);
     private TaskModel data=new TaskModel();
-
+    Boolean isManager = false;
+    Boolean isClaimer = false;
 
     private int startYear,endYear,startMonth,endMonth,startDay,endDay;
 
@@ -46,10 +60,11 @@ public class TaskDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_detail);
 
-        taskNameView=(TextView)findViewById(R.id.TaskName);
+        taskName=(EditText) findViewById(R.id.TaskName);
         prioritySpinner=(Spinner)findViewById(R.id.prioritySpinner);
         completeSpinner=(Spinner)findViewById(R.id.completeSpinner);
-        executeSpinner=(Spinner)findViewById(R.id.ExecuteState);
+        tvExe=(TextView)findViewById(R.id.ExecuteState);
+        saveBtn=(Button)findViewById(R.id.saveBtn);
         StartTimeView=(TextView)findViewById(R.id.StartTime);
         EndTimeView=(TextView)findViewById(R.id.EndTime);
         claimerSpinner=(Spinner)findViewById(R.id.claimerSpinner);
@@ -61,7 +76,64 @@ public class TaskDetailActivity extends AppCompatActivity {
 
         LoadData();
 
-        InitSpinner();
+        if (isManager) {
+            saveBtn.setVisibility(View.VISIBLE);
+            saveBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Boolean isCreate = getIntent().getBooleanExtra("isCreate", true);
+                    String project_id = getIntent().getStringExtra("project_id");
+                    if (isCreate) {
+                        JSONObject obj = new JSONObject();
+                        if (Integer.parseInt(String.valueOf(restTime.getText())) < 0 || Integer.parseInt(String.valueOf(predictTime.getText())) <= 0) {
+                            Toast.makeText(TaskDetailActivity.this, "预估/剩余工时不得小于0", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        //obj.put("claimState", executeSpinner.getSelectedItemPosition());
+                        obj.put("claim_uid", claimers_uid.get(claimerSpinner.getSelectedItemPosition()));
+                        obj.put("project_uid", project_id);
+                        obj.put("taskEmergent", prioritySpinner.getSelectedItemPosition());
+                        obj.put("taskEndTime", endYear + "-" + endMonth + "-" + endDay);
+                        obj.put("taskName", taskName.getText());
+                        obj.put("taskPredictHours", predictTime.getText());
+                        obj.put("taskRestHours", restTime.getText());
+                        obj.put("taskStartTime", startYear + "-" + startMonth + "-" + startDay);
+                        obj.put("taskState", completeSpinner.getSelectedItemPosition());
+                        obj.put("taskSynopsis", taskSynopsis.getText());
+                        System.out.println(obj.toJSONString());
+                        StringEntity entity = new StringEntity(obj.toJSONString(), "UTF-8");
+                        Request.clientPost(TaskDetailActivity.this, "project/" + project_id + "/task", entity, new NetCallBack() {
+                            @Override
+                            public void onMySuccess(JSONObject result) {
+                                Toast.makeText(TaskDetailActivity.this, "创建成功", Toast.LENGTH_LONG).show();
+                                TaskDetailActivity.this.finish();
+                            }
+
+                            @Override
+                            public void onMyFailure(String error) {
+                                System.out.println(error);
+                                Toast.makeText(TaskDetailActivity.this, error, Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    } else {
+
+                    }
+                }
+            });
+        }
+
+        if (isClaimer) {
+            TextView reportBtn = findViewById(R.id.reportBtn);
+            reportBtn.setVisibility(View.VISIBLE);
+            reportBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(TaskDetailActivity.this, ReportActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
         StartTimeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,10 +210,6 @@ public class TaskDetailActivity extends AppCompatActivity {
         completeSpinner.setDropDownHorizontalOffset(100);
         completeSpinner.setDropDownVerticalOffset(100);
 
-        executeSpinner.setDropDownWidth(400);
-        executeSpinner.setDropDownHorizontalOffset(100);
-        executeSpinner.setDropDownVerticalOffset(100);
-
         claimerSpinner.setDropDownWidth(400);
         claimerSpinner.setDropDownHorizontalOffset(100);
         claimerSpinner.setDropDownVerticalOffset(100);
@@ -154,11 +222,7 @@ public class TaskDetailActivity extends AppCompatActivity {
         int[] completeColors={Color.RED,0xFF7FFFAA};
         int[] completeTextColors={Color.WHITE,Color.BLACK};
 
-        String[] exeItems = {"拒绝","接受","未处理"};
-        int[] exeColors={Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT};
-        int[] exeTextColors={Color.BLACK,Color.BLACK,Color.BLACK};
-
-        String[] ClaimerItems = {"成员1","成员2","成员3","成员4","成员5"};
+        String[] ClaimerItems = claimers;
         int[] ClaimerColors={Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT,Color.TRANSPARENT};
         int[] ClaimerTextColors={Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK,Color.BLACK};
 
@@ -170,47 +234,67 @@ public class TaskDetailActivity extends AppCompatActivity {
         prioAdapter.setDropDownViewResource(R.layout.task_spinner_item_drop);
         prioritySpinner.setAdapter(prioAdapter);
 
-        TaskDetailSpinnerAdapter exeAdapter = new TaskDetailSpinnerAdapter(this,exeItems,exeColors,exeTextColors);
-        exeAdapter.setDropDownViewResource(R.layout.task_spinner_item_drop);
-        executeSpinner.setAdapter(exeAdapter);
-
         TaskDetailSpinnerAdapter ClaimerAdapter = new TaskDetailSpinnerAdapter(this,ClaimerItems,ClaimerColors,ClaimerTextColors);
         ClaimerAdapter.setDropDownViewResource(R.layout.task_spinner_item_drop);
         claimerSpinner.setAdapter(ClaimerAdapter);
     }
 
     public void LoadData(){
+        String[] exeItems = {"拒绝","接受","未处理"};
         TaskModel task=(TaskModel) getIntent().getSerializableExtra("task");
+        String project_id=getIntent().getStringExtra("project_id");
+        Boolean isCreate = getIntent().getBooleanExtra("isCreate",true);
+        isManager = getIntent().getBooleanExtra("isManager",false);
+        GlobalData app = (GlobalData) getApplication();
+        System.out.println(task.getClaim_uid());
+        System.out.println(app.getUid());
+        if (task.getClaim_uid() == app.getUid()) {
+            isClaimer = true;
+        }
+        TextView saveBtn = findViewById(R.id.saveBtn);
+        if(isCreate) saveBtn.setText("发布");
         data=task;
+        data.setProject_uid(project_id);
         System.out.println(data.getProject_uid());
-//        Request.clientGet(TaskDetailActivity.this, "project/"+data.getProject_uid()+"/member", new NetCallBack() {
-//            @Override
-//            public void onMySuccess(JSONObject result) {
-//                System.out.println(result.toString());
-//            }
-//
-//            @Override
-//            public void onMyFailure(String error) {
-//
-//            }
-//        });
-        String[] startStr=data.getTaskStartTime().split("-");
-        startYear=Integer.parseInt(startStr[0]);
-        startMonth=Integer.parseInt(startStr[1]);
-        startDay=Integer.parseInt(startStr[2]);
-        String[] endStr=data.getTaskEndTime().split("-");
-        endYear=Integer.parseInt(endStr[0]);
-        endMonth=Integer.parseInt(endStr[1]);
-        endDay=Integer.parseInt(endStr[2]);
-        taskNameView.setText(data.getTaskName());
-        completeSpinner.setSelection(data.getTaskState());
-        executeSpinner.setSelection(data.getClaimState());
-        prioritySpinner.setSelection(data.getTaskEmergent());
-        restTime.setText(data.getTaskRestHours());
-        predictTime.setText(data.getTaskPredictHours());
-        taskSynopsis.setText(data.getTaskSynopsis());
-        StartTimeView.setText(data.getTaskStartTime());
-        EndTimeView.setText(data.getTaskEndTime());
+        Request.clientGet(TaskDetailActivity.this, "project/"+project_id+"/member", new NetCallBack() {
+            @Override
+            public void onMySuccess(JSONObject result) {
+                JSONArray list=result.getJSONArray("list");
+                int claimerIndex=0;
+                claimers=new String[list.size()];
+                for(int i=0;i<list.size();++i) {
+                    claimers[i]=list.getJSONObject(i).getString("nickName");
+                    claimers_uid.add(list.getJSONObject(i).getInteger("account_uid"));
+                    if(list.getJSONObject(i).getInteger("account_uid")==data.getClaim_uid()) claimerIndex=i;
+                    InitSpinner();
+                }
+                System.out.println("startDate:"+data.getTaskStartTime());
+                System.out.println("endDate:"+data.getTaskEndTime());
+                String[] startStr=data.getTaskStartTime().split("-");
+                startYear=Integer.parseInt(startStr[0]);
+                startMonth=Integer.parseInt(startStr[1]);
+                startDay=Integer.parseInt(startStr[2]);
+                String[] endStr=data.getTaskEndTime().split("-");
+                endYear=Integer.parseInt(endStr[0]);
+                endMonth=Integer.parseInt(endStr[1]);
+                endDay=Integer.parseInt(endStr[2]);
+                taskName.setText(data.getTaskName());
+                completeSpinner.setSelection(data.getTaskState());
+                claimerSpinner.setSelection(claimerIndex);
+                tvExe.setText(exeItems[data.getClaimState()]);
+                prioritySpinner.setSelection(data.getTaskEmergent());
+                restTime.setText(data.getTaskRestHours());
+                predictTime.setText(data.getTaskPredictHours());
+                taskSynopsis.setText(data.getTaskSynopsis());
+                StartTimeView.setText(data.getTaskStartTime());
+                EndTimeView.setText(data.getTaskEndTime());
+            }
+
+            @Override
+            public void onMyFailure(String error) {
+
+            }
+        });
     }
 
 }

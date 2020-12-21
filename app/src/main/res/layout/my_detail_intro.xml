@@ -109,6 +109,20 @@
 
                 <TextView
                     style="@style/Title"
+                    android:text="ID:" />
+
+                <TextView
+                    android:id="@+id/tv_uid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="123456" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/detailBar">
+
+                <TextView
+                    style="@style/Title"
                     android:text="邮箱账号:" />
 
                 <TextView

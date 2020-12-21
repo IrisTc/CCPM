@@ -100,8 +100,8 @@ public class TaskFragment extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         TaskModel task = taskList.get(position);
                         Intent intent = new Intent(getActivity(), TaskDetailActivity.class);
-                        intent.putExtra("task",task);
-                        System.out.println(position);
+                        intent.putExtra("isCreate",false);
+                        intent.putExtra("task", task);
                         startActivity(intent);
                     }
                 });
@@ -114,7 +114,7 @@ public class TaskFragment extends Fragment {
 
     private void init_managerTask(View manager_task) {
         ListView lvManagerTask = manager_task.findViewById(R.id.lv_task);
-        Request.clientGet(getActivity(), "task?asManager=yes", new NetCallBack() {
+        Request.clientGet(getActivity(), "task?asManager=yes&asMember=no", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 System.out.println(result);

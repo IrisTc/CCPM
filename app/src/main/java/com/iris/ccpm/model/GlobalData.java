@@ -16,6 +16,7 @@ public class GlobalData extends Application {
     private String position;
     private String phoneNum;
     private String synopsis;
+    private Integer uid;
 
     @Override
     public void onCreate() {
@@ -32,6 +33,15 @@ public class GlobalData extends Application {
         app.setPhoneNum(data.getString("phoneNum"));
         app.setSynopsis(data.getString("synopsis"));
         app.setPosition(data.getString("position"));
+        app.setUid(data.getInteger("account_uid"));
+    }
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
     public String getToken() {

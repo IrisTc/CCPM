@@ -62,6 +62,9 @@
         <activity
             android:name=".EditProjectActivity"
             android:label="更新项目" />
+
+        <activity android:name=".MemberSearchActivity"
+            android:label="搜索用户"/>
     </application>
 
 </manifest>

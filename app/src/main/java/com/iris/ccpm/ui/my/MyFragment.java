@@ -179,6 +179,7 @@ public class MyFragment extends Fragment {
         TextView tvPhonenum = intro_view.findViewById(R.id.tv_phoneNum);
         TextView tvPosition = intro_view.findViewById(R.id.tv_position);
         TextView tvSynopsis = intro_view.findViewById(R.id.tv_synopsis);
+        TextView tvUid = intro_view.findViewById(R.id.tv_uid);
 
         TextView tvProjectCount = intro_view.findViewById(R.id.project_count);
         TextView tvTaskCount = intro_view.findViewById(R.id.task_count);
