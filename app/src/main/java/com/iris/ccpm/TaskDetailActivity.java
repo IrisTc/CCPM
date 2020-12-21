@@ -125,6 +125,13 @@ public class TaskDetailActivity extends AppCompatActivity {
         if (isClaimer) {
             TextView reportBtn = findViewById(R.id.reportBtn);
             reportBtn.setVisibility(View.VISIBLE);
+            reportBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(TaskDetailActivity.this, ReportActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
 
         StartTimeView.setOnClickListener(new View.OnClickListener() {
