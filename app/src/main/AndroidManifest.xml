@@ -55,6 +55,9 @@
 
         <activity android:name=".MemberDetailActivity"
             android:label="成员资料"/>
+
+        <activity android:name=".MemberSearchActivity"
+            android:label="搜索用户"/>
     </application>
 
 </manifest>
