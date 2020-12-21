@@ -152,7 +152,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                         Intent intent = new Intent(ProjectDetailActivity.this, TaskDetailActivity.class);
                         intent.putExtra("isManager", isManager);
                         intent.putExtra("isCreate",false);
-                        intent.putExtra("project_id",project_id);
                         intent.putExtra("task", task);
                         startActivity(intent);
                     }

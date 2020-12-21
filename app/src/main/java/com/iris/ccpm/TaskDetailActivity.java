@@ -242,7 +242,7 @@ public class TaskDetailActivity extends AppCompatActivity {
     public void LoadData(){
         String[] exeItems = {"拒绝","接受","未处理"};
         TaskModel task=(TaskModel) getIntent().getSerializableExtra("task");
-        String project_id=getIntent().getStringExtra("project_id");
+        String project_id = task.getProject_uid();
         Boolean isCreate = getIntent().getBooleanExtra("isCreate",true);
         isManager = getIntent().getBooleanExtra("isManager",false);
         GlobalData app = (GlobalData) getApplication();
