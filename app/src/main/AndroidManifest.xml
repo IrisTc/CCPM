@@ -57,9 +57,6 @@
         <activity android:name=".MemberDetailActivity"
             android:label="成员资料"/>
         <activity
-            android:name=".AddMemberActivity"
-            android:label="添加成员" />
-        <activity
             android:name=".EditProjectActivity"
             android:label="更新项目" />
 

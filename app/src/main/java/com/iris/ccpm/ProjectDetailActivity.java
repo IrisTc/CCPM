@@ -96,8 +96,22 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.activity_project_detail, menu);
+        inflater.inflate(R.menu.project_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        switch(item.getItemId()){
+            case R.id.edit_project:{
+                editProject();  //点击跳转至更新项目
+                break;
+            }
+            case R.id.add_member:{
+                addMember();    //点击跳转至添加成员
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initTabContent() {
@@ -343,27 +357,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         tbSelect = (TabLayout) findViewById(R.id.tb_detail);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.project_menu, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(@NonNull MenuItem item){
-        switch(item.getItemId()){
-            case R.id.edit_project:{
-                editProject();  //点击跳转至更新项目
-                break;
-            }
-            case R.id.add_member:{
-                addMember();    //点击跳转至添加成员
-                break;
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     public void editProject() {
         Intent intent = new Intent(this,EditProjectActivity.class);     //页面跳转至更新项目
         Bundle bundle = new Bundle();
@@ -373,10 +366,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void addMember() {
-        Intent intent = new Intent(this,AddMemberActivity.class);       //页面跳转至添加成员
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("project", project);
-        intent.putExtras(bundle);
+        Intent intent = new Intent(this, MemberSearchActivity.class);       //页面跳转至添加成员
+        intent.putExtra("project_id", project_id);
         this.startActivity(intent);
     }
 }
