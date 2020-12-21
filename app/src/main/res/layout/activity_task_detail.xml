@@ -1,277 +1,284 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="20dp"
-    android:orientation="vertical"
-    tools:context=".TaskDetailActivity">
+    android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/TaskName"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="任务名称"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="20dp"
-        android:layout_marginTop="15dp">
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="2.5dp"
-            app:srcCompat="@drawable/ic_complete" />
-
-        <TextView
-            android:id="@+id/CompleteStateLabel"
-            style="@style/taskTitle"
-            android:text="完成状态"/>
-
-        <Spinner
-            android:id="@+id/completeSpinner"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginTop="15dp">
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="2.5dp"
-            app:srcCompat="@drawable/ic_executor" />
-
-        <TextView
-            android:id="@+id/ExecuteStateLabel"
-            style="@style/taskTitle"
-            android:text="执行状态" />
-
-        <Spinner
-            android:id="@+id/ExecuteState"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginTop="15dp">
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="2.5dp"
-            app:srcCompat="@drawable/personal" />
-
-        <TextView
-            android:id="@+id/ExecuterLabel"
-            style="@style/taskTitle"
-            android:text="执行者" />
-
-        <Spinner
-            android:id="@+id/claimerSpinner"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/timeSetLayout"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginTop="15dp">
-
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="20dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="2.5dp"
-            app:srcCompat="@drawable/ic_time" />
-
-        <TextView
-            android:id="@+id/TimeLabel"
-            style="@style/taskTitle"
-            android:text="时间" />
-
-        <TextView
-            android:id="@+id/StartTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp"
-            android:text="设置开始时间" />
-
-        <TextView
-            android:id="@+id/EndTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="230dp"
-            android:clickable="true"
-            android:text="设置截止时间" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="15dp">
-
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="2.5dp"
-            app:srcCompat="@drawable/ic_note" />
-
-        <TextView
-            android:id="@+id/NoteLabel"
-            style="@style/taskTitle"
-
-            android:text="备注" />
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        tools:context=".TaskDetailActivity">
 
         <EditText
-            android:id="@+id/taskSynopsis"
+            android:id="@+id/TaskName"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:layout_marginLeft="120dp"
-            android:ems="10"
-            android:gravity="top"
-            android:inputType="textMultiLine"
-            android:minLines="5"
-            android:text="添加备注"
-            android:textColor="#888888"
-            android:textSize="12sp" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginTop="15dp">
-
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="2.5dp"
-            app:srcCompat="@drawable/ic_prio" />
-
-        <TextView
-            android:id="@+id/PriorityLabel"
-            style="@style/taskTitle"
-            android:text="紧急程度" />
-
-        <Spinner
-            android:id="@+id/prioritySpinner"
-            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="120dp" />
+            android:layout_marginTop="20dp"
+            android:hint="任务名称"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginTop="15dp">
-
-        <TextView
-            android:id="@+id/predictLabel"
-            style="@style/taskTitle"
-            android:text="预估工时" />
-
-        <TextView
-            android:id="@+id/remainingLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="190dp"
-            android:layout_marginLeft="20dp"
-            android:text="剩余工时" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginTop="2.5dp"
-            app:srcCompat="@drawable/ic_remaining_time" />
-
-        <EditText
-            android:id="@+id/predictEdit"
-            android:layout_width="30dp"
+        <RelativeLayout
+            android:layout_width="fill_parent"
             android:layout_height="20dp"
-            android:layout_marginLeft="120dp"
-            android:background="@color/white"
-            android:ems="2"
-            android:inputType="number"
-            android:maxLength="2"
-            android:padding="0dp"
-            android:singleLine="true"
-            android:textSize="15sp" />
+            android:layout_marginTop="15dp">
 
-        <EditText
-            android:id="@+id/remainEdit"
-            android:layout_width="30dp"
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="2.5dp"
+                app:srcCompat="@drawable/ic_complete" />
+
+            <TextView
+                android:id="@+id/CompleteStateLabel"
+                style="@style/taskTitle"
+                android:text="完成状态" />
+
+            <Spinner
+                android:id="@+id/completeSpinner"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="120dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:layout_marginLeft="250dp"
-            android:background="@color/white"
-            android:ems="2"
-            android:inputType="number|text"
-            android:maxLength="2"
-            android:padding="0dp"
-            android:singleLine="true"
-            android:textSize="15sp" />
+            android:layout_marginTop="15dp">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
-            android:text="小时" />
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="2.5dp"
+                app:srcCompat="@drawable/ic_executor" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="280dp"
-            android:text="小时" />
+            <TextView
+                android:id="@+id/ExecuteStateLabel"
+                style="@style/taskTitle"
+                android:text="执行状态" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/ExecuteState"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="120dp" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:gravity="center">
+        </RelativeLayout>
 
-        <Button
-            android:visibility="gone"
-            android:id="@+id/saveBtn"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="保存" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="15dp">
 
-        <Button
-            android:visibility="gone"
-            android:id="@+id/reportBtn"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="汇报" />
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="2.5dp"
+                app:srcCompat="@drawable/personal" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/ExecuterLabel"
+                style="@style/taskTitle"
+                android:text="执行者" />
+
+            <Spinner
+                android:id="@+id/claimerSpinner"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="120dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/timeSetLayout"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="15dp">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="20dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="2.5dp"
+                app:srcCompat="@drawable/ic_time" />
+
+            <TextView
+                android:id="@+id/TimeLabel"
+                style="@style/taskTitle"
+                android:text="时间" />
+
+            <TextView
+                android:id="@+id/StartTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="120dp"
+                android:text="设置开始时间" />
+
+            <TextView
+                android:id="@+id/EndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="230dp"
+                android:clickable="true"
+                android:text="设置截止时间" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="15dp">
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="2.5dp"
+                app:srcCompat="@drawable/ic_note" />
+
+            <TextView
+                android:id="@+id/NoteLabel"
+                style="@style/taskTitle"
+
+                android:text="备注" />
+
+            <EditText
+                android:id="@+id/taskSynopsis"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_marginLeft="120dp"
+                android:ems="10"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:minLines="5"
+                android:text="添加备注"
+                android:textColor="#888888"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="15dp">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="2.5dp"
+                app:srcCompat="@drawable/ic_prio" />
+
+            <TextView
+                android:id="@+id/PriorityLabel"
+                style="@style/taskTitle"
+                android:text="紧急程度" />
+
+            <Spinner
+                android:id="@+id/prioritySpinner"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="120dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/predictLabel"
+                style="@style/taskTitle"
+                android:text="预估工时" />
+
+            <TextView
+                android:id="@+id/remainingLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="190dp"
+                android:layout_marginLeft="20dp"
+                android:text="剩余工时" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="2.5dp"
+                app:srcCompat="@drawable/ic_remaining_time" />
+
+            <EditText
+                android:id="@+id/predictEdit"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="120dp"
+                android:background="@color/white"
+                android:ems="2"
+                android:inputType="number"
+                android:maxLength="2"
+                android:padding="0dp"
+                android:singleLine="true"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/remainEdit"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="250dp"
+                android:background="@color/white"
+                android:ems="2"
+                android:inputType="number|text"
+                android:maxLength="2"
+                android:padding="0dp"
+                android:singleLine="true"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="150dp"
+                android:text="小时" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="280dp"
+                android:text="小时" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/saveBtn"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="保存"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/reportBtn"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="汇报"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</ScrollView>

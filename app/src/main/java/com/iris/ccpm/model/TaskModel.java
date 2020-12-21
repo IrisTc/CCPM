@@ -1,6 +1,10 @@
 package com.iris.ccpm.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class TaskModel implements Serializable {
     private int claimState;
@@ -17,15 +21,22 @@ public class TaskModel implements Serializable {
     private int task_uid;
 
     public TaskModel(){
-        claimState=0;
+        Date date=new Date();
+        Calendar calendar = new GregorianCalendar();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        taskStartTime = formatter.format(date);
+        calendar.setTime(date);
+        calendar.add(calendar.DATE,1);
+        date=calendar.getTime();
+        taskEndTime = formatter.format(date);
+        System.out.println("taskDate:"+formatter.format(date));
+        claimState=2;
         claim_uid=0;
         project_uid="0";
         taskEmergent=0;
-        taskEndTime="2020-12-2";
         taskName="taskName";
         taskPredictHours="0";
         taskRestHours="0";
-        taskStartTime="2020-12-1";
         taskState=0;
         taskSynopsis="taskSynopsis";
         task_uid=0;
