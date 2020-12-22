@@ -77,21 +77,32 @@ public class InviteAdapter extends BaseAdapter {
                         Request.clientPost(context, "project/invite/" + invite.getInvite_uid() + "/accept", entity, new NetCallBack() {
                             @Override
                             public void onMySuccess(JSONObject result) {
-                                System.out.println(result);
                                 Toast.makeText(context, "加入成功", Toast.LENGTH_LONG).show();
                             }
 
                             @Override
                             public void onMyFailure(String error) {
-                                System.out.println(error);
                                 Toast.makeText(context, error, Toast.LENGTH_LONG).show();
                             }
                         });
                     }
                 });
-                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("拒绝", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        JSONObject body = new JSONObject();
+                        StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
+                        Request.clientPost(context, "project/invite/" + invite.getInvite_uid() + "/reject", entity, new NetCallBack() {
+                            @Override
+                            public void onMySuccess(JSONObject result) {
+                                Toast.makeText(context, "你已拒绝加入该项目", Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onMyFailure(String error) {
+                                Toast.makeText(context, error, Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
                 });
                 builder.show();

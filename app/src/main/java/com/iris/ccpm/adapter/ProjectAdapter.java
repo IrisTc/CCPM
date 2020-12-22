@@ -42,11 +42,13 @@ public class ProjectAdapter extends BaseAdapter {
         LayoutInflater inflater = LayoutInflater.from(this.context);
         View view = inflater.inflate(R.layout.project_item_layout, parent, false);
         TextView tvTitle = (TextView)view.findViewById(R.id.title);
+        TextView tvDate = view.findViewById(R.id.date);
         ProgressBar pbRate = view.findViewById(R.id.pb_rate);
         TextView tvRate = view.findViewById(R.id.tv_rate);
 
         Project project = this.projectList.get(position);
         tvTitle.setText(project.getProjectName());
+        tvDate.setText(project.getProjectStartTime() );
         pbRate.setProgress(project.getProjectRate());
         tvRate.setText(project.getProjectRate() + "%");
 
