@@ -4,83 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/back_gray"
+    android:orientation="vertical"
     tools:context=".ReportActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_margin="10dp"
-        android:padding="10dp"
         android:background="@color/white"
-        android:elevation="5dp">
+        android:elevation="5dp"
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
-            android:id="@+id/QuestTitle"
+            android:id="@+id/tv_taskName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="任务名称"
             android:textColor="@color/black"
             android:textSize="20sp" />
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="15dp">
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginTop="2.5dp"
-                app:srcCompat="@drawable/ic_complete" />
-
-            <TextView
-                android:id="@+id/CompleteStateLabel"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="完成状态"
-                android:textColor="#888888" />
-
-            <TextView
-                android:id="@+id/tv_complete"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="15dp">
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginTop="2.5dp"
-                app:srcCompat="@drawable/ic_executor" />
-
-            <TextView
-                android:id="@+id/ExecuteStateLabel"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="执行状态"
-                android:textColor="#888888" />
-
-            <TextView
-                android:id="@+id/ExecuteState"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp" />
-
-        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -102,7 +46,7 @@
                 android:text="执行者" />
 
             <TextView
-                android:id="@+id/Executer"
+                android:id="@+id/tv_claim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="120dp"
@@ -131,14 +75,14 @@
                 android:text="时间" />
 
             <TextView
-                android:id="@+id/StartTime"
+                android:id="@+id/tv_startTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="120dp"
                 android:text="设置开始时间" />
 
             <TextView
-                android:id="@+id/EndTime"
+                android:id="@+id/tv_endTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="230dp"
@@ -167,7 +111,7 @@
                 android:text="备注" />
 
             <TextView
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/tv_memo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="120dp"
@@ -199,13 +143,57 @@
                 android:layout_marginLeft="20dp"
                 android:text="紧急程度" />
 
-            <Spinner
-                android:id="@+id/prioritySpinner"
-                android:layout_width="100dp"
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/tv_prio"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp" />
+                android:layout_marginLeft="120dp"
+                android:background="#FF0000"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
 
         </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="预估工时" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:text="剩余工时" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="2.5dp"
+                app:srcCompat="@drawable/ic_remaining_time" />
+
+            <TextView
+                android:id="@+id/tv_predictTime"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="80dp"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_restTime"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginLeft="230dp"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -223,32 +211,33 @@
 
         <RelativeLayout
             style="@style/ReportBar"
-            android:layout_height="40dp">
+            android:layout_height="60dp">
 
             <TextView
                 android:id="@+id/CompleteStateLabel1"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:text="工作时间"
                 android:textColor="#888888" />
+
 
             <EditText
                 android:id="@+id/et_workhour"
                 android:layout_width="30dp"
-                android:layout_height="20dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="120dp"
-                android:background="@color/white"
                 android:ems="2"
                 android:inputType="number"
                 android:maxLength="2"
-                android:padding="0dp"
                 android:singleLine="true"
                 android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="150dp"
+                android:gravity="center"
                 android:text="小时" />
 
         </RelativeLayout>
@@ -264,37 +253,37 @@
                 android:text="工作汇报" />
 
             <EditText
-                android:id="@+id/et_text"
+                android:id="@+id/et_content"
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
                 android:layout_marginTop="10dp"
+                android:background="@color/white"
                 android:ems="10"
                 android:gravity="top"
-                android:inputType="textMultiLine"
-                android:background="@color/white"
-                android:minLines="5"
                 android:hint="请输入"
+                android:inputType="textMultiLine"
+                android:minLines="5"
                 android:textColor="#888888"
-                android:textSize="12sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <RelativeLayout
             style="@style/ReportBar"
-            android:layout_height="40dp">
+            android:layout_height="60dp">
 
             <TextView
                 android:layout_width="60dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:text="剩余工时"
                 android:textColor="#888888" />
 
             <EditText
                 android:id="@+id/et_prehour"
                 android:layout_width="30dp"
-                android:layout_height="20dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="120dp"
-                android:background="@color/white"
                 android:ems="2"
                 android:inputType="number"
                 android:maxLength="2"
@@ -304,19 +293,21 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="150dp"
+                android:gravity="center"
                 android:text="小时" />
 
         </RelativeLayout>
 
         <RelativeLayout
             style="@style/ReportBar"
-            android:layout_height="40dp">
+            android:layout_height="60dp">
 
             <TextView
                 android:layout_width="60dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:text="任务状态"
                 android:textColor="#888888" />
 
@@ -327,6 +318,16 @@
                 android:layout_marginLeft="120dp" />
 
         </RelativeLayout>
+
+        <Button
+            android:id="@+id/bt_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="发布" />
+
+
     </LinearLayout>
 
 </LinearLayout>

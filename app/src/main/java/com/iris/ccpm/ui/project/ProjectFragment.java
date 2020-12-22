@@ -104,7 +104,7 @@ public class ProjectFragment extends Fragment {
     private void init_myProject(View myProject_view) {
         ListView project_list = myProject_view.findViewById(R.id.lv_project);
 
-        Request.clientGet(getActivity(), "project?asManager=yes", new NetCallBack(){
+        Request.clientGet(getActivity(), "project?asManager=yes&asMember=no", new NetCallBack(){
             @Override
             public void onMySuccess(JSONObject result) {
                 System.out.println("project:" + result);
