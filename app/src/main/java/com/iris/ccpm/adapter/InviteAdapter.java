@@ -73,9 +73,6 @@ public class InviteAdapter extends BaseAdapter {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         JSONObject body = new JSONObject();
-//                        body.put("identifyField ", "invite");
-//                        body.put("fieldId", invite.getInvite_uid());
-//                        body.put("decision_result", "accept");
                         StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
                         Request.clientPost(context, "project/invite/" + invite.getInvite_uid() + "/accept", entity, new NetCallBack() {
                             @Override

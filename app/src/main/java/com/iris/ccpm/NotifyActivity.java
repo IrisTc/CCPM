@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.iris.ccpm.adapter.InviteAdapter;
 import com.iris.ccpm.adapter.NotifyAdapter;
+import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.model.Invite;
 import com.iris.ccpm.model.Notify;
 import com.iris.ccpm.model.Project;
