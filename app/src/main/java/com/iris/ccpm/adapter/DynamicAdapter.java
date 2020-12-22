@@ -64,7 +64,7 @@ public class DynamicAdapter extends BaseAdapter {
         }
 
         tvProject.setText(dynamic.getProjectName());
-        tvDynamicTime.setText(dynamic.getDynamicTime());
+        tvDynamicTime.setText(dynamic.getDynamicTime().split(" ")[0]);
         tvAccountName.setText(dynamic.getAccountNickName());
         if (!TextUtils.isEmpty(dynamic.getTaskName())) {
             tvTaskName.setText(dynamic.getTaskName());
