@@ -170,6 +170,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(ProjectDetailActivity.this,TaskDetailActivity.class);
+                    intent.putExtra("project_id", project_id);
                     intent.putExtra("isCreate",true);
                     intent.putExtra("isManager",isManager);
                     intent.putExtra("task",new TaskModel());

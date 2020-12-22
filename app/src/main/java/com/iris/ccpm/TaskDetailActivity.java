@@ -244,14 +244,17 @@ public class TaskDetailActivity extends AppCompatActivity {
         task=(TaskModel) getIntent().getSerializableExtra("task");
         String project_id = task.getProject_uid();
         Boolean isCreate = getIntent().getBooleanExtra("isCreate",true);
-        isManager = getIntent().getBooleanExtra("isManager",false);
+        if (isCreate){
+            project_id = getIntent().getStringExtra("project_id");
+            saveBtn.setText("发布");
+        }
+            isManager = getIntent().getBooleanExtra("isManager",false);
         GlobalData app = (GlobalData) getApplication();
         if (task.getClaim_uid() == app.getUid()) {
             isClaimer = true;
         }
 
         TextView saveBtn = findViewById(R.id.saveBtn);
-        if(isCreate) saveBtn.setText("发布");
         data=task;
         Request.clientGet(TaskDetailActivity.this, "project/"+project_id+"/member", new NetCallBack() {
             @Override
