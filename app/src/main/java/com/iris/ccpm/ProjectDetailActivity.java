@@ -231,6 +231,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProjectDetailActivity.this, MemberSearchActivity.class);
+                intent.putExtra("project_id", project_id);
                 startActivity(intent);
             }
         });
