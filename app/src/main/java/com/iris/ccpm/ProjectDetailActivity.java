@@ -312,7 +312,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
 
                             @Override
                             public void onMyFailure(String error) {
-
+                                System.out.println("error:" + error);
+                                Toast.makeText(ProjectDetailActivity.this, error, Toast.LENGTH_LONG).show();
                             }
                         });
                     }

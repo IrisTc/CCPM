@@ -23,7 +23,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:text="未读"
+                android:text="提醒"
                 android:textColor="@color/purple"
                 android:gravity="center"/>
             <LinearLayout
