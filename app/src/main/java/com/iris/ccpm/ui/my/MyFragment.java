@@ -122,7 +122,9 @@ public class MyFragment extends Fragment {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         TaskModel task = tasks.get(position);
                         Intent intent = new Intent(getActivity(), TaskDetailActivity.class);
-                        intent.putExtra("task",task);
+                        intent.putExtra("isManager", true);
+                        intent.putExtra("isCreate",false);
+                        intent.putExtra("task", task);
                         startActivity(intent);
                     }
                 });
