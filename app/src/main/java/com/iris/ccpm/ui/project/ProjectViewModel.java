@@ -1,19 +1,70 @@
 package com.iris.ccpm.ui.project;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.iris.ccpm.ProjectDetailActivity;
+import com.iris.ccpm.adapter.ProjectAdapter;
+import com.iris.ccpm.model.Project;
+import com.iris.ccpm.utils.NetCallBack;
+import com.iris.ccpm.utils.Request;
+
+import java.util.List;
+
 public class ProjectViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private MutableLiveData<List<Project>> myProjectList;
+    private MutableLiveData<List<Project>> otherProjectList;
 
     public ProjectViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        myProjectList = new MutableLiveData<>();
+        otherProjectList = new MutableLiveData<>();
+
+        Request.clientGet("project?asManager=yes&asMember=no", new NetCallBack() {
+            @Override
+            public void onMySuccess(JSONObject result) {
+                System.out.println("project:" + result);
+                JSONArray list = result.getJSONArray("list");
+                String liststring = JSONObject.toJSONString(list);
+                List<Project> projectList = JSONObject.parseArray(liststring, Project.class);//把字符串转换成集合
+                myProjectList.setValue(projectList);
+            }
+
+            @Override
+            public void onMyFailure(String error) {
+
+            }
+        });
+
+        Request.clientGet("project?asManager=no", new NetCallBack() {
+            @Override
+            public void onMySuccess(JSONObject result) {
+                JSONArray list = result.getJSONArray("list");
+                String liststring = JSONObject.toJSONString(list);
+                List<Project> projects = JSONObject.parseArray(liststring, Project.class);//把字符串转换成集合
+                otherProjectList.setValue(projects);
+            }
+
+            @Override
+            public void onMyFailure(String error) {
+
+            }
+        });
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public MutableLiveData<List<Project>> getMyProjectList() {
+        return myProjectList;
+    }
+
+    public MutableLiveData<List<Project>> getOtherProjectList() {
+        return otherProjectList;
     }
 }

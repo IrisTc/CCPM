@@ -18,7 +18,6 @@ import java.util.List;
 
 public class  HomeViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
     private MutableLiveData<List<Dynamic>> dynamicList;
 
     public HomeViewModel() {
@@ -26,7 +25,6 @@ public class  HomeViewModel extends ViewModel {
         Request.clientGet("dynamic", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
-                System.out.println("project:" + result);
                 JSONArray list = result.getJSONArray("list");
                 String liststring = JSONObject.toJSONString(list);
                 List<Dynamic> dynamics = JSONObject.parseArray(liststring, Dynamic.class);//把字符串转换成集合
@@ -60,9 +58,5 @@ public class  HomeViewModel extends ViewModel {
 
     public MutableLiveData<List<Dynamic>> getDynamicList() {
         return dynamicList;
-    }
-
-    public LiveData<String> getText() {
-        return mText;
     }
 }
