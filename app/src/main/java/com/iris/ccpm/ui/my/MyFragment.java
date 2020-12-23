@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
@@ -30,6 +31,7 @@ import com.iris.ccpm.adapter.TaskAdapter;
 import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.model.Project;
 import com.iris.ccpm.model.TaskModel;
+import com.iris.ccpm.ui.project.ProjectViewModel;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
 
@@ -55,13 +57,7 @@ public class MyFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_my, container, false);
 
         findView(root);
-        app = (GlobalData) getActivity().getApplication();
-
-        tvNickname.setText(app.getName());
-        tvEmail.setText(app.getUsername());
-        Uri uri = Uri.parse(app.getAvatarUrl());
-        ivAvatar.setImageURI(uri);
-
+        getMyGlobalData();
         initTabContent();
 
         tbSelect.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -82,6 +78,14 @@ public class MyFragment extends Fragment {
         });
 
         return root;
+    }
+
+    private void getMyGlobalData() {
+        app = (GlobalData) getActivity().getApplication();
+        tvNickname.setText(app.getName());
+        tvEmail.setText(app.getUsername());
+        Uri uri = Uri.parse(app.getAvatarUrl());
+        ivAvatar.setImageURI(uri);
     }
 
     private void findView(View root) {
@@ -114,47 +118,34 @@ public class MyFragment extends Fragment {
 
     private void init_task(View task_view) {
         ListView lvTask = task_view.findViewById(R.id.lv_task);
-        Request.clientGet("task?asMember=yes&asManager=no", new NetCallBack() {
+        myViewModel.getTaskList().observe(getViewLifecycleOwner(), new Observer<List<TaskModel>>() {
             @Override
-            public void onMySuccess(JSONObject result) {
-                JSONArray list = result.getJSONArray("list");
-                String liststring = JSONObject.toJSONString(list);
-                List<TaskModel> taskList = JSONObject.parseArray(liststring, TaskModel.class);//把字符串转换成集合
-                TaskAdapter adapter = new TaskAdapter(getActivity(),R.layout.task_item_layout,taskList);
-
+            public void onChanged(List<TaskModel> tasks) {
+                TaskAdapter adapter = new TaskAdapter(getActivity(),R.layout.task_item_layout,tasks);
                 lvTask.setAdapter(adapter);
                 lvTask.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        TaskModel task = taskList.get(position);
+                        TaskModel task = tasks.get(position);
                         Intent intent = new Intent(getActivity(), TaskDetailActivity.class);
                         intent.putExtra("task",task);
-                        System.out.println(position);
                         startActivity(intent);
                     }
                 });
-            }
-            @Override
-            public void onMyFailure(String error) {
             }
         });
     }
 
     private void init_project(View project_view) {
         ListView project_list = project_view.findViewById(R.id.lv_project);
-
-        Request.clientGet("project?asManager=yes", new NetCallBack(){
+        myViewModel.getProjectList().observe(getViewLifecycleOwner(), new Observer<List<Project>>() {
             @Override
-            public void onMySuccess(JSONObject result) {
-                System.out.println("project:" + result);
-                JSONArray list = result.getJSONArray("list");
-                String liststring = JSONObject.toJSONString(list);
-                List<Project> projectList = JSONObject.parseArray(liststring, Project.class);//把字符串转换成集合
-                project_list.setAdapter(new ProjectAdapter(getActivity(), projectList));
+            public void onChanged(List<Project> projects) {
+                project_list.setAdapter(new ProjectAdapter(getActivity(), projects));
                 project_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Project project = projectList.get(position);
+                        Project project = projects.get(position);
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("project", project);
 
@@ -163,11 +154,6 @@ public class MyFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
-            }
-
-            @Override
-            public void onMyFailure(String error) {
-
             }
         });
     }
@@ -179,8 +165,6 @@ public class MyFragment extends Fragment {
         TextView tvPhonenum = intro_view.findViewById(R.id.tv_phoneNum);
         TextView tvPosition = intro_view.findViewById(R.id.tv_position);
         TextView tvSynopsis = intro_view.findViewById(R.id.tv_synopsis);
-        TextView tvUid = intro_view.findViewById(R.id.tv_uid);
-
         TextView tvProjectCount = intro_view.findViewById(R.id.project_count);
         TextView tvTaskCount = intro_view.findViewById(R.id.task_count);
         TextView tvIngProject = intro_view.findViewById(R.id.ingproject);
@@ -193,19 +177,13 @@ public class MyFragment extends Fragment {
         tvPosition.setText(app.getPosition());
         tvSynopsis.setText(app.getSynopsis());
 
-        Request.clientGet("statistics?projectNum=yes&taskNum=yes&ingProject=yes&ingTask=yes", new NetCallBack() {
+        myViewModel.getMyStatistics().observe(getViewLifecycleOwner(), new Observer<JSONObject>() {
             @Override
-            public void onMySuccess(JSONObject result) {
-                System.out.println("statistics:" + result);
+            public void onChanged(JSONObject result) {
                 tvProjectCount.setText(result.getString("projectNum"));
                 tvTaskCount.setText(result.getString("taskNum"));
                 tvIngProject.setText(result.getString("ingProject"));
                 tvIngTask.setText(result.getString("ingTask"));
-            }
-
-            @Override
-            public void onMyFailure(String error) {
-
             }
         });
     }

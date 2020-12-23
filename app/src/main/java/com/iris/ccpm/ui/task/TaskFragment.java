@@ -1,5 +1,6 @@
 package com.iris.ccpm.ui.task;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
@@ -37,6 +39,7 @@ public class TaskFragment extends Fragment {
 
     private TaskViewModel taskViewModel;
     ViewPager vpTask;
+    TabLayout tbTask;
 
     @Nullable
     @Override
@@ -44,10 +47,9 @@ public class TaskFragment extends Fragment {
         taskViewModel = new ViewModelProvider(this).get(TaskViewModel.class);
         View root = inflater.inflate(R.layout.fragment_task, container, false);
 
-        vpTask = root.findViewById(R.id.vp_task);
+        findView(root);
         initTabContent();
 
-        TabLayout tbTask = root.findViewById(R.id.tb_task);
         tbTask.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -68,6 +70,11 @@ public class TaskFragment extends Fragment {
         return root;
     }
 
+    private void findView(View root) {
+        vpTask = root.findViewById(R.id.vp_task);
+        tbTask = root.findViewById(R.id.tb_task);
+    }
+
     private void initTabContent() {
         ArrayList<View> viewList = new ArrayList<View>();
         LayoutInflater li = getActivity().getLayoutInflater();
@@ -86,19 +93,15 @@ public class TaskFragment extends Fragment {
 
     private void init_myTask(View my_task) {
         ListView lvMyTask = my_task.findViewById(R.id.lv_task);
-        Request.clientGet( "task?asMember=yes&asManager=no", new NetCallBack() {
+        taskViewModel.getMyTaskList().observe(getViewLifecycleOwner(), new Observer<List<TaskModel>>() {
             @Override
-            public void onMySuccess(JSONObject result) {
-                JSONArray list = result.getJSONArray("list");
-                String liststring = JSONObject.toJSONString(list);
-                List<TaskModel> taskList = JSONObject.parseArray(liststring, TaskModel.class);//把字符串转换成集合
-                TaskAdapter adapter = new TaskAdapter(getActivity(),R.layout.task_item_layout,taskList);
-
+            public void onChanged(List<TaskModel> tasks) {
+                TaskAdapter adapter = new TaskAdapter(getActivity(),R.layout.task_item_layout,tasks);
                 lvMyTask.setAdapter(adapter);
                 lvMyTask.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        TaskModel task = taskList.get(position);
+                        TaskModel task = tasks.get(position);
                         Intent intent = new Intent(getActivity(), TaskDetailActivity.class);
                         intent.putExtra("isManager", false);
                         intent.putExtra("isCreate",false);
@@ -107,27 +110,21 @@ public class TaskFragment extends Fragment {
                     }
                 });
             }
-            @Override
-            public void onMyFailure(String error) {
-            }
         });
     }
 
     private void init_managerTask(View manager_task) {
         ListView lvManagerTask = manager_task.findViewById(R.id.lv_task);
-        Request.clientGet("task?asManager=yes&asMember=no", new NetCallBack() {
+        taskViewModel.getManagerTaskList().observe(getViewLifecycleOwner(), new Observer<List<TaskModel>>() {
             @Override
-            public void onMySuccess(JSONObject result) {
-                JSONArray list = result.getJSONArray("list");
-                String liststring = JSONObject.toJSONString(list);
-                List<TaskModel> taskList = JSONObject.parseArray(liststring, TaskModel.class);//把字符串转换成集合
-                TaskAdapter adapter = new TaskAdapter(getActivity(),R.layout.task_item_layout,taskList);
+            public void onChanged(List<TaskModel> tasks) {
+                TaskAdapter adapter = new TaskAdapter(getActivity(),R.layout.task_item_layout,tasks);
 
                 lvManagerTask.setAdapter(adapter);
                 lvManagerTask.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        TaskModel task = taskList.get(position);
+                        TaskModel task = tasks.get(position);
                         Intent intent = new Intent(getActivity(), TaskDetailActivity.class);
                         intent.putExtra("isManager", true);
                         intent.putExtra("isCreate",false);
@@ -135,9 +132,6 @@ public class TaskFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
-            }
-            @Override
-            public void onMyFailure(String error) {
             }
         });
     }
