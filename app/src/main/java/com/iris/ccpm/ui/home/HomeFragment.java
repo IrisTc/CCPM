@@ -55,7 +55,6 @@ public class HomeFragment extends Fragment {
         homeViewModel.getDynamicList().observe(getViewLifecycleOwner(), new Observer<List<Dynamic>>() { //注册观察者
             @Override
             public void onChanged(List<Dynamic> dynamics) {
-                System.out.println("data change");
                 lvNew.setAdapter(new DynamicAdapter(getActivity(), dynamics));
             }
         });

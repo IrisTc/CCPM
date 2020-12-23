@@ -22,12 +22,10 @@ public class  HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         dynamicList = new MutableLiveData<List<Dynamic>>();
-        System.out.println("homeview");
         update();
     }
 
     public void update() {
-        System.out.println("home update");
         Request.clientGet("dynamic", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
