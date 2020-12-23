@@ -3,7 +3,6 @@ package com.iris.ccpm;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -14,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.fastjson.JSONObject;
+import com.iris.ccpm.activity.projectDetail.ProjectDetailActivity;
 import com.iris.ccpm.model.Project;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
@@ -107,7 +107,7 @@ public class EditProjectActivity extends AppCompatActivity {
     }
 
     private void back() {
-        Intent intent = new Intent(this,ProjectDetailActivity.class);
+        Intent intent = new Intent(this, ProjectDetailActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("project", project);
         intent.putExtras(bundle);

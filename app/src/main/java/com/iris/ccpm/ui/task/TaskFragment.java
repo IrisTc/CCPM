@@ -1,6 +1,5 @@
 package com.iris.ccpm.ui.task;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,20 +15,12 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.tabs.TabLayout;
-import com.iris.ccpm.ProjectDetailActivity;
 import com.iris.ccpm.R;
 import com.iris.ccpm.TaskDetailActivity;
 import com.iris.ccpm.adapter.MypagerAdapter;
 import com.iris.ccpm.adapter.TaskAdapter;
-import com.iris.ccpm.model.Member;
 import com.iris.ccpm.model.TaskModel;
-import com.iris.ccpm.ui.my.MyViewModel;
-import com.iris.ccpm.ui.project.ProjectViewModel;
-import com.iris.ccpm.utils.NetCallBack;
-import com.iris.ccpm.utils.Request;
 
 import java.util.ArrayList;
 import java.util.List;

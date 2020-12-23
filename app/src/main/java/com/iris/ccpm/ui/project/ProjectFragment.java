@@ -2,7 +2,6 @@ package com.iris.ccpm.ui.project;
 
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -19,19 +18,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.tabs.TabLayout;
-import com.iris.ccpm.EditProjectActivity;
-import com.iris.ccpm.ProjectDetailActivity;
+import com.iris.ccpm.activity.projectDetail.ProjectDetailActivity;
 import com.iris.ccpm.R;
 import com.iris.ccpm.adapter.MypagerAdapter;
 import com.iris.ccpm.adapter.ProjectAdapter;
-import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.model.Project;
-import com.iris.ccpm.ui.home.HomeViewModel;
-import com.iris.ccpm.utils.NetCallBack;
-import com.iris.ccpm.utils.Request;
 
 import java.util.ArrayList;
 import java.util.List;

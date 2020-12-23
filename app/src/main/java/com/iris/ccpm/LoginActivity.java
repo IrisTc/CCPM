@@ -1,4 +1,4 @@
-package com.iris.ccpm.activity.login;
+package com.iris.ccpm;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -18,8 +18,6 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.tabs.TabLayout;
-import com.iris.ccpm.MainActivity;
-import com.iris.ccpm.R;
 import com.iris.ccpm.adapter.MypagerAdapter;
 import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.utils.NetCallBack;
@@ -89,35 +87,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
 
-        cbDisplayPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // TODO Auto-generated method stub
-                if (isChecked) {
-                    //如果选中，显示密码
-                    etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                } else {
-                    //否则隐藏密码
-                    etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                }
-
-            }
-        });
-
-        cbRemeber.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                autofix = isChecked;
-            }
-        });
-
-        cbautoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                autologin = isChecked;
-            }
-        });
-
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,48 +101,6 @@ public class LoginActivity extends AppCompatActivity {
                     body.put("password", password);
                     StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
                     login(entity);
-                }
-            }
-        });
-
-
-        etUsernameRe.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    String name_str = etUsernameRe.getText().toString();
-                    if (!isEmail(name_str)) {
-                        Toast.makeText(LoginActivity.this, "邮箱格式不正确！", Toast.LENGTH_LONG).show();
-                        etUsernameRe.setText("");
-                    }
-                }
-            }
-        });
-
-        etRePasswordRe.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    String pwd_str = etPasswordRe.getText().toString();
-                    String repwd_str = etRePasswordRe.getText().toString();
-                    if (!pwd_str.equals(repwd_str)) {
-                        Toast.makeText(LoginActivity.this, "两次输入密码不同！", Toast.LENGTH_LONG).show();
-                        etRePasswordRe.setText("");
-                    }
-                }
-            }
-        });
-
-        etPhone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    String phone_str = etPhone.getText().toString();
-                    if (isMobile(phone_str) || isPhone(phone_str)) {
-                        Toast.makeText(LoginActivity.this, "输入号码格式不正确！", Toast.LENGTH_LONG).show();
-                        etPhone.setText("");
-                    }
                 }
             }
         });
@@ -214,6 +141,76 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, error, Toast.LENGTH_LONG).show();
                         }
                     });
+                }
+            }
+        });
+
+        cbDisplayPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // TODO Auto-generated method stub
+                if (isChecked) {
+                    //如果选中，显示密码
+                    etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    //否则隐藏密码
+                    etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+
+            }
+        });
+
+        cbRemeber.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                autofix = isChecked;
+            }
+        });
+
+        cbautoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                autologin = isChecked;
+            }
+        });
+
+        etUsernameRe.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    String name_str = etUsernameRe.getText().toString();
+                    if (!isEmail(name_str)) {
+                        Toast.makeText(LoginActivity.this, "邮箱格式不正确！", Toast.LENGTH_LONG).show();
+                        etUsernameRe.setText("");
+                    }
+                }
+            }
+        });
+
+        etRePasswordRe.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    String pwd_str = etPasswordRe.getText().toString();
+                    String repwd_str = etRePasswordRe.getText().toString();
+                    if (!pwd_str.equals(repwd_str)) {
+                        Toast.makeText(LoginActivity.this, "两次输入密码不同！", Toast.LENGTH_LONG).show();
+                        etRePasswordRe.setText("");
+                    }
+                }
+            }
+        });
+
+        etPhone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    String phone_str = etPhone.getText().toString();
+                    if (isMobile(phone_str) || isPhone(phone_str)) {
+                        Toast.makeText(LoginActivity.this, "输入号码格式不正确！", Toast.LENGTH_LONG).show();
+                        etPhone.setText("");
+                    }
                 }
             }
         });
@@ -302,7 +299,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void autoFix() {
         System.out.println(username);

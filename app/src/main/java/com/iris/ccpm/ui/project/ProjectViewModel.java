@@ -1,18 +1,10 @@
 package com.iris.ccpm.ui.project;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.iris.ccpm.ProjectDetailActivity;
-import com.iris.ccpm.adapter.ProjectAdapter;
 import com.iris.ccpm.model.Project;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;

@@ -16,7 +16,7 @@
 
         <!-- 登录界面 -->
         <activity
-            android:name=".activity.login.LoginActivity"
+            android:name=".LoginActivity"
             android:theme="@style/Theme.CCPM.NoActionBar"
             >
             <intent-filter>
@@ -33,7 +33,7 @@
             android:theme="@style/Theme.CCPM.NoActionBar" />
 
         <activity
-            android:name=".ProjectDetailActivity"
+            android:name=".activity.projectDetail.ProjectDetailActivity"
             android:label="项目详情"
             android:theme="@style/Theme.CCPM.NoActionBar"/>
 

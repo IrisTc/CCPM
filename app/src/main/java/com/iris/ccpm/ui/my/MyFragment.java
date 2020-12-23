@@ -19,7 +19,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.tabs.TabLayout;
-import com.iris.ccpm.ProjectDetailActivity;
+import com.iris.ccpm.activity.projectDetail.ProjectDetailActivity;
 import com.iris.ccpm.R;
 import com.iris.ccpm.TaskDetailActivity;
 import com.iris.ccpm.adapter.MypagerAdapter;

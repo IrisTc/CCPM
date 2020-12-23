@@ -1,9 +1,11 @@
-package com.iris.ccpm;
+package com.iris.ccpm.activity.projectDetail;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
-import android.annotation.SuppressLint;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,18 +16,20 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.tabs.TabLayout;
+import com.iris.ccpm.EditProjectActivity;
+import com.iris.ccpm.MemberDetailActivity;
+import com.iris.ccpm.MemberSearchActivity;
+import com.iris.ccpm.R;
+import com.iris.ccpm.TaskDetailActivity;
 import com.iris.ccpm.adapter.DynamicAdapter;
 import com.iris.ccpm.adapter.MemberAdapter;
 import com.iris.ccpm.adapter.MypagerAdapter;
@@ -44,7 +48,7 @@ import java.util.List;
 import cz.msebera.android.httpclient.entity.StringEntity;
 
 public class ProjectDetailActivity extends AppCompatActivity implements View.OnClickListener {
-
+    ProjectDetailViewModel projectDetailViewModel;
     String project_id;
     TabLayout tbSelect;
     ViewPager vpChosen;
@@ -68,6 +72,9 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         project = (Project) intent.getSerializableExtra("project");
         project_id = project.getProject_uid();
         GlobalData app = (GlobalData) getApplication();
+        app.setNow_project_id(project_id);
+        projectDetailViewModel = new ViewModelProvider(this).get(ProjectDetailViewModel.class);
+
         if (project.getManager_uid().equals(app.getUid())) {
             isManager = true;
         }
@@ -137,18 +144,15 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
 
     private void init_task(View task_view) {
         ListView lvTask =task_view.findViewById(R.id.task_list);
-        Request.clientGet("task?claimState=3&project_uid=" + project_id , new NetCallBack() {
+        projectDetailViewModel.getTaskList().observe(this, new Observer<List<TaskModel>>() {
             @Override
-            public void onMySuccess(JSONObject result) {
-                JSONArray list = result.getJSONArray("list");
-                String liststring = JSONObject.toJSONString(list);
-                List<TaskModel> taskList = JSONObject.parseArray(liststring, TaskModel.class);//把字符串转换成集合
-                TaskAdapter adapter = new TaskAdapter(ProjectDetailActivity.this ,R.layout.task_item_layout,taskList);
+            public void onChanged(List<TaskModel> tasks) {
+                TaskAdapter adapter = new TaskAdapter(ProjectDetailActivity.this ,R.layout.task_item_layout,tasks);
                 lvTask.setAdapter(adapter);
                 lvTask.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        TaskModel task = taskList.get(position);
+                        TaskModel task = tasks.get(position);
                         Intent intent = new Intent(ProjectDetailActivity.this, TaskDetailActivity.class);
                         intent.putExtra("isManager", isManager);
                         intent.putExtra("isCreate",false);
@@ -156,11 +160,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                         startActivity(intent);
                     }
                 });
-            }
-
-            @Override
-            public void onMyFailure(String error) {
-                Toast.makeText(ProjectDetailActivity.this, error, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -191,6 +190,13 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         TextView project_motto_text = view.findViewById(R.id.project_motto_text);
         TextView project_time_text = view.findViewById(R.id.project_time_text);
         TextView project_plan_text = view.findViewById(R.id.project_plan);
+        TextView tvIngNumber = view.findViewById(R.id.ing_number);
+        TextView tvDoneNumber = view.findViewById(R.id.done_number);
+        TextView tvOverNumber = view.findViewById(R.id.overdue_number);
+        TextView tvNoClaimNumber = view.findViewById(R.id.noclaim_number);
+        TextView tvExpireNumber = view.findViewById(R.id.expiretoday_number);
+        TextView tvCountNumber = view.findViewById(R.id.count_number);
+        TextView tvMemberNumber = view.findViewById(R.id.member_number);
 
         project_name_text.setText(project.getProjectName());
         project_date_text.setText(project.getManagerNickName() + " 创建于 " + project.getProjectCreateTime());
@@ -198,17 +204,9 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         project_time_text.setText(project.getProjectStartTime() + "-" + project.getProjectEndTime());
         project_plan_text.setText(project.getProjectPlan());
 
-        Request.clientGet("statistics?ingTaskPro=yes&doneTaskPro=yes&hasOverdue=yes&noClaimTask&expireToday=yes&proMemNum=yes&project_uid=" + project_id, new NetCallBack() {
+        projectDetailViewModel.getStatistics().observe(this, new Observer<JSONObject>() {
             @Override
-            public void onMySuccess(JSONObject result) {
-                TextView tvIngNumber = view.findViewById(R.id.ing_number);
-                TextView tvDoneNumber = view.findViewById(R.id.done_number);
-                TextView tvOverNumber = view.findViewById(R.id.overdue_number);
-                TextView tvNoClaimNumber = view.findViewById(R.id.noclaim_number);
-                TextView tvExpireNumber = view.findViewById(R.id.expiretoday_number);
-                TextView tvCountNumber = view.findViewById(R.id.count_number);
-                TextView tvMemberNumber = view.findViewById(R.id.member_number);
-
+            public void onChanged(JSONObject result) {
                 tvMemberNumber.setText("项目成员（" + result.getString("proMemNum") + " 人）");
                 tvIngNumber.setText(result.getString("ingTaskPro"));
                 tvDoneNumber.setText(result.getString("doneTaskPro"));
@@ -219,12 +217,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                 Integer count = result.getInteger("ingTaskPro") + result.getInteger("doneTaskPro") + result.getInteger("hasOverdue") + result.getInteger("noClaimTask");
                 tvCountNumber.setText(String.valueOf(count));
             }
-
-            @Override
-            public void onMyFailure(String error) {
-
-            }
         });
+
         ListView lvMember = view.findViewById(R.id.lv_member);
         getMember(lvMember);
         Button btMemberAdd = view.findViewById(R.id.bt_member_add);
@@ -239,39 +233,22 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void getMember(ListView lvMember) {
-        Request.clientGet("project/" + project_id + "/member", new NetCallBack() {
+        projectDetailViewModel.getMemberList().observe(this, new Observer<List<Member>>() {
             @Override
-            public void onMySuccess(JSONObject result) {
-                JSONArray list = result.getJSONArray("list");
-                String liststring = JSONObject.toJSONString(list);
-                memberList = JSONObject.parseArray(liststring, Member.class);//把字符串转换成集合
-                MemberAdapter memberAdapter = new MemberAdapter(ProjectDetailActivity.this, project_id, memberList, ProjectDetailActivity.this);
+            public void onChanged(List<Member> members) {
+                MemberAdapter memberAdapter = new MemberAdapter(ProjectDetailActivity.this, project_id, members, ProjectDetailActivity.this);
                 lvMember.setAdapter(memberAdapter);
                 setListViewHeightBasedOnChildren(lvMember, memberAdapter);
-            }
-
-            @Override
-            public void onMyFailure(String error) {
             }
         });
     }
 
-
     private void init_new(View new_view) {
-        Request.clientGet("dynamic?project_uid=" + project_id, new NetCallBack() {
+        projectDetailViewModel.getDynamicList().observe(this, new Observer<List<Dynamic>>() {
             @Override
-            public void onMySuccess(JSONObject result) {
-                JSONArray list = result.getJSONArray("list");
-                String liststring = JSONObject.toJSONString(list);
-
-                List<Dynamic> dynamicList = JSONObject.parseArray(liststring, Dynamic.class);//把字符串转换成集合
+            public void onChanged(List<Dynamic> dynamics) {
                 ListView lvNew = new_view.findViewById(R.id.lv_news);
-                lvNew.setAdapter(new DynamicAdapter(ProjectDetailActivity.this, dynamicList));
-            }
-
-            @Override
-            public void onMyFailure(String error) {
-
+                lvNew.setAdapter(new DynamicAdapter(ProjectDetailActivity.this, dynamics));
             }
         });
     }
@@ -359,7 +336,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     public void editProject() {
-        Intent intent = new Intent(this,EditProjectActivity.class);     //页面跳转至更新项目
+        Intent intent = new Intent(this, EditProjectActivity.class);     //页面跳转至更新项目
         Bundle bundle = new Bundle();
         bundle.putSerializable("project", project);
         intent.putExtras(bundle);
