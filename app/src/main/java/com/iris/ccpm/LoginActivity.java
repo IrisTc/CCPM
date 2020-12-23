@@ -87,9 +87,8 @@ public class LoginActivity extends AppCompatActivity {
         getUserinfo(this);
 
         if (autofix) {
-            System.out.println("autofix");
-            autoFix();
             cbRemeber.setChecked(true);
+            autoFix();
         }
 
         Intent intent = getIntent();
