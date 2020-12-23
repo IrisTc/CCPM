@@ -137,7 +137,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
 
     private void init_task(View task_view) {
         ListView lvTask =task_view.findViewById(R.id.task_list);
-        Request.clientGet(ProjectDetailActivity.this, "task?claimState=3&project_uid=" + project_id , new NetCallBack() {
+        Request.clientGet("task?claimState=3&project_uid=" + project_id , new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 JSONArray list = result.getJSONArray("list");
@@ -198,7 +198,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         project_time_text.setText(project.getProjectStartTime() + "-" + project.getProjectEndTime());
         project_plan_text.setText(project.getProjectPlan());
 
-        Request.clientGet(ProjectDetailActivity.this, "statistics?ingTaskPro=yes&doneTaskPro=yes&hasOverdue=yes&noClaimTask&expireToday=yes&proMemNum=yes&project_uid=" + project_id, new NetCallBack() {
+        Request.clientGet("statistics?ingTaskPro=yes&doneTaskPro=yes&hasOverdue=yes&noClaimTask&expireToday=yes&proMemNum=yes&project_uid=" + project_id, new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 TextView tvIngNumber = view.findViewById(R.id.ing_number);
@@ -239,7 +239,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void getMember(ListView lvMember) {
-        Request.clientGet(ProjectDetailActivity.this, "project/" + project_id + "/member", new NetCallBack() {
+        Request.clientGet("project/" + project_id + "/member", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 JSONArray list = result.getJSONArray("list");
@@ -258,7 +258,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
 
 
     private void init_new(View new_view) {
-        Request.clientGet(ProjectDetailActivity.this, "dynamic?project_uid=" + project_id, new NetCallBack() {
+        Request.clientGet("dynamic?project_uid=" + project_id, new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 JSONArray list = result.getJSONArray("list");
@@ -297,7 +297,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                             @Override
                             public void onMySuccess(JSONObject result) {
                                 Toast.makeText(ProjectDetailActivity.this, "移除成功！", Toast.LENGTH_SHORT).show();
-                                Request.clientGet(ProjectDetailActivity.this, "project/" + project_id + "/member", new NetCallBack() {
+                                Request.clientGet("project/" + project_id + "/member", new NetCallBack() {
                                     @Override
                                     public void onMySuccess(JSONObject result) {
                                         JSONArray list = result.getJSONArray("list");

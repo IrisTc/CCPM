@@ -16,7 +16,7 @@ public abstract class Request {
     public static AsyncHttpClient client = new AsyncHttpClient();
 
 
-    public static void clientGet(Context context, String url, NetCallBack cb) {
+    public static void clientGet(String url, NetCallBack cb) {
         GlobalData app = (GlobalData) getGlobalData();
         client.addHeader("token", app.getToken());
         client.get(BASE_URL + url, cb);

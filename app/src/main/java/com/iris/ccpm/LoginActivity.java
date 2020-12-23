@@ -289,7 +289,7 @@ public class LoginActivity extends AppCompatActivity {
                 String token = result.getString("token");
                 final GlobalData app = (GlobalData) getApplication();
                 app.setToken(token);
-                Request.clientGet(LoginActivity.this, "account/" + username, new NetCallBack() {
+                Request.clientGet("account/" + username, new NetCallBack() {
                     @Override
                     public void onMySuccess(JSONObject result) {
                         GlobalData.save_account(result, LoginActivity.this);

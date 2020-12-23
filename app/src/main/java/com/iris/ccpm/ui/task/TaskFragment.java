@@ -86,7 +86,7 @@ public class TaskFragment extends Fragment {
 
     private void init_myTask(View my_task) {
         ListView lvMyTask = my_task.findViewById(R.id.lv_task);
-        Request.clientGet(getActivity(), "task?asMember=yes&asManager=no", new NetCallBack() {
+        Request.clientGet( "task?asMember=yes&asManager=no", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 JSONArray list = result.getJSONArray("list");
@@ -115,7 +115,7 @@ public class TaskFragment extends Fragment {
 
     private void init_managerTask(View manager_task) {
         ListView lvManagerTask = manager_task.findViewById(R.id.lv_task);
-        Request.clientGet(getActivity(), "task?asManager=yes&asMember=no", new NetCallBack() {
+        Request.clientGet("task?asManager=yes&asMember=no", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 JSONArray list = result.getJSONArray("list");

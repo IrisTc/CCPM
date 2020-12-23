@@ -114,7 +114,7 @@ public class MyFragment extends Fragment {
 
     private void init_task(View task_view) {
         ListView lvTask = task_view.findViewById(R.id.lv_task);
-        Request.clientGet(getActivity(), "task?asMember=yes&asManager=no", new NetCallBack() {
+        Request.clientGet("task?asMember=yes&asManager=no", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 JSONArray list = result.getJSONArray("list");
@@ -143,7 +143,7 @@ public class MyFragment extends Fragment {
     private void init_project(View project_view) {
         ListView project_list = project_view.findViewById(R.id.lv_project);
 
-        Request.clientGet(getActivity(), "project?asManager=yes", new NetCallBack(){
+        Request.clientGet("project?asManager=yes", new NetCallBack(){
             @Override
             public void onMySuccess(JSONObject result) {
                 System.out.println("project:" + result);
@@ -193,7 +193,7 @@ public class MyFragment extends Fragment {
         tvPosition.setText(app.getPosition());
         tvSynopsis.setText(app.getSynopsis());
 
-        Request.clientGet(getActivity(), "statistics?projectNum=yes&taskNum=yes&ingProject=yes&ingTask=yes", new NetCallBack() {
+        Request.clientGet("statistics?projectNum=yes&taskNum=yes&ingProject=yes&ingTask=yes", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 System.out.println("statistics:" + result);

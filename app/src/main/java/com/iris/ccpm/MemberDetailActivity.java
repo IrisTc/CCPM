@@ -61,7 +61,7 @@ public class MemberDetailActivity extends AppCompatActivity {
 
 
     private void init_intro() {
-        Request.clientGet(MemberDetailActivity.this, "account/" + account_id, new NetCallBack() {
+        Request.clientGet("account/" + account_id, new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 System.out.println(result);
@@ -83,7 +83,7 @@ public class MemberDetailActivity extends AppCompatActivity {
             }
         });
 
-        Request.clientGet(MemberDetailActivity.this, "statistics?projectNum=yes&taskNum=yes&ingProject=yes&ingTask=yes&account_uid=" + account_id, new NetCallBack() {
+        Request.clientGet("statistics?projectNum=yes&taskNum=yes&ingProject=yes&ingTask=yes&account_uid=" + account_id, new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 tvProjectCount.setText(result.getString("projectNum"));

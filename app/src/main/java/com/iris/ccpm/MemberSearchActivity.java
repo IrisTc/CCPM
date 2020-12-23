@@ -47,7 +47,7 @@ public class MemberSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String content = etSearch.getText().toString();
-                Request.clientGet(MemberSearchActivity.this, "/account/" + content, new NetCallBack() {
+                Request.clientGet( "/account/" + content, new NetCallBack() {
                     @Override
                     public void onMySuccess(JSONObject result) {
                         System.out.println(result);

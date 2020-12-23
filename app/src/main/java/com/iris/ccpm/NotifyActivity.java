@@ -33,7 +33,7 @@ public class NotifyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notify);
 
-        Request.clientGet(NotifyActivity.this, "project/getApply", new NetCallBack() {
+        Request.clientGet("project/getApply", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 System.out.println("apply:" + result);
@@ -45,7 +45,7 @@ public class NotifyActivity extends AppCompatActivity {
             }
         });
 
-        Request.clientGet(NotifyActivity.this, "project/getInvite", new NetCallBack() {
+        Request.clientGet("project/getInvite", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 System.out.println("invite:" + result);
@@ -64,7 +64,7 @@ public class NotifyActivity extends AppCompatActivity {
             }
         });
 
-        Request.clientGet(NotifyActivity.this, "notify?asMember=yes&asManager=yes", new NetCallBack(){
+        Request.clientGet("notify?asMember=yes&asManager=yes", new NetCallBack(){
 
             @Override
             public void onMySuccess(JSONObject result) {

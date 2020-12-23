@@ -256,7 +256,7 @@ public class TaskDetailActivity extends AppCompatActivity {
 
         TextView saveBtn = findViewById(R.id.saveBtn);
         data=task;
-        Request.clientGet(TaskDetailActivity.this, "project/"+project_id+"/member", new NetCallBack() {
+        Request.clientGet( "project/"+project_id+"/member", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
                 JSONArray list=result.getJSONArray("list");

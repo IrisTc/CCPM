@@ -10,7 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.alibaba.fastjson.JSONObject;
@@ -41,32 +43,21 @@ import cz.msebera.android.httpclient.Header;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    List<Dynamic> dynamicList;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+                new ViewModelProvider(this).get(HomeViewModel.class); //获取ViewModel,让ViewModel与此activity绑定
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        Request.clientGet(getActivity(), "dynamic", new NetCallBack() {
+        ListView lvNew = root.findViewById(R.id.lv_news);
+
+        homeViewModel.getDynamicList().observe(getViewLifecycleOwner(), new Observer<List<Dynamic>>() { //注册观察者
             @Override
-            public void onMySuccess(JSONObject result) {
-                System.out.println("project:" + result);
-                JSONArray list = result.getJSONArray("list");
-                String liststring = JSONObject.toJSONString(list);
-
-                dynamicList = JSONObject.parseArray(liststring, Dynamic.class);//把字符串转换成集合
-                ListView lvNew = root.findViewById(R.id.lv_news);
-                lvNew.setAdapter(new DynamicAdapter(getActivity(), dynamicList));
-            }
-
-            @Override
-            public void onMyFailure(String error) {
-
+            public void onChanged(List<Dynamic> dynamics) {
+                lvNew.setAdapter(new DynamicAdapter(getActivity(), dynamics));
             }
         });
-
         return root;
     }
 }
