@@ -131,12 +131,12 @@ public class MyFragment extends Fragment {
     }
 
     private void init_project(View project_view) {
-        ListView project_list = project_view.findViewById(R.id.lv_project);
+        ListView lvProject = project_view.findViewById(R.id.lv_project);
         myViewModel.getProjectList().observe(getViewLifecycleOwner(), new Observer<List<Project>>() {
             @Override
             public void onChanged(List<Project> projects) {
-                project_list.setAdapter(new ProjectAdapter(getActivity(), projects));
-                project_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                lvProject.setAdapter(new ProjectAdapter(getActivity(), projects));
+                lvProject.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Project project = projects.get(position);

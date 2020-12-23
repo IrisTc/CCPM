@@ -99,13 +99,12 @@ public class ProjectFragment extends Fragment {
     }
 
     private void getProject(View otherProject_view, MutableLiveData<List<Project>> list) {
-        ListView project_list = otherProject_view.findViewById(R.id.lv_project);
+        ListView lvProject = otherProject_view.findViewById(R.id.lv_project);
         list.observe(getViewLifecycleOwner(), new Observer<List<Project>>() {
             @Override
             public void onChanged(List<Project> projects) {
-                System.out.println("others:" + projects);
-                project_list.setAdapter(new ProjectAdapter(getActivity(), projects));
-                project_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                lvProject.setAdapter(new ProjectAdapter(getActivity(), projects));
+                lvProject.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Project project = projects.get(position);
