@@ -55,29 +55,46 @@ public class MemberAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = LayoutInflater.from(this.context);
-        View view = inflater.inflate(R.layout.member_item, parent, false);
+        ViewHolder viewHolder;
+        if (convertView == null) {
+            viewHolder = new ViewHolder();
+            LayoutInflater inflater = LayoutInflater.from(this.context);
+            convertView = inflater.inflate(R.layout.member_item, parent, false);
 
-        TextView tvName = view.findViewById(R.id.member_name);
-        TextView tvEmail = view.findViewById(R.id.member_email);
-        TextView tvPosition = view.findViewById(R.id.member_position);
-        SimpleDraweeView ivAvatar = view.findViewById(R.id.member_avatar);
+            viewHolder.tvName = convertView.findViewById(R.id.member_name);
+            viewHolder.tvEmail = convertView.findViewById(R.id.member_email);
+            viewHolder.tvPosition = convertView.findViewById(R.id.member_position);
+            viewHolder.ivAvatar = convertView.findViewById(R.id.member_avatar);
+
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
 
         Member member = this.memberList.get(position);
 
-        tvName.setText(member.getName());
-        tvEmail.setText(member.getPhoneNum());
-        tvPosition.setText(member.getPosition());
+        viewHolder.tvName.setText(member.getName());
+        viewHolder.tvEmail.setText(member.getPhoneNum());
+        viewHolder.tvPosition.setText(member.getPosition());
         Uri uri = Uri.parse(member.getAvatarUrl());
-        ivAvatar.setImageURI(uri);
+        viewHolder.ivAvatar.setImageURI(uri);
 
-        ImageView btDelete = view.findViewById(R.id.member_delete_button);
-        ImageView btShow = view.findViewById(R.id.member_personal_button);
-        btDelete.setOnClickListener(listener);
-        btShow.setOnClickListener(listener);
-        btDelete.setTag(position);
-        btShow.setTag(position);
+        viewHolder.btDelete = convertView.findViewById(R.id.member_delete_button);
+        viewHolder.btShow = convertView.findViewById(R.id.member_personal_button);
+        viewHolder.btDelete.setOnClickListener(listener);
+        viewHolder.btShow.setOnClickListener(listener);
+        viewHolder.btDelete.setTag(position);
+        viewHolder.btShow.setTag(position);
 
-        return view;
+        return convertView;
+    }
+
+    class ViewHolder {
+        TextView tvName;
+        TextView tvEmail;
+        TextView tvPosition;
+        SimpleDraweeView ivAvatar;
+        ImageView btDelete;
+        ImageView btShow;
     }
 }

@@ -39,19 +39,35 @@ public class ProjectAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = LayoutInflater.from(this.context);
-        View view = inflater.inflate(R.layout.project_item_layout, parent, false);
-        TextView tvTitle = (TextView)view.findViewById(R.id.title);
-        TextView tvDate = view.findViewById(R.id.date);
-        ProgressBar pbRate = view.findViewById(R.id.pb_rate);
-        TextView tvRate = view.findViewById(R.id.tv_rate);
+        ViewHolder viewHolder;
+        if (convertView == null) {
+            viewHolder = new ViewHolder();
+            LayoutInflater inflater = LayoutInflater.from(this.context);
+            convertView = inflater.inflate(R.layout.project_item_layout, parent, false);
+
+            viewHolder.tvTitle = (TextView)convertView.findViewById(R.id.title);
+            viewHolder.tvDate = convertView.findViewById(R.id.date);
+            viewHolder.pbRate = convertView.findViewById(R.id.pb_rate);
+            viewHolder.tvRate = convertView.findViewById(R.id.tv_rate);
+
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
 
         Project project = this.projectList.get(position);
-        tvTitle.setText(project.getProjectName());
-        tvDate.setText(project.getProjectStartTime() );
-        pbRate.setProgress(project.getProjectRate());
-        tvRate.setText(project.getProjectRate() + "%");
+        viewHolder.tvTitle.setText(project.getProjectName());
+        viewHolder.tvDate.setText(project.getProjectStartTime() );
+        viewHolder.pbRate.setProgress(project.getProjectRate());
+        viewHolder.tvRate.setText(project.getProjectRate() + "%");
 
-        return view;
+        return convertView;
+    }
+
+    class ViewHolder {
+        TextView tvTitle;
+        TextView tvDate;
+        ProgressBar pbRate;
+        TextView tvRate;
     }
 }

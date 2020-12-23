@@ -50,64 +50,33 @@ public class InviteAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = LayoutInflater.from(this.context);
-        View view = inflater.inflate(R.layout.notify_item_layout, parent, false);
+        ViewHolder viewHolder;
+        if (convertView == null) {
+            viewHolder = new ViewHolder();
+            LayoutInflater inflater = LayoutInflater.from(this.context);
+            convertView = inflater.inflate(R.layout.notify_item_layout, parent, false);
 
-        TextView tvProject = view.findViewById(R.id.tv_projectName);
-        TextView tvContent = view.findViewById(R.id.tv_content);
-        TextView tvDeal = view.findViewById(R.id.tv_deal);
-        tvDeal.setText("需处理");
+            viewHolder.tvProject = convertView.findViewById(R.id.tv_projectName);
+            viewHolder.tvContent = convertView.findViewById(R.id.tv_content);
+            viewHolder.tvDeal = convertView.findViewById(R.id.tv_deal);
+
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+        viewHolder.tvDeal.setText("需处理");
 
         Invite invite = this.inviteList.get(position);
-        tvProject.setText(invite.getProjectName());
-        tvContent.setText("项目经理" + invite.getInviteNickName() + "邀请你加入项目 [" + invite.getProjectName() + "]");
+        viewHolder.tvProject.setText(invite.getProjectName());
+        viewHolder.tvContent.setText("项目经理" + invite.getInviteNickName() + "邀请你加入项目 [" + invite.getProjectName() + "]");
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setIcon(R.drawable.ic_warn);
-                builder.setTitle("警告");
-                builder.setMessage("确定加入项目【" + invite.getProjectName() + "】吗？");
-                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        JSONObject body = new JSONObject();
-                        StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
-                        Request.clientPost(context, "project/invite/" + invite.getInvite_uid() + "/accept", entity, new NetCallBack() {
-                            @Override
-                            public void onMySuccess(JSONObject result) {
-                                Toast.makeText(context, "加入成功", Toast.LENGTH_LONG).show();
-                            }
+        return convertView;
+    }
 
-                            @Override
-                            public void onMyFailure(String error) {
-                                Toast.makeText(context, error, Toast.LENGTH_LONG).show();
-                            }
-                        });
-                    }
-                });
-                builder.setNegativeButton("拒绝", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        JSONObject body = new JSONObject();
-                        StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
-                        Request.clientPost(context, "project/invite/" + invite.getInvite_uid() + "/reject", entity, new NetCallBack() {
-                            @Override
-                            public void onMySuccess(JSONObject result) {
-                                Toast.makeText(context, "你已拒绝加入该项目", Toast.LENGTH_LONG).show();
-                            }
-
-                            @Override
-                            public void onMyFailure(String error) {
-                                Toast.makeText(context, error, Toast.LENGTH_LONG).show();
-                            }
-                        });
-                    }
-                });
-                builder.show();
-            }
-        });
-        return view;
+    class ViewHolder {
+        TextView tvProject;
+        TextView tvContent;
+        TextView tvDeal;
     }
 }
