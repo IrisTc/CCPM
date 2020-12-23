@@ -7,6 +7,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 public class GlobalData extends Application {
+    private static GlobalData instance;
+
     private String token;
     private String username;
     private String password;
@@ -21,7 +23,12 @@ public class GlobalData extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         Fresco.initialize(this);
+    }
+
+    public static Context getGlobalData() {
+        return instance;
     }
 
     public static void save_account(JSONObject data, Context context) {

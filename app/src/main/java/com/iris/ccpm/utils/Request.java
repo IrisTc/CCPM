@@ -8,6 +8,8 @@ import com.loopj.android.http.RequestParams;
 
 import cz.msebera.android.httpclient.entity.StringEntity;
 
+import static com.iris.ccpm.model.GlobalData.getGlobalData;
+
 public abstract class Request {
     private static final String BASE_URL = "https://find-hdu.com/";
 
@@ -15,7 +17,7 @@ public abstract class Request {
 
 
     public static void clientGet(Context context, String url, NetCallBack cb) {
-        GlobalData app = (GlobalData) context.getApplicationContext();
+        GlobalData app = (GlobalData) getGlobalData();
         client.addHeader("token", app.getToken());
         client.get(BASE_URL + url, cb);
     }
