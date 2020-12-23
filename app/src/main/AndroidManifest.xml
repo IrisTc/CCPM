@@ -16,7 +16,7 @@
 
         <!-- 登录界面 -->
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.login.LoginActivity"
             android:theme="@style/Theme.CCPM.NoActionBar"
             >
             <intent-filter>
@@ -48,7 +48,7 @@
         <activity android:name=".ui.setting.EditAccountActivity"
             android:label="修改资料" />
 
-        <activity android:name=".NotifyActivity"
+        <activity android:name=".activity.notify.NotifyActivity"
             android:label="通知" />
 
         <activity android:name=".TaskDetailActivity"

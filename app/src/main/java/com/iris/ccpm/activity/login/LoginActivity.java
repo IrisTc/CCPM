@@ -1,16 +1,13 @@
-package com.iris.ccpm;
+package com.iris.ccpm.activity.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Layout;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -19,29 +16,21 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.tabs.TabLayout;
+import com.iris.ccpm.MainActivity;
+import com.iris.ccpm.R;
 import com.iris.ccpm.adapter.MypagerAdapter;
 import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
-import com.iris.ccpm.utils.cache;
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-import com.loopj.android.http.ResponseHandlerInterface;
-
-import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 
 import static com.iris.ccpm.utils.cache.getCachedUserInfo;

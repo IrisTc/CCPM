@@ -14,18 +14,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.alibaba.fastjson.JSONObject;
-import com.iris.ccpm.LoginActivity;
+import com.iris.ccpm.activity.login.LoginActivity;
 import com.iris.ccpm.R;
-import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.ui.my.MyViewModel;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
 
-import org.json.JSONException;
-
-import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 
 public class SettingFragment extends Fragment {

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,11 +16,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.tabs.TabLayout;
-import com.iris.ccpm.LoginActivity;
 import com.iris.ccpm.ProjectDetailActivity;
 import com.iris.ccpm.R;
 import com.iris.ccpm.TaskDetailActivity;
@@ -31,9 +28,6 @@ import com.iris.ccpm.adapter.TaskAdapter;
 import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.model.Project;
 import com.iris.ccpm.model.TaskModel;
-import com.iris.ccpm.ui.project.ProjectViewModel;
-import com.iris.ccpm.utils.NetCallBack;
-import com.iris.ccpm.utils.Request;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.iris.ccpm.activity.notify.NotifyActivity;
 import com.iris.ccpm.model.GlobalData;
 
 import androidx.annotation.NonNull;
