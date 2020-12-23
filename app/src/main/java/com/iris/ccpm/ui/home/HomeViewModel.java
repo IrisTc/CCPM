@@ -22,27 +22,15 @@ public class  HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         dynamicList = new MutableLiveData<List<Dynamic>>();
-        Request.clientGet("dynamic", new NetCallBack() {
-            @Override
-            public void onMySuccess(JSONObject result) {
-                JSONArray list = result.getJSONArray("list");
-                String liststring = JSONObject.toJSONString(list);
-                List<Dynamic> dynamics = JSONObject.parseArray(liststring, Dynamic.class);//把字符串转换成集合
-                dynamicList.setValue(dynamics);
-            }
-
-            @Override
-            public void onMyFailure(String error) {
-
-            }
-        });
+        System.out.println("homeview");
+        update();
     }
 
     public void update() {
+        System.out.println("home update");
         Request.clientGet("dynamic", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {
-                System.out.println("project:" + result);
                 JSONArray list = result.getJSONArray("list");
                 String liststring = JSONObject.toJSONString(list);
                 List<Dynamic> dynamics = JSONObject.parseArray(liststring, Dynamic.class);//把字符串转换成集合

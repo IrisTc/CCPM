@@ -24,21 +24,23 @@ public abstract class NetCallBack extends AsyncHttpResponseHandler {
         JSONObject response = JSONObject.parseObject(string);
         System.out.println(response);
 
-        if (response.getInteger("code") == 200) {
-            String data = response.getString("data");
-            if (data != null) {
-                if ((data.substring(0, 1)).equals("[")) {
-                    JSONObject object = new JSONObject();
-                    object.put("list", response.getJSONArray("data"));
-                    onMySuccess(object);
+        if (response != null) {
+            if (response.getInteger("code") == 200) {
+                String data = response.getString("data");
+                if (data != null) {
+                    if ((data.substring(0, 1)).equals("[")) {
+                        JSONObject object = new JSONObject();
+                        object.put("list", response.getJSONArray("data"));
+                        onMySuccess(object);
+                    } else {
+                        onMySuccess(response.getJSONObject("data"));
+                    }
                 } else {
-                    onMySuccess(response.getJSONObject("data"));
+                    onMySuccess(response);
                 }
             } else {
-                onMySuccess(response);
+                onMyFailure(response.getString("msg"));
             }
-        } else {
-            onMyFailure(response.getString("msg"));
         }
     }
 

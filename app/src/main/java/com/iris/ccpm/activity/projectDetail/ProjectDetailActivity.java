@@ -236,7 +236,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         projectDetailViewModel.getMemberList().observe(this, new Observer<List<Member>>() {
             @Override
             public void onChanged(List<Member> members) {
-                MemberAdapter memberAdapter = new MemberAdapter(ProjectDetailActivity.this, project_id, members, ProjectDetailActivity.this);
+                memberList = members;
+                memberAdapter = new MemberAdapter(ProjectDetailActivity.this, project_id, members, ProjectDetailActivity.this);
                 lvMember.setAdapter(memberAdapter);
                 setListViewHeightBasedOnChildren(lvMember, memberAdapter);
             }
