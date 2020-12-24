@@ -22,6 +22,7 @@ import com.iris.ccpm.adapter.ReportAdapter;
 import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.model.Report;
 import com.iris.ccpm.model.TaskModel;
+import com.iris.ccpm.utils.setListViewHeight;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -39,13 +40,11 @@ public class TaskDetailActivity extends AppCompatActivity {
     private TextView taskSynopsis;
     private TextView tvComplete;
     private TextView tvNickname;
-    private TextView tvState;
     private TextView tvPrio;
-    private List<Integer> claimers_uid=new ArrayList<>(0);
     TaskModel task;
     TaskDetailViewModel taskDetailViewModel;
-
-    private int startYear,endYear,startMonth,endMonth,startDay,endDay;
+    ListView lvReport;
+    ReportAdapter reportAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,16 +55,17 @@ public class TaskDetailActivity extends AppCompatActivity {
 
         GlobalData app = (GlobalData) getApplication();
         app.setNow_task_id(task.getTask_uid());
+        taskDetailViewModel = new ViewModelProvider(this).get(TaskDetailViewModel.class);
 
         findView();
         LoadData();
 
-        taskDetailViewModel = new ViewModelProvider(this).get(TaskDetailViewModel.class);
         taskDetailViewModel.getReportList().observe(this, new Observer<List<Report>>() {
             @Override
             public void onChanged(List<Report> reports) {
-                ListView lvReport = findViewById(R.id.lv_report);
-                lvReport.setAdapter(new ReportAdapter(TaskDetailActivity.this, reports));
+                reportAdapter = new ReportAdapter(TaskDetailActivity.this, reports);
+                lvReport.setAdapter(reportAdapter);
+                setListViewHeight.set(lvReport, reportAdapter);
             }
         });
 
@@ -84,6 +84,12 @@ public class TaskDetailActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        taskDetailViewModel.update();
+    }
+
     private void findView() {
         taskName = findViewById(R.id.TaskName);
         tvPrio = findViewById(R.id.tv_prio);
@@ -95,6 +101,7 @@ public class TaskDetailActivity extends AppCompatActivity {
         predictTime = findViewById(R.id.predictEdit);
         restTime = findViewById(R.id.remainEdit);
         taskSynopsis = findViewById(R.id.taskSynopsis);
+        lvReport = findViewById(R.id.lv_report);
     }
 
     public void LoadData() {

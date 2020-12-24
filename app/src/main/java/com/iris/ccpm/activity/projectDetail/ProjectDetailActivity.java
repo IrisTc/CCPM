@@ -41,6 +41,7 @@ import com.iris.ccpm.model.Project;
 import com.iris.ccpm.model.TaskModel;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
+import com.iris.ccpm.utils.setListViewHeight;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -239,7 +240,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                 memberList = members;
                 memberAdapter = new MemberAdapter(ProjectDetailActivity.this, project_id, members, ProjectDetailActivity.this);
                 lvMember.setAdapter(memberAdapter);
-                setListViewHeightBasedOnChildren(lvMember, memberAdapter);
+                setListViewHeight.set(lvMember, memberAdapter);
             }
         });
     }

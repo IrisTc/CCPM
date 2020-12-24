@@ -23,23 +23,25 @@ public class TaskDetailViewModel extends ViewModel {
     public TaskDetailViewModel() {
         GlobalData app = (GlobalData) getGlobalData();
         task_id = app.getNow_task_id();
-
         reportList = new MutableLiveData<>();
-            Request.clientGet("report?task_uid=" + task_id, new NetCallBack(){
+        update();
+    }
 
-                @Override
-                public void onMySuccess(JSONObject result) {
-                    JSONArray list = result.getJSONArray("list");
-                    String liststring = JSONObject.toJSONString(list);
-                    List<Report> reports = JSONObject.parseArray(liststring, Report.class);//把字符串转换成集合
-                    reportList.setValue(reports);
-                }
+    public void update() {
+        Request.clientGet("report?task_uid=" + task_id, new NetCallBack(){
+            @Override
+            public void onMySuccess(JSONObject result) {
+                JSONArray list = result.getJSONArray("list");
+                String liststring = JSONObject.toJSONString(list);
+                List<Report> reports = JSONObject.parseArray(liststring, Report.class);//把字符串转换成集合
+                reportList.setValue(reports);
+            }
 
-                @Override
-                public void onMyFailure(String error) {
+            @Override
+            public void onMyFailure(String error) {
 
-                }
-            });
+            }
+        });
     }
 
     public MutableLiveData<List<Report>> getReportList() {

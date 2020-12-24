@@ -26,6 +26,7 @@ public class ReportActivity extends AppCompatActivity {
     TaskModel task;
     Spinner completeSpinner;
     TextView tvTaskName;
+    TextView tvNickname;
     TextView tvStart;
     TextView tvEnd;
     TextView tvMemo;
@@ -91,6 +92,7 @@ public class ReportActivity extends AppCompatActivity {
         tvPrio.setTextColor(prioTextColors[prio]);
 
         tvTaskName.setText(task.getTaskName());
+        tvNickname.setText(task.getClaimNickName());
         tvStart.setText(task.getTaskStartTime());
         tvEnd.setText(task.getTaskEndTime());
         tvMemo.setText(task.getTaskSynopsis());
@@ -100,6 +102,7 @@ public class ReportActivity extends AppCompatActivity {
 
     private void findView() {
         tvTaskName = findViewById(R.id.tv_taskName);
+        tvNickname = findViewById(R.id.tv_nickname);
         tvStart = findViewById(R.id.tv_startTime);
         tvEnd = findViewById(R.id.tv_endTime);
         tvMemo = findViewById(R.id.tv_memo);
