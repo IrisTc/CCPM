@@ -14,14 +14,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.iris.ccpm.adapter.ReportAdapter;
 import com.iris.ccpm.adapter.TaskDetailSpinnerAdapter;
 import com.iris.ccpm.model.GlobalData;
+import com.iris.ccpm.model.Report;
 import com.iris.ccpm.model.TaskModel;
 import com.iris.ccpm.ui.project.ProjectFragment;
 import com.iris.ccpm.utils.NetCallBack;
@@ -53,6 +56,7 @@ public class TaskDetailActivity extends AppCompatActivity {
     Boolean isManager = false;
     Boolean isClaimer = false;
     TaskModel task;
+    Integer task_id;
 
     private int startYear,endYear,startMonth,endMonth,startDay,endDay;
 
@@ -76,6 +80,8 @@ public class TaskDetailActivity extends AppCompatActivity {
         startYear=startMonth=startDay=endYear=endMonth=endDay=-1;
 
         LoadData();
+
+        getReport();
 
         if (isManager) {
             saveBtn.setVisibility(View.VISIBLE);
@@ -239,10 +245,30 @@ public class TaskDetailActivity extends AppCompatActivity {
         claimerSpinner.setAdapter(ClaimerAdapter);
     }
 
+    public void getReport() {
+        Request.clientGet(TaskDetailActivity.this, "report?task_uid=" + task_id, new NetCallBack(){
+
+            @Override
+            public void onMySuccess(JSONObject result) {
+                JSONArray list = result.getJSONArray("list");
+                String liststring = JSONObject.toJSONString(list);
+                List<Report> reportList = JSONObject.parseArray(liststring, Report.class);//把字符串转换成集合
+                ListView lvReport = findViewById(R.id.lv_report);
+                lvReport.setAdapter(new ReportAdapter(TaskDetailActivity.this, reportList));
+            }
+
+            @Override
+            public void onMyFailure(String error) {
+
+            }
+        });
+    }
+
     public void LoadData(){
         String[] exeItems = {"拒绝","接受","未处理"};
         task=(TaskModel) getIntent().getSerializableExtra("task");
         String project_id = task.getProject_uid();
+        task_id = task.getTask_uid();
         Boolean isCreate = getIntent().getBooleanExtra("isCreate",true);
         if (isCreate){
             project_id = getIntent().getStringExtra("project_id");

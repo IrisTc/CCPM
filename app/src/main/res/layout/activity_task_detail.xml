@@ -258,7 +258,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="80dp"
             android:gravity="center">
 
             <Button
@@ -277,6 +277,11 @@
                 android:text="汇报"
                 android:visibility="gone" />
         </RelativeLayout>
+
+        <ListView
+            android:id="@+id/lv_report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 </ScrollView>
