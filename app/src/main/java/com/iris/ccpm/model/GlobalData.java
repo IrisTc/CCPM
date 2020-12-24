@@ -20,6 +20,7 @@ public class GlobalData extends Application {
     private String synopsis;
     private Integer uid;
     private String now_project_id;
+    private Integer now_task_id;
 
     @Override
     public void onCreate() {
@@ -42,6 +43,14 @@ public class GlobalData extends Application {
         app.setSynopsis(data.getString("synopsis"));
         app.setPosition(data.getString("position"));
         app.setUid(data.getInteger("account_uid"));
+    }
+
+    public Integer getNow_task_id() {
+        return now_task_id;
+    }
+
+    public void setNow_task_id(Integer now_task_id) {
+        this.now_task_id = now_task_id;
     }
 
     public String getNow_project_id() {

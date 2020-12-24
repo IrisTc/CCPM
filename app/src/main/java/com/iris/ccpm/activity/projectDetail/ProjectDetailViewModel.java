@@ -1,22 +1,10 @@
 package com.iris.ccpm.activity.projectDetail;
 
-import android.content.Intent;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.iris.ccpm.R;
-import com.iris.ccpm.TaskDetailActivity;
-import com.iris.ccpm.adapter.DynamicAdapter;
-import com.iris.ccpm.adapter.MemberAdapter;
-import com.iris.ccpm.adapter.TaskAdapter;
 import com.iris.ccpm.model.Dynamic;
 import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.model.Member;

@@ -17,7 +17,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.iris.ccpm.R;
-import com.iris.ccpm.TaskDetailActivity;
+import com.iris.ccpm.activity.taskDetail.TaskDetailActivity;
 import com.iris.ccpm.adapter.MypagerAdapter;
 import com.iris.ccpm.adapter.TaskAdapter;
 import com.iris.ccpm.model.TaskModel;

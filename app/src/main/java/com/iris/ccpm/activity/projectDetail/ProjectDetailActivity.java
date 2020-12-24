@@ -29,7 +29,7 @@ import com.iris.ccpm.EditProjectActivity;
 import com.iris.ccpm.MemberDetailActivity;
 import com.iris.ccpm.MemberSearchActivity;
 import com.iris.ccpm.R;
-import com.iris.ccpm.TaskDetailActivity;
+import com.iris.ccpm.activity.taskDetail.TaskDetailActivity;
 import com.iris.ccpm.adapter.DynamicAdapter;
 import com.iris.ccpm.adapter.MemberAdapter;
 import com.iris.ccpm.adapter.MypagerAdapter;

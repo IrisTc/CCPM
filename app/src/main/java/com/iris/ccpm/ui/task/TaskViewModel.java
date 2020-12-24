@@ -1,18 +1,10 @@
 package com.iris.ccpm.ui.task;
 
-import android.content.Intent;
-import android.view.View;
-import android.widget.AdapterView;
-
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.iris.ccpm.R;
-import com.iris.ccpm.TaskDetailActivity;
-import com.iris.ccpm.adapter.TaskAdapter;
 import com.iris.ccpm.model.TaskModel;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
