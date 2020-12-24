@@ -59,7 +59,19 @@ public class ReportAdapter extends BaseAdapter {
         } else{
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        return null;
+
+        viewHolder.tvNickName.setText(report.getAccountNickName());
+        viewHolder.tvContent.setText(report.getWorkingContent());
+        viewHolder.tvTime.setText(report.getReportTime());
+        viewHolder.tvWorkingTime.setText(report.getWorkingTime());
+        viewHolder.tvRestTime.setText(report.getRestTime());
+
+        Integer state = report.getTaskState();
+        if (state == 1) {
+            viewHolder.tvState.setText("已完成");
+        }
+
+        return convertView;
     }
 
     class ViewHolder {

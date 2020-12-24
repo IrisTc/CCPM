@@ -8,7 +8,7 @@ public class Report {
     private String accountName;
     private Integer report_uid;
     private String accountNickName;
-    private Integer project_uid;
+    private String project_uid;
     private Integer workingTime;
     private Integer taskState;
     private String taskName;
@@ -72,11 +72,11 @@ public class Report {
         this.accountNickName = accountNickName;
     }
 
-    public Integer getProject_uid() {
+    public String getProject_uid() {
         return project_uid;
     }
 
-    public void setProject_uid(Integer project_uid) {
+    public void setProject_uid(String project_uid) {
         this.project_uid = project_uid;
     }
 
