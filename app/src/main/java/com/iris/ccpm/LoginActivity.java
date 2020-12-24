@@ -87,9 +87,8 @@ public class LoginActivity extends AppCompatActivity {
         getUserinfo(this);
 
         if (autofix) {
-            System.out.println("autofix");
-            autoFix();
             cbRemeber.setChecked(true);
+            autoFix();
         }
 
         Intent intent = getIntent();
@@ -295,6 +294,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onMySuccess(JSONObject result) {
                         GlobalData.save_account(result, LoginActivity.this);
                         Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_LONG).show();
+                        finish();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                     }

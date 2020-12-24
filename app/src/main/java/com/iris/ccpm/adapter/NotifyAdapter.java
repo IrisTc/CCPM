@@ -24,7 +24,7 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.entity.StringEntity;
 
-public class NotifyAdapter extends BaseAdapter {
+public class   NotifyAdapter extends BaseAdapter {
     Context context;
     List<Notify> notifyList;
     Integer my_uid;
