@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,46 +25,31 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 public class ReportActivity extends AppCompatActivity {
     TaskModel task;
     Spinner completeSpinner;
+    TextView tvTaskName;
+    TextView tvStart;
+    TextView tvEnd;
+    TextView tvMemo;
+    TextView tvPrio;
+    TextView tvPredictTime;
+    TextView tvRestTime;
+    EditText etWorkhour;
+    EditText etContent;
+    EditText etPreHour;
+    Button btReport;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_add);
 
-        task=(TaskModel) getIntent().getSerializableExtra("task");
-        System.out.println(task);
+        task = (TaskModel) getIntent().getSerializableExtra("task");
 
-        TextView tvTaskName = findViewById(R.id.tv_taskName);
-        TextView tvStart = findViewById(R.id.tv_startTime);
-        TextView tvEnd = findViewById(R.id.tv_endTime);
-        TextView tvMemo = findViewById(R.id.tv_memo);
-        TextView tvPrio = findViewById(R.id.tv_prio);
-        TextView tvPredictTime = findViewById(R.id.tv_predictTime);
-        TextView tvRestTime = findViewById(R.id.tv_restTime);
+        findView();
+        loadData();
 
-        String[] spinnerItems = {"普通","紧急","非常紧急"};
-        int[] prioColors={0xFF7FFFAA,0xFFFF7F50,Color.RED};
-        int[] prioTextColors={Color.BLACK,Color.WHITE,Color.WHITE};
-
-        Integer prio = task.getTaskEmergent();
-        tvPrio.setText(spinnerItems[prio]);
-        tvPrio.setBackgroundColor((prioColors[prio]));
-        tvPrio.setTextColor(prioTextColors[prio]);
-
-        tvTaskName.setText(task.getTaskName());
-        tvStart.setText(task.getTaskStartTime());
-        tvEnd.setText(task.getTaskEndTime());
-        tvMemo.setText(task.getTaskSynopsis());
-        tvPredictTime.setText(task.getTaskPredictHours());
-        tvRestTime.setText(task.getTaskRestHours());
         initSpinner();
         completeSpinner.setSelection(task.getTaskState());
 
-        EditText etWorkhour = findViewById(R.id.et_workhour);
-        EditText etContent = findViewById(R.id.et_content);
-        EditText etPreHour = findViewById(R.id.et_prehour);
-
-        Button btReport = findViewById(R.id.bt_report);
         btReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,16 +67,49 @@ public class ReportActivity extends AppCompatActivity {
 
                     @Override
                     public void onMySuccess(JSONObject result) {
-                        System.out.println(result);
+                        Toast.makeText(ReportActivity.this, "汇报完成", Toast.LENGTH_LONG).show();
+                        finish();
                     }
 
                     @Override
                     public void onMyFailure(String error) {
-
+                        Toast.makeText(ReportActivity.this, error, Toast.LENGTH_LONG).show();
                     }
                 });
             }
         });
+    }
+
+    private void loadData() {
+        String[] spinnerItems = {"普通", "紧急", "非常紧急"};
+        int[] prioColors = {0xFF7FFFAA, 0xFFFF7F50, Color.RED};
+        int[] prioTextColors = {Color.BLACK, Color.WHITE, Color.WHITE};
+
+        Integer prio = task.getTaskEmergent();
+        tvPrio.setText(spinnerItems[prio]);
+        tvPrio.setBackgroundColor((prioColors[prio]));
+        tvPrio.setTextColor(prioTextColors[prio]);
+
+        tvTaskName.setText(task.getTaskName());
+        tvStart.setText(task.getTaskStartTime());
+        tvEnd.setText(task.getTaskEndTime());
+        tvMemo.setText(task.getTaskSynopsis());
+        tvPredictTime.setText(task.getTaskPredictHours());
+        tvRestTime.setText(task.getTaskRestHours());
+    }
+
+    private void findView() {
+        tvTaskName = findViewById(R.id.tv_taskName);
+        tvStart = findViewById(R.id.tv_startTime);
+        tvEnd = findViewById(R.id.tv_endTime);
+        tvMemo = findViewById(R.id.tv_memo);
+        tvPrio = findViewById(R.id.tv_prio);
+        tvPredictTime = findViewById(R.id.tv_predictTime);
+        tvRestTime = findViewById(R.id.tv_restTime);
+        etWorkhour = findViewById(R.id.et_workhour);
+        etContent = findViewById(R.id.et_content);
+        etPreHour = findViewById(R.id.et_prehour);
+        btReport = findViewById(R.id.bt_report);
     }
 
     private void initSpinner() {
@@ -99,11 +118,11 @@ public class ReportActivity extends AppCompatActivity {
         completeSpinner.setDropDownHorizontalOffset(100);
         completeSpinner.setDropDownVerticalOffset(100);
 
-        String[] completeItems = {"未完成","已完成"};
-        int[] completeColors={Color.RED,0xFF7FFFAA};
-        int[] completeTextColors={Color.WHITE,Color.BLACK};
+        String[] completeItems = {"未完成", "已完成"};
+        int[] completeColors = {Color.RED, 0xFF7FFFAA};
+        int[] completeTextColors = {Color.WHITE, Color.BLACK};
 
-        TaskDetailSpinnerAdapter completeAdapter = new TaskDetailSpinnerAdapter(this,completeItems,completeColors,completeTextColors);
+        TaskDetailSpinnerAdapter completeAdapter = new TaskDetailSpinnerAdapter(this, completeItems, completeColors, completeTextColors);
         completeAdapter.setDropDownViewResource(R.layout.task_spinner_item_drop);
         completeSpinner.setAdapter(completeAdapter);
     }

@@ -33,11 +33,6 @@
             android:theme="@style/Theme.CCPM.NoActionBar" />
 
         <activity
-            android:name=".activity.projectDetail.ProjectDetailActivity"
-            android:label="项目详情"
-            android:theme="@style/Theme.CCPM.NoActionBar"/>
-
-        <activity
             android:name=".CreateProjectActivity"
             android:label="新建项目" />
 

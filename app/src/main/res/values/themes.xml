@@ -58,6 +58,14 @@
         <item name="android:layout_marginTop">15dp</item>
     </style>
 
+    <style name="TaskBar">
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
     <style name="introTitle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

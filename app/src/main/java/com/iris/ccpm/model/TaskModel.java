@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 
 public class TaskModel implements Serializable {
     private int claimState;
+    private String claimNickName;
     private int claim_uid;
     private String project_uid;
     private int taskEmergent;
@@ -40,6 +41,14 @@ public class TaskModel implements Serializable {
         taskState=0;
         taskSynopsis="taskSynopsis";
         task_uid=0;
+    }
+
+    public String getClaimNickName() {
+        return claimNickName;
+    }
+
+    public void setClaimNickName(String claimNickName) {
+        this.claimNickName = claimNickName;
     }
 
     public int getClaimState() {
