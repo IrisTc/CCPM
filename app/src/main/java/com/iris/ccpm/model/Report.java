@@ -3,13 +3,13 @@ package com.iris.ccpm.model;
 public class Report {
     private Integer manager_uid;
     private String workingContent;
-    private Integer restTime;
+    private String restTime;
     private Integer task_uid;
     private String accountName;
     private Integer report_uid;
     private String accountNickName;
     private String project_uid;
-    private Integer workingTime;
+    private String workingTime;
     private Integer taskState;
     private String taskName;
     private Integer account_uid;
@@ -30,14 +30,6 @@ public class Report {
 
     public void setWorkingContent(String workingContent) {
         this.workingContent = workingContent;
-    }
-
-    public Integer getRestTime() {
-        return restTime;
-    }
-
-    public void setRestTime(Integer restTime) {
-        this.restTime = restTime;
     }
 
     public Integer getTask_uid() {
@@ -80,11 +72,19 @@ public class Report {
         this.project_uid = project_uid;
     }
 
-    public Integer getWorkingTime() {
+    public String getRestTime() {
+        return restTime;
+    }
+
+    public void setRestTime(String restTime) {
+        this.restTime = restTime;
+    }
+
+    public String getWorkingTime() {
         return workingTime;
     }
 
-    public void setWorkingTime(Integer workingTime) {
+    public void setWorkingTime(String workingTime) {
         this.workingTime = workingTime;
     }
 

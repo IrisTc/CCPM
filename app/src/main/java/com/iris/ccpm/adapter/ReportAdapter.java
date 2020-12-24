@@ -41,8 +41,6 @@ public class ReportAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Report report = getItem(position);
-
         ViewHolder viewHolder;
         if (convertView==null){
             viewHolder = new ViewHolder();
@@ -60,6 +58,7 @@ public class ReportAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        Report report = getItem(position);
         viewHolder.tvNickName.setText(report.getAccountNickName());
         viewHolder.tvContent.setText(report.getWorkingContent());
         viewHolder.tvTime.setText(report.getReportTime());
