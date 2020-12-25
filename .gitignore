@@ -39,3 +39,4 @@ captures/
 # Keystore files
 *.jks
 /app/build/
+/gradle/gradle-6.5-bin.zip
