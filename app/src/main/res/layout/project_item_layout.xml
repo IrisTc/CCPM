@@ -21,7 +21,7 @@
             android:layout_marginRight="5dp">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/project_avatar"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:contentDescription="@string/nav_header_desc"
@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/imageView"
+                android:layout_toRightOf="@+id/project_avatar"
                 android:gravity="center_vertical"
                 android:text="我的项目"
                 android:textColor="@color/black"

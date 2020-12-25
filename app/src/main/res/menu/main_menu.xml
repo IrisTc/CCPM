@@ -6,4 +6,7 @@
         android:orderInCategory="100"
         android:title="新建项目"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_apply"
+        android:title="申请加入项目" />
 </menu>

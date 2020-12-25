@@ -94,6 +94,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_add:{
                 Intent intent = new Intent(this, CreateProjectActivity.class);
                 this.startActivity(intent);
+                break;
+            }
+            case R.id.action_apply:{
+                Intent intent =new Intent(this,ApplyActivity.class);
+                this.startActivity(intent);
+                break;
             }
         }
         return super.onOptionsItemSelected(item);
