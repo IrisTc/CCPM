@@ -37,6 +37,7 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 public class TaskCreateActivity extends AppCompatActivity {
     private Spinner prioritySpinner;
     private Spinner completeSpinner;
+    private TextView tvExe;
     private Button saveBtn;
     private EditText taskName;
     private TextView StartTimeView;
@@ -197,6 +198,7 @@ public class TaskCreateActivity extends AppCompatActivity {
         taskName = (EditText) findViewById(R.id.TaskName);
         prioritySpinner = (Spinner) findViewById(R.id.prioritySpinner);
         completeSpinner = (Spinner) findViewById(R.id.completeSpinner);
+        tvExe = (TextView) findViewById(R.id.ExecuteState);
         saveBtn = (Button) findViewById(R.id.saveBtn);
         StartTimeView = (TextView) findViewById(R.id.StartTime);
         EndTimeView = (TextView) findViewById(R.id.EndTime);

@@ -63,7 +63,7 @@
                 android:id="@+id/ExecuteState"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="未完成"
+                android:text="未处理"
                 android:layout_marginLeft="120dp" />
 
         </RelativeLayout>
