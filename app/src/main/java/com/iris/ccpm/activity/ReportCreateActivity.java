@@ -2,6 +2,7 @@ package com.iris.ccpm.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,6 +10,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,6 +43,7 @@ public class ReportCreateActivity extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_add);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         task = (TaskModel) getIntent().getSerializableExtra("task");
 
@@ -127,5 +130,15 @@ public class ReportCreateActivity extends AppCompatActivity {
         completeSpinner.setAdapter(completeAdapter);
 
         completeSpinner.setSelection(task.getTaskState());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
     }
 }

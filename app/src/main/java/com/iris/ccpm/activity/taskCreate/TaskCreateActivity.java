@@ -1,5 +1,6 @@
 package com.iris.ccpm.activity.taskCreate;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -7,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -52,6 +54,7 @@ public class TaskCreateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_create);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         manager_id = getIntent().getIntExtra("manager_id", -1);
 
@@ -239,5 +242,15 @@ public class TaskCreateActivity extends AppCompatActivity {
         TaskDetailSpinnerAdapter ClaimerAdapter = new TaskDetailSpinnerAdapter(this, ClaimerItems, ClaimerColors, ClaimerTextColors);
         ClaimerAdapter.setDropDownViewResource(R.layout.task_spinner_item_drop);
         claimerSpinner.setAdapter(ClaimerAdapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
     }
 }

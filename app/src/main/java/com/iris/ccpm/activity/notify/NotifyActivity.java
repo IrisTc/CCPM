@@ -2,11 +2,13 @@ package com.iris.ccpm.activity.notify;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -39,6 +41,7 @@ public class NotifyActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         notifyViewModel = new ViewModelProvider(this).get(NotifyViewModel.class);
         setContentView(R.layout.activity_notify);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ListView lvInvite = findViewById(R.id.lv_invite);
         ListView lvApply = findViewById(R.id.lv_apply);
@@ -206,5 +209,15 @@ public class NotifyActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
         builder.show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
     }
 }

@@ -45,6 +45,7 @@ import com.iris.ccpm.utils.setListViewHeight;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import cz.msebera.android.httpclient.entity.StringEntity;
 
@@ -78,6 +79,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
 
         Toolbar toolbar = findViewById(R.id.project_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);//左侧添加一个默认的返回图标
 
         Intent intent  = this.getIntent();
         project = (Project) intent.getSerializableExtra("project");
@@ -136,6 +138,9 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                 addMember();    //点击跳转至添加成员
                 break;
             }
+            case android.R.id.home:
+                finish();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

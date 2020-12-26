@@ -5,12 +5,14 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.fastjson.JSONObject;
@@ -38,6 +40,8 @@ public class EditAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_edit);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         app = (GlobalData) getApplication();
 
         findView();
@@ -98,5 +102,15 @@ public class EditAccountActivity extends AppCompatActivity {
         etPosition = findViewById(R.id.et_position);
         etSynopsis = findViewById(R.id.et_synopsis);
         ivAvatar = findViewById(R.id.iv_avatar);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
     }
 }

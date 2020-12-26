@@ -1,5 +1,6 @@
 package com.iris.ccpm.activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,6 +47,7 @@ public class ProjectCreateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_create);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getDate();  //获取当前日期
         initTabContent();
@@ -118,5 +121,15 @@ public class ProjectCreateActivity extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);       //获取年月日时分秒
         month = calendar.get(Calendar.MONTH)+1;   //获取到的月份是从0开始计数
         day = calendar.get(Calendar.DAY_OF_MONTH);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
     }
 }
