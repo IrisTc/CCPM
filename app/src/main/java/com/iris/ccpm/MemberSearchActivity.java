@@ -30,6 +30,11 @@ public class MemberSearchActivity extends AppCompatActivity {
     TextView btSearch;
     LinearLayout ly;
     String project_id;
+    TextView tvName;
+    TextView tvEmail;
+    TextView tvPosition;
+    SimpleDraweeView ivAvatar;
+    ImageButton btShow;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,10 +43,8 @@ public class MemberSearchActivity extends AppCompatActivity {
 
         Intent intent = this.getIntent();
         project_id = intent.getStringExtra("project_id");
-
-        etSearch = findViewById(R.id.et_search);
-        btSearch = findViewById(R.id.bt_search);
-        ly = findViewById(R.id.ly_find);
+        
+        findView();
 
         btSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,13 +53,6 @@ public class MemberSearchActivity extends AppCompatActivity {
                 Request.clientGet( "/account/" + content, new NetCallBack() {
                     @Override
                     public void onMySuccess(JSONObject result) {
-                        System.out.println(result);
-                        TextView tvName =findViewById(R.id.member_name);
-                        TextView tvEmail = findViewById(R.id.member_email);
-                        TextView tvPosition = findViewById(R.id.member_position);
-                        SimpleDraweeView ivAvatar = findViewById(R.id.member_avatar);
-                        ImageButton btShow = findViewById(R.id.member_personal_button);
-
                         Member member = JSON.toJavaObject(result, Member.class);
 
                         tvName.setText(member.getName());
@@ -81,13 +77,11 @@ public class MemberSearchActivity extends AppCompatActivity {
                                         Request.clientPost(MemberSearchActivity.this, "project/" + project_id + "/invite/" + member.getUsername(), entity, new NetCallBack() {
                                             @Override
                                             public void onMySuccess(JSONObject result) {
-                                                System.out.println(result);
                                                 Toast.makeText(MemberSearchActivity.this, "邀请成功", Toast.LENGTH_LONG).show();
                                             }
 
                                             @Override
                                             public void onMyFailure(String error) {
-                                                System.out.println(error);
                                                 Toast.makeText(MemberSearchActivity.this, error, Toast.LENGTH_LONG).show();
                                             }
                                         });
@@ -110,5 +104,16 @@ public class MemberSearchActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void findView() {
+        etSearch = findViewById(R.id.et_search);
+        btSearch = findViewById(R.id.bt_search);
+        ly = findViewById(R.id.ly_find);
+        tvName =findViewById(R.id.member_name);
+        tvEmail = findViewById(R.id.member_email);
+        tvPosition = findViewById(R.id.member_position);
+        ivAvatar = findViewById(R.id.member_avatar);
+        btShow = findViewById(R.id.member_personal_button);
     }
 }
