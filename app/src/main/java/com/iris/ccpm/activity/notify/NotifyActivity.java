@@ -15,8 +15,10 @@ import androidx.lifecycle.ViewModelProvider;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.iris.ccpm.R;
+import com.iris.ccpm.adapter.ApplyAdapter;
 import com.iris.ccpm.adapter.InviteAdapter;
 import com.iris.ccpm.adapter.NotifyAdapter;
+import com.iris.ccpm.model.Apply;
 import com.iris.ccpm.model.Invite;
 import com.iris.ccpm.model.Member;
 import com.iris.ccpm.model.Notify;
@@ -39,6 +41,7 @@ public class NotifyActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_notify);
 
         ListView lvInvite = findViewById(R.id.lv_invite);
+        ListView lvApply = findViewById(R.id.lv_apply);
         ListView lvNotify = findViewById(R.id.lv_tasknotify);
 
         notifyViewModel.getNotifyList().observe(this, new Observer<List<Notify>>() {
@@ -46,6 +49,60 @@ public class NotifyActivity extends AppCompatActivity implements View.OnClickLis
             public void onChanged(List<Notify> notifys) {
                 notifyList = notifys;
                 lvNotify.setAdapter(new NotifyAdapter(NotifyActivity.this, notifys, (View.OnClickListener) NotifyActivity.this));
+            }
+        });
+
+        notifyViewModel.getApplyList().observe(this, new Observer<List<Apply>>() {
+            @Override
+            public void onChanged(List<Apply> applies) {
+                lvApply.setAdapter(new ApplyAdapter(NotifyActivity.this, applies));
+                lvApply.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Apply apply = applies.get(position);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(NotifyActivity.this);
+                        builder.setIcon(R.drawable.ic_warn);
+                        builder.setTitle("警告");
+                        builder.setMessage("确定同意 " + apply.getApplyAccountNickName() + " 加入项目【" + apply.getProjectName() + "】吗？");
+                        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                JSONObject body = new JSONObject();
+                                StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
+                                Request.clientPost(NotifyActivity.this, "project/apply/" + apply.getApply_uid() + "/accept", entity, new NetCallBack() {
+                                    @Override
+                                    public void onMySuccess(JSONObject result) {
+                                        Toast.makeText(NotifyActivity.this, "用户已加入成功", Toast.LENGTH_LONG).show();
+                                    }
+
+                                    @Override
+                                    public void onMyFailure(String error) {
+                                        Toast.makeText(NotifyActivity.this, error, Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                        });
+                        builder.setNegativeButton("拒绝", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                JSONObject body = new JSONObject();
+                                StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
+                                Request.clientPost(NotifyActivity.this, "project/apply/" + apply.getApply_uid() + "/reject", entity, new NetCallBack() {
+                                    @Override
+                                    public void onMySuccess(JSONObject result) {
+                                        Toast.makeText(NotifyActivity.this, "你已拒绝用户加入该项目", Toast.LENGTH_LONG).show();
+                                    }
+
+                                    @Override
+                                    public void onMyFailure(String error) {
+                                        Toast.makeText(NotifyActivity.this, error, Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                        });
+                        builder.show();
+                    }
+                });
             }
         });
 
