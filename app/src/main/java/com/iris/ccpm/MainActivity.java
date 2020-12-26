@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.iris.ccpm.activity.ApplyCreateActivity;
 import com.iris.ccpm.activity.ProjectCreateActivity;
 import com.iris.ccpm.activity.notify.NotifyActivity;
 import com.iris.ccpm.model.GlobalData;
@@ -96,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_add:{
                 Intent intent = new Intent(this, ProjectCreateActivity.class);
                 this.startActivity(intent);
+            }
+            case R.id.action_apply:{
+                Intent intent = new Intent(this, ApplyCreateActivity.class);
+                this.startActivity(intent);
+                break;
             }
         }
         return super.onOptionsItemSelected(item);

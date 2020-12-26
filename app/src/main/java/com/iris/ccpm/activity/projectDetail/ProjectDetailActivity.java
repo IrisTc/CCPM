@@ -188,6 +188,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         TextView project_motto_text = view.findViewById(R.id.project_motto_text);
         TextView project_time_text = view.findViewById(R.id.project_time_text);
         TextView project_plan_text = view.findViewById(R.id.project_plan);
+        TextView project_uid = view.findViewById(R.id.project_uid);
 
         tvIngNumber = view.findViewById(R.id.ing_number);
         tvDoneNumber = view.findViewById(R.id.done_number);
@@ -202,6 +203,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         project_motto_text.setText(project.getProjectSynopsis());
         project_time_text.setText(project.getProjectStartTime() + "-" + project.getProjectEndTime());
         project_plan_text.setText(project.getProjectPlan());
+        project_uid.setText("唯一标识码：" + project.getProject_uid());
 
         lvMember = view.findViewById(R.id.lv_member);
         Button btMemberAdd = view.findViewById(R.id.bt_member_add);

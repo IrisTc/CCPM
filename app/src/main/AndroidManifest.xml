@@ -64,6 +64,9 @@
 
         <activity android:name=".activity.MemberSearchActivity"
             android:label="搜索用户"/>
+
+        <activity android:name=".activity.ApplyCreateActivity"
+            android:label="加入项目"/>
     </application>
 
 </manifest>

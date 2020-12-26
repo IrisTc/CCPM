@@ -28,6 +28,7 @@ public class TaskDetailViewModel extends ViewModel {
     }
 
     public void update() {
+        System.out.println(task_id + "report");
         Request.clientGet("report?task_uid=" + task_id, new NetCallBack(){
             @Override
             public void onMySuccess(JSONObject result) {
