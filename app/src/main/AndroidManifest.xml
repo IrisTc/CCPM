@@ -51,7 +51,10 @@
             android:label="通知" />
 
         <activity android:name=".activity.taskDetail.TaskDetailActivity"
-            android:label="任务详情"/>
+        android:label="任务详情"/>
+
+        <activity android:name=".activity.taskCreate.TaskCreateActivity"
+            android:label="任务新建"/>
 
         <activity android:name=".MemberDetailActivity"
             android:label="成员资料"/>

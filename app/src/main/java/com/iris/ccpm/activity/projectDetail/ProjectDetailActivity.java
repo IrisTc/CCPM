@@ -29,6 +29,8 @@ import com.iris.ccpm.EditProjectActivity;
 import com.iris.ccpm.MemberDetailActivity;
 import com.iris.ccpm.MemberSearchActivity;
 import com.iris.ccpm.R;
+import com.iris.ccpm.activity.taskCreate.TaskCreateActivity;
+import com.iris.ccpm.activity.taskCreate.TaskCreateViewModel;
 import com.iris.ccpm.activity.taskDetail.TaskDetailActivity;
 import com.iris.ccpm.adapter.DynamicAdapter;
 import com.iris.ccpm.adapter.MemberAdapter;
@@ -155,8 +157,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         TaskModel task = tasks.get(position);
                         Intent intent = new Intent(ProjectDetailActivity.this, TaskDetailActivity.class);
-                        intent.putExtra("isManager", isManager);
-                        intent.putExtra("isCreate",false);
                         intent.putExtra("task", task);
                         startActivity(intent);
                     }
@@ -169,11 +169,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
             addBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(ProjectDetailActivity.this,TaskDetailActivity.class);
-                    intent.putExtra("project_id", project_id);
-                    intent.putExtra("isCreate",true);
-                    intent.putExtra("isManager",isManager);
-                    intent.putExtra("task",new TaskModel());
+                    Intent intent=new Intent(ProjectDetailActivity.this, TaskCreateActivity.class);
+                    intent.putExtra("manager_id", project.getManager_uid());
                     startActivity(intent);
                 }
             });
