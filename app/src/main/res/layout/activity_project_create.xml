@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateProjectActivity"
+    tools:context=".activity.ProjectCreateActivity"
     android:orientation="vertical">
 
     <ScrollView
@@ -55,21 +55,19 @@
                     android:id="@+id/date_picker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:ems="20"
                     android:hint="截止时间（必填）" />
 
             </LinearLayout>
 
 
-            <LinearLayout style="@style/LoginBar">
+            <LinearLayout style="@style/LoginBar"
+                android:orientation="vertical">
 
                 <TextView
                     style="@style/Title"
                     android:text="项目计划:" />
-
-            </LinearLayout>
-
-            <LinearLayout style="@style/LoginBar">
 
                 <EditText
                     android:id="@+id/et_project_plan"
@@ -80,19 +78,18 @@
                     android:inputType="textMultiLine"
                     android:minLines="5"
                     android:padding="5dp"
+                    android:layout_marginTop="5dp"
                     android:hint="简单介绍一下项目计划吧"/>
 
             </LinearLayout>
 
-            <LinearLayout style="@style/LoginBar">
+            <LinearLayout style="@style/LoginBar"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     style="@style/Title"
                     android:text="项目简介:" />
-
-            </LinearLayout>
-
-            <LinearLayout style="@style/LoginBar">
 
                 <EditText
                     android:id="@+id/et_project_synopsis"
@@ -103,6 +100,7 @@
                     android:inputType="textMultiLine"
                     android:minLines="5"
                     android:padding="5dp"
+                    android:layout_marginTop="5dp"
                     android:hint="简单介绍一下项目吧"/>
 
             </LinearLayout>

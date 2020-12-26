@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MenuInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,12 +24,11 @@ import androidx.annotation.NonNull;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.tabs.TabLayout;
-import com.iris.ccpm.EditProjectActivity;
-import com.iris.ccpm.MemberDetailActivity;
-import com.iris.ccpm.MemberSearchActivity;
+import com.iris.ccpm.activity.EditProjectActivity;
+import com.iris.ccpm.activity.MemberDetailActivity;
+import com.iris.ccpm.activity.MemberSearchActivity;
 import com.iris.ccpm.R;
 import com.iris.ccpm.activity.taskCreate.TaskCreateActivity;
-import com.iris.ccpm.activity.taskCreate.TaskCreateViewModel;
 import com.iris.ccpm.activity.taskDetail.TaskDetailActivity;
 import com.iris.ccpm.adapter.DynamicAdapter;
 import com.iris.ccpm.adapter.MemberAdapter;
@@ -62,6 +60,16 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     MemberAdapter memberAdapter;
     View intro_view;
     Boolean isManager = false;
+    ListView lvTask;
+    TextView tvIngNumber;
+    TextView tvDoneNumber;
+    TextView tvOverNumber;
+    TextView tvNoClaimNumber;
+    TextView tvExpireNumber;
+    TextView tvCountNumber;
+    TextView tvMemberNumber;
+    ListView lvDynamic;
+    ListView lvMember;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +92,8 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
 
         findView();
         initTabContent();
+        getData();
+
         tbSelect.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -101,6 +111,12 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        projectDetailViewModel.update();
     }
 
     @Override
@@ -132,7 +148,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         init_intro(intro_view);
 
         View new_view = li.inflate(R.layout.project_detail_new, null, false);
-        init_new(new_view);
+        lvDynamic = new_view.findViewById(R.id.lv_news);
 
         View task_view = li.inflate(R.layout.project_detail_task, null, false);
         init_task(task_view);
@@ -146,23 +162,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
     }
 
     private void init_task(View task_view) {
-        ListView lvTask =task_view.findViewById(R.id.task_list);
-        projectDetailViewModel.getTaskList().observe(this, new Observer<List<TaskModel>>() {
-            @Override
-            public void onChanged(List<TaskModel> tasks) {
-                TaskAdapter adapter = new TaskAdapter(ProjectDetailActivity.this ,R.layout.task_item_layout,tasks);
-                lvTask.setAdapter(adapter);
-                lvTask.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        TaskModel task = tasks.get(position);
-                        Intent intent = new Intent(ProjectDetailActivity.this, TaskDetailActivity.class);
-                        intent.putExtra("task", task);
-                        startActivity(intent);
-                    }
-                });
-            }
-        });
+        lvTask = task_view.findViewById(R.id.task_list);
 
         Button addBtn = task_view.findViewById(R.id.addTaskButton);
         if (isManager) {
@@ -188,13 +188,14 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         TextView project_motto_text = view.findViewById(R.id.project_motto_text);
         TextView project_time_text = view.findViewById(R.id.project_time_text);
         TextView project_plan_text = view.findViewById(R.id.project_plan);
-        TextView tvIngNumber = view.findViewById(R.id.ing_number);
-        TextView tvDoneNumber = view.findViewById(R.id.done_number);
-        TextView tvOverNumber = view.findViewById(R.id.overdue_number);
-        TextView tvNoClaimNumber = view.findViewById(R.id.noclaim_number);
-        TextView tvExpireNumber = view.findViewById(R.id.expiretoday_number);
-        TextView tvCountNumber = view.findViewById(R.id.count_number);
-        TextView tvMemberNumber = view.findViewById(R.id.member_number);
+
+        tvIngNumber = view.findViewById(R.id.ing_number);
+        tvDoneNumber = view.findViewById(R.id.done_number);
+        tvOverNumber = view.findViewById(R.id.overdue_number);
+        tvNoClaimNumber = view.findViewById(R.id.noclaim_number);
+        tvExpireNumber = view.findViewById(R.id.expiretoday_number);
+        tvCountNumber = view.findViewById(R.id.count_number);
+        tvMemberNumber = view.findViewById(R.id.member_number);
 
         project_name_text.setText(project.getProjectName());
         project_date_text.setText(project.getManagerNickName() + " 创建于 " + project.getProjectCreateTime());
@@ -202,6 +203,19 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
         project_time_text.setText(project.getProjectStartTime() + "-" + project.getProjectEndTime());
         project_plan_text.setText(project.getProjectPlan());
 
+        lvMember = view.findViewById(R.id.lv_member);
+        Button btMemberAdd = view.findViewById(R.id.bt_member_add);
+        btMemberAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProjectDetailActivity.this, MemberSearchActivity.class);
+                intent.putExtra("project_id", project_id);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void getData() {
         projectDetailViewModel.getStatistics().observe(this, new Observer<JSONObject>() {
             @Override
             public void onChanged(JSONObject result) {
@@ -217,20 +231,23 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
             }
         });
 
-        ListView lvMember = view.findViewById(R.id.lv_member);
-        getMember(lvMember);
-        Button btMemberAdd = view.findViewById(R.id.bt_member_add);
-        btMemberAdd.setOnClickListener(new View.OnClickListener() {
+        projectDetailViewModel.getTaskList().observe(this, new Observer<List<TaskModel>>() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProjectDetailActivity.this, MemberSearchActivity.class);
-                intent.putExtra("project_id", project_id);
-                startActivity(intent);
+            public void onChanged(List<TaskModel> tasks) {
+                TaskAdapter adapter = new TaskAdapter(ProjectDetailActivity.this ,R.layout.task_item_layout,tasks);
+                lvTask.setAdapter(adapter);
+                lvTask.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        TaskModel task = tasks.get(position);
+                        Intent intent = new Intent(ProjectDetailActivity.this, TaskDetailActivity.class);
+                        intent.putExtra("task", task);
+                        startActivity(intent);
+                    }
+                });
             }
         });
-    }
 
-    private void getMember(ListView lvMember) {
         projectDetailViewModel.getMemberList().observe(this, new Observer<List<Member>>() {
             @Override
             public void onChanged(List<Member> members) {
@@ -240,14 +257,11 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                 setListViewHeight.set(lvMember, memberAdapter);
             }
         });
-    }
 
-    private void init_new(View new_view) {
         projectDetailViewModel.getDynamicList().observe(this, new Observer<List<Dynamic>>() {
             @Override
             public void onChanged(List<Dynamic> dynamics) {
-                ListView lvNew = new_view.findViewById(R.id.lv_news);
-                lvNew.setAdapter(new DynamicAdapter(ProjectDetailActivity.this, dynamics));
+                lvDynamic.setAdapter(new DynamicAdapter(ProjectDetailActivity.this, dynamics));
             }
         });
     }
@@ -308,25 +322,6 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                 intent.putExtra("account_id", member.getAccount_uid());
                 startActivity(intent);
         }
-    }
-
-    public void setListViewHeightBasedOnChildren(ListView listView, MemberAdapter adapter) {
-        // 获取ListView对应的Adapter
-        if (adapter == null) {
-            return;
-        }
-        int totalHeight = 0;
-        for (int i = 0, len = adapter.getCount(); i < len; i++) {
-            // listAdapter.getCount()返回数据项的数目
-            View listItem = adapter.getView(i, null, listView);
-            // 计算子项View 的宽高
-            listItem.measure(0, 0);
-            // 统计所有子项的总高度
-            totalHeight += listItem.getMeasuredHeight();
-        }
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
-        listView.setLayoutParams(params);
     }
 
     private void findView() {

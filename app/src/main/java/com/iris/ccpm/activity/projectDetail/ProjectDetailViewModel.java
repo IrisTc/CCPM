@@ -32,6 +32,10 @@ public class ProjectDetailViewModel extends ViewModel {
         statistics = new MutableLiveData<>();
         memberList = new MutableLiveData<>();
 
+        update();
+    }
+
+    public void update() {
         Request.clientGet("task?claimState=3&project_uid=" + project_id , new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {

@@ -20,6 +20,10 @@ public class ProjectViewModel extends ViewModel {
         myProjectList = new MutableLiveData<>();
         otherProjectList = new MutableLiveData<>();
 
+        update();
+    }
+
+    public void update() {
         Request.clientGet("project?asManager=yes&asMember=no", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {

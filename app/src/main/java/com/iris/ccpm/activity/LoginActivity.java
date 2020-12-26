@@ -1,4 +1,4 @@
-package com.iris.ccpm;
+package com.iris.ccpm.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.android.material.tabs.TabLayout;
+import com.iris.ccpm.MainActivity;
+import com.iris.ccpm.R;
 import com.iris.ccpm.adapter.MypagerAdapter;
 import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.utils.NetCallBack;

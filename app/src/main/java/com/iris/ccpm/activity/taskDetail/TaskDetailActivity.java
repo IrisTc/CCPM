@@ -4,31 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.iris.ccpm.R;
-import com.iris.ccpm.ReportActivity;
+import com.iris.ccpm.activity.ReportCreateActivity;
 import com.iris.ccpm.adapter.ReportAdapter;
 import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.model.Report;
 import com.iris.ccpm.model.TaskModel;
 import com.iris.ccpm.utils.setListViewHeight;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-
-import cz.msebera.android.httpclient.entity.StringEntity;
 
 public class TaskDetailActivity extends AppCompatActivity {
     private TextView tvExe;
@@ -76,7 +67,7 @@ public class TaskDetailActivity extends AppCompatActivity {
             reportBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(TaskDetailActivity.this, ReportActivity.class);
+                    Intent intent = new Intent(TaskDetailActivity.this, ReportCreateActivity.class);
                     intent.putExtra("task", task);
                     startActivity(intent);
                 }

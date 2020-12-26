@@ -5,7 +5,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -16,14 +15,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.iris.ccpm.R;
-import com.iris.ccpm.ReportActivity;
 import com.iris.ccpm.adapter.TaskDetailSpinnerAdapter;
-import com.iris.ccpm.model.GlobalData;
 import com.iris.ccpm.model.Member;
-import com.iris.ccpm.model.TaskModel;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
 

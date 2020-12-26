@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditProjectActivity"
+    tools:context=".activity.EditProjectActivity"
     android:orientation="vertical">
 
     <ScrollView
@@ -52,12 +52,18 @@
 
                 <EditText
                     android:id="@+id/et_rate"
-                    android:layout_width="match_parent"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:ems="20"
                     android:maxLength="3"
                     android:hint="项目进度（必填）"
                     android:inputType="number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text=" / 100"/>
 
             </LinearLayout>
 
@@ -72,20 +78,18 @@
                     android:id="@+id/date_picker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:ems="20"
                     android:hint="截止时间（必填）" />
 
             </LinearLayout>
 
-            <LinearLayout style="@style/LoginBar">
+            <LinearLayout style="@style/LoginBar"
+                android:orientation="vertical">
 
                 <TextView
                     style="@style/Title"
                     android:text="项目计划:" />
-
-            </LinearLayout>
-
-            <LinearLayout style="@style/LoginBar">
 
                 <EditText
                     android:id="@+id/et_project_plan"
@@ -96,19 +100,18 @@
                     android:inputType="textMultiLine"
                     android:minLines="5"
                     android:padding="5dp"
+                    android:layout_marginTop="5dp"
                     android:hint="简单介绍一下项目计划吧"/>
 
             </LinearLayout>
 
-            <LinearLayout style="@style/LoginBar">
+            <LinearLayout style="@style/LoginBar"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     style="@style/Title"
                     android:text="项目简介:" />
-
-            </LinearLayout>
-
-            <LinearLayout style="@style/LoginBar">
 
                 <EditText
                     android:id="@+id/et_project_synopsis"
@@ -119,6 +122,7 @@
                     android:inputType="textMultiLine"
                     android:minLines="5"
                     android:padding="5dp"
+                    android:layout_marginTop="5dp"
                     android:hint="简单介绍一下项目吧"/>
 
             </LinearLayout>

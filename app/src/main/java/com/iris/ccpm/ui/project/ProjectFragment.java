@@ -67,6 +67,12 @@ public class ProjectFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        projectViewModel.update();
+    }
+
     private void findView(View root) {
         vpChosen = (ViewPager) root.findViewById(R.id.vp_chosen);
         tbSelect = (TabLayout) root.findViewById(R.id.tb_detail);

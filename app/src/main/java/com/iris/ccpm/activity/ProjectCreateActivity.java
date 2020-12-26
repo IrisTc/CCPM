@@ -1,4 +1,4 @@
-package com.iris.ccpm;
+package com.iris.ccpm.activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,9 +7,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.iris.ccpm.model.GlobalData;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,13 +19,14 @@ import java.util.Calendar;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.iris.ccpm.MainActivity;
+import com.iris.ccpm.R;
+import com.iris.ccpm.utils.NetCallBack;
+import com.iris.ccpm.utils.Request;
 
-import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
 
-public class CreateProjectActivity extends AppCompatActivity {
+public class ProjectCreateActivity extends AppCompatActivity {
 
     private EditText et_project_name;
     private TextView date_picker;
@@ -45,7 +44,7 @@ public class CreateProjectActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create);
+        setContentView(R.layout.activity_project_create);
 
         getDate();  //获取当前日期
         initTabContent();
@@ -54,24 +53,16 @@ public class CreateProjectActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String start_time = year+"年"+month+"月"+day+"日";
-                System.out.println(start_time);
+                String start_time = year+"-"+month+"-"+day+"-";
                 String project_name = et_project_name.getText().toString();
-                System.out.println(project_name);
                 String end_date = date_picker.getText().toString();
-                System.out.println(end_date);
                 String project_plan = et_project_plan.getText().toString();
-                System.out.println(project_plan);
                 String project_synopsis = et_project_synopsis.getText().toString();
-                System.out.println(project_synopsis);
 
                 if(project_name.equals("") || end_date.equals("")){
-                    Toast.makeText(CreateProjectActivity.this,"请填写完整信息", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ProjectCreateActivity.this,"请填写完整信息", Toast.LENGTH_LONG).show();
                 }
                 else{
-                    GlobalData app = (GlobalData) getApplicationContext();
-                    AsyncHttpClient client = new AsyncHttpClient();
-                    String url = "https://find-hdu.com/project";
                     JSONObject body = new JSONObject();
                     body.put("projectName", project_name);
                     body.put("projectStartTime",start_time);
@@ -79,31 +70,19 @@ public class CreateProjectActivity extends AppCompatActivity {
                     body.put("projectPlan", project_plan);
                     body.put("projectSynopsis", project_synopsis);
                     StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
-                    client.addHeader("Token", app.getToken());
-                    client.post(CreateProjectActivity.this, url, entity, "application/json", new AsyncHttpResponseHandler() {
+                    Request.clientPost(ProjectCreateActivity.this, "project", entity, new NetCallBack(){
+
                         @Override
-                        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                            for (int i = 0; i < headers.length; i++) {
-                                String name = headers[i].getName();
-                                String value = headers[i].getValue();
-                                Log.d("header", "Http request: Name—>" + name + ",Value—>" + value);
-                            }
-                            String content = new String(responseBody);
-                            Log.d("response:", content);
-                            JSONObject jsonObject = JSONObject.parseObject(content);
-                            Integer code = jsonObject.getInteger("code");
-                            Log.d("code:", code.toString());
-                            if(code != 200){
-                                Toast.makeText(CreateProjectActivity.this, "创建失败", Toast.LENGTH_LONG).show();
-                            }else{
-                                Toast.makeText(CreateProjectActivity.this, "创建成功", Toast.LENGTH_LONG).show();
-                                back();
-                            }
+                        public void onMySuccess(JSONObject result) {
+                            Toast.makeText(ProjectCreateActivity.this, "创建成功", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(ProjectCreateActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
 
                         @Override
-                        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                            Toast.makeText(CreateProjectActivity.this, "请检查网络设置", Toast.LENGTH_LONG).show();
+                        public void onMyFailure(String error) {
+                            Toast.makeText(ProjectCreateActivity.this, "创建失败", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -120,7 +99,7 @@ public class CreateProjectActivity extends AppCompatActivity {
                         System.out.println(selected_year+"年"+selected_month+"月"+selected_day+"日");
                     }
                 };
-                DatePickerDialog dialog=new DatePickerDialog(CreateProjectActivity.this, 0,listener,year,month-1,day);//后边三个参数为显示dialog时默认的日期，月份从0开始，0-11对应1-12个月
+                DatePickerDialog dialog=new DatePickerDialog(ProjectCreateActivity.this, 0,listener,year,month-1,day);//后边三个参数为显示dialog时默认的日期，月份从0开始，0-11对应1-12个月
                 dialog.show();
             }
         });
@@ -139,11 +118,5 @@ public class CreateProjectActivity extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);       //获取年月日时分秒
         month = calendar.get(Calendar.MONTH)+1;   //获取到的月份是从0开始计数
         day = calendar.get(Calendar.DAY_OF_MONTH);
-    }
-
-    private void back(){
-        Intent intent = new Intent(this,MainActivity.class);
-        this.startActivity(intent);
-        finish();
     }
 }

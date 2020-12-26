@@ -1,8 +1,7 @@
-package com.iris.ccpm;
+package com.iris.ccpm.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,15 +13,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.fastjson.JSONObject;
+import com.iris.ccpm.R;
 import com.iris.ccpm.adapter.TaskDetailSpinnerAdapter;
 import com.iris.ccpm.model.TaskModel;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;
-import com.loopj.android.http.AsyncHttpClient;
 
 import cz.msebera.android.httpclient.entity.StringEntity;
 
-public class ReportActivity extends AppCompatActivity {
+public class ReportCreateActivity extends AppCompatActivity {
     TaskModel task;
     Spinner completeSpinner;
     TextView tvTaskName;
@@ -46,10 +45,8 @@ public class ReportActivity extends AppCompatActivity {
         task = (TaskModel) getIntent().getSerializableExtra("task");
 
         findView();
-        loadData();
-
         initSpinner();
-        completeSpinner.setSelection(task.getTaskState());
+        loadData();
 
         btReport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,17 +61,17 @@ public class ReportActivity extends AppCompatActivity {
                 body.put("restWorkingTime", preHour);
                 body.put("taskState", state);
                 StringEntity entity = new StringEntity(body.toJSONString(), "UTF-8");
-                Request.clientPut(ReportActivity.this, "task/" + task.getTask_uid(), entity, new NetCallBack() {
+                Request.clientPut(ReportCreateActivity.this, "task/" + task.getTask_uid(), entity, new NetCallBack() {
 
                     @Override
                     public void onMySuccess(JSONObject result) {
-                        Toast.makeText(ReportActivity.this, "汇报完成", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ReportCreateActivity.this, "汇报完成", Toast.LENGTH_LONG).show();
                         finish();
                     }
 
                     @Override
                     public void onMyFailure(String error) {
-                        Toast.makeText(ReportActivity.this, error, Toast.LENGTH_LONG).show();
+                        Toast.makeText(ReportCreateActivity.this, error, Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -113,10 +110,10 @@ public class ReportActivity extends AppCompatActivity {
         etContent = findViewById(R.id.et_content);
         etPreHour = findViewById(R.id.et_prehour);
         btReport = findViewById(R.id.bt_report);
+        completeSpinner = findViewById(R.id.completeSpinner);
     }
 
     private void initSpinner() {
-        completeSpinner = findViewById(R.id.completeSpinner);
         completeSpinner.setDropDownWidth(400);
         completeSpinner.setDropDownHorizontalOffset(100);
         completeSpinner.setDropDownVerticalOffset(100);
@@ -128,5 +125,7 @@ public class ReportActivity extends AppCompatActivity {
         TaskDetailSpinnerAdapter completeAdapter = new TaskDetailSpinnerAdapter(this, completeItems, completeColors, completeTextColors);
         completeAdapter.setDropDownViewResource(R.layout.task_spinner_item_drop);
         completeSpinner.setAdapter(completeAdapter);
+
+        completeSpinner.setSelection(task.getTaskState());
     }
 }

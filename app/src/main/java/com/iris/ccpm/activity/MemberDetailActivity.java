@@ -1,4 +1,4 @@
-package com.iris.ccpm;
+package com.iris.ccpm.activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.iris.ccpm.R;
 import com.iris.ccpm.model.Member;
 import com.iris.ccpm.utils.NetCallBack;
 import com.iris.ccpm.utils.Request;

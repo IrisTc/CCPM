@@ -1,28 +1,16 @@
 package com.iris.ccpm.adapter;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
-
-import com.alibaba.fastjson.JSONObject;
-import com.iris.ccpm.MemberSearchActivity;
 import com.iris.ccpm.R;
-import com.iris.ccpm.model.Dynamic;
 import com.iris.ccpm.model.Invite;
-import com.iris.ccpm.utils.NetCallBack;
-import com.iris.ccpm.utils.Request;
 
 import java.util.List;
-
-import cz.msebera.android.httpclient.entity.StringEntity;
 
 public class InviteAdapter extends BaseAdapter {
     Context context;

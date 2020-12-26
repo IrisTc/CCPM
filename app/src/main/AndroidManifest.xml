@@ -16,7 +16,7 @@
 
         <!-- 登录界面 -->
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:theme="@style/Theme.CCPM.NoActionBar"
             >
             <intent-filter>
@@ -37,11 +37,11 @@
             android:theme="@style/Theme.CCPM.NoActionBar"/>
 
         <activity
-            android:name=".CreateProjectActivity"
+            android:name=".activity.ProjectCreateActivity"
             android:label="新建项目" />
 
         <activity
-            android:name=".ReportActivity"
+            android:name=".activity.ReportCreateActivity"
             android:label="汇报任务" />
 
         <activity android:name=".ui.setting.EditAccountActivity"
@@ -56,13 +56,13 @@
         <activity android:name=".activity.taskCreate.TaskCreateActivity"
             android:label="任务新建"/>
 
-        <activity android:name=".MemberDetailActivity"
+        <activity android:name=".activity.MemberDetailActivity"
             android:label="成员资料"/>
         <activity
-            android:name=".EditProjectActivity"
+            android:name=".activity.EditProjectActivity"
             android:label="更新项目" />
 
-        <activity android:name=".MemberSearchActivity"
+        <activity android:name=".activity.MemberSearchActivity"
             android:label="搜索用户"/>
     </application>
 
