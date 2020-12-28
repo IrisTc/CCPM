@@ -92,7 +92,7 @@ public class TaskCreateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                     JSONObject obj = new JSONObject();
-                    if (Integer.parseInt(String.valueOf(restTime.getText())) < 0 || Integer.parseInt(String.valueOf(predictTime.getText())) <= 0) {
+                    if (restTime.getText().equals("") || predictTime.getText().equals("")) {
                         Toast.makeText(TaskCreateActivity.this, "预估/剩余工时不得小于0", Toast.LENGTH_LONG).show();
                         return;
                     }
