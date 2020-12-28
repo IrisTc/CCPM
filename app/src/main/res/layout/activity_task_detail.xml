@@ -200,6 +200,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/taskTitle"
+                android:layout_marginLeft="2dp"
                 android:text="预估工时" />
 
             <TextView

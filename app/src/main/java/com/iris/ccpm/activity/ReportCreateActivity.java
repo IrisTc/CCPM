@@ -63,9 +63,6 @@ public class ReportCreateActivity extends AppCompatActivity {
     Button btReport;
     ImageButton ivCamera;
     ImageView ivImage;
-    private File file;
-    private Uri imageUri;
-    private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 999;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,26 +75,6 @@ public class ReportCreateActivity extends AppCompatActivity {
         findView();
         initSpinner();
         loadData();
-
-        initPhotoError();
-        ivCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("camera");
-                //第二个参数是需要申请的权限
-                if (ContextCompat.checkSelfPermission(ReportCreateActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(ReportCreateActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    //权限还没有授予
-                    ActivityCompat.requestPermissions(ReportCreateActivity.this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE},
-                            MY_PERMISSIONS_REQUEST_CALL_PHONE);
-                } else {
-                    //权限已经被授予
-                    takePhoto();
-                }
-            }
-        });
 
         btReport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,74 +106,6 @@ public class ReportCreateActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-
-        if (requestCode == MY_PERMISSIONS_REQUEST_CALL_PHONE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                takePhoto();
-            } else {
-                // Permission Denied
-                Toast.makeText(ReportCreateActivity.this, "Permission Denied", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        System.out.println(imageUri);
-
-        //0 拍照
-            try {
-                System.out.println("uri" + getContentResolver().openInputStream(imageUri));
-                Bitmap bit = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
-                ivImage.setImageBitmap(bit);
-            } catch (Exception e) {
-                System.out.println(e);
-                Toast.makeText(this, "程序崩溃", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-    void takePhoto() {
-        System.out.println(Environment.getExternalStorageDirectory().getAbsolutePath());
-        File folder = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"");
-        if(!folder.exists()){
-            folder.mkdir();
-        }
-
-        /**
-         * 这里将时间作为不同照片的名称
-         */
-        file = new File(folder, "cache.jpg");
-
-        /**
-         * 如果该文件已经存在，则删除它，否则创建一个
-         */
-        try {
-            if (file.exists()) {
-                file.delete();
-            }
-            file.createNewFile();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        /**
-         * 隐式打开拍照的Activity，并且传入CROP_PHOTO常量作为拍照结束后回调的标志
-         */
-        imageUri = Uri.fromFile(file);
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        startActivityForResult(intent, 2);
-    }
-
-    private void initPhotoError() {
-        // android 7.0系统解决拍照的问题
-        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-        StrictMode.setVmPolicy(builder.build());
-        builder.detectFileUriExposure();
-    }
-
     private void loadData() {
         String[] spinnerItems = {"普通", "紧急", "非常紧急"};
         int[] prioColors = {0xFF7FFFAA, 0xFFFF7F50, Color.RED};
@@ -212,8 +121,8 @@ public class ReportCreateActivity extends AppCompatActivity {
         tvStart.setText(task.getTaskStartTime());
         tvEnd.setText(task.getTaskEndTime());
         tvMemo.setText(task.getTaskSynopsis());
-        tvPredictTime.setText(task.getTaskPredictHours());
-        tvRestTime.setText(task.getTaskRestHours());
+        tvPredictTime.setText(task.getTaskPredictHours() + " 小时");
+        tvRestTime.setText(task.getTaskRestHours() + " 小时");
     }
 
     private void findView() {
@@ -230,8 +139,6 @@ public class ReportCreateActivity extends AppCompatActivity {
         etPreHour = findViewById(R.id.et_prehour);
         btReport = findViewById(R.id.bt_report);
         completeSpinner = findViewById(R.id.completeSpinner);
-        ivCamera = (ImageButton) findViewById(R.id.iv_camera);
-        ivImage = findViewById(R.id.iv_image);
     }
 
     private void initSpinner() {
