@@ -1,9 +1,11 @@
 package com.iris.ccpm.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.iris.ccpm.MainActivity;
 import com.iris.ccpm.R;
 
+import com.iris.ccpm.activity.projectDetail.ProjectDetailActivity;
 import com.iris.ccpm.adapter.DynamicAdapter;
 import com.iris.ccpm.adapter.ProjectAdapter;
 import com.iris.ccpm.model.Dynamic;
@@ -56,6 +59,29 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(List<Dynamic> dynamics) {
                 lvNew.setAdapter(new DynamicAdapter(getActivity(), dynamics));
+                lvNew.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String project_id = dynamics.get(position).getProject_uid();
+                        Request.clientGet("project/" + project_id, new NetCallBack() {
+                            @Override
+                            public void onMySuccess(JSONObject result) {
+                                Project project = JSONObject.parseObject(result.toJSONString(), Project.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("project", project);
+
+                                Intent intent = new Intent(getActivity(), ProjectDetailActivity.class);
+                                intent.putExtras(bundle);
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onMyFailure(String error) {
+
+                            }
+                        });
+                    }
+                });
             }
         });
         return root;
