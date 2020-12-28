@@ -28,6 +28,10 @@ public class NotifyViewModel extends ViewModel {
         applyList = new MutableLiveData<>();
         notifyList = new MutableLiveData<>();
 
+        update();
+    }
+
+    public void update() {
         Request.clientGet("project/getInvite", new NetCallBack() {
             @Override
             public void onMySuccess(JSONObject result) {

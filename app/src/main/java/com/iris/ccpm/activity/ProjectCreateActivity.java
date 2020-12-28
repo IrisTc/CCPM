@@ -56,7 +56,7 @@ public class ProjectCreateActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String start_time = year+"-"+month+"-"+day+"-";
+                String start_time = year+"-"+month+"-"+day;
                 String project_name = et_project_name.getText().toString();
                 String end_date = date_picker.getText().toString();
                 String project_plan = et_project_plan.getText().toString();

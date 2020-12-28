@@ -46,6 +46,7 @@ public class TaskCreateActivity extends AppCompatActivity {
     private String[] claimers;
     private List<Integer> claimers_uid = new ArrayList<>(0);
     Integer manager_id;
+    String project_id;
     TaskCreateViewModel taskCreateViewModel;
 
     private int startYear, endYear, startMonth, endMonth, startDay, endDay;
@@ -57,6 +58,8 @@ public class TaskCreateActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         manager_id = getIntent().getIntExtra("manager_id", -1);
+        project_id = getIntent().getStringExtra("project_id");
+
 
         taskCreateViewModel = new ViewModelProvider(this).get(TaskCreateViewModel.class);
         taskCreateViewModel.getMemberList().observe(this, new Observer<List<Member>>() {
@@ -85,9 +88,6 @@ public class TaskCreateActivity extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Boolean isCreate = getIntent().getBooleanExtra("isCreate", true);
-                String project_id = getIntent().getStringExtra("project_id");
-                if (isCreate) {
                     JSONObject obj = new JSONObject();
                     if (Integer.parseInt(String.valueOf(restTime.getText())) < 0 || Integer.parseInt(String.valueOf(predictTime.getText())) <= 0) {
                         Toast.makeText(TaskCreateActivity.this, "预估/剩余工时不得小于0", Toast.LENGTH_LONG).show();
@@ -119,6 +119,14 @@ public class TaskCreateActivity extends AppCompatActivity {
                             Toast.makeText(TaskCreateActivity.this, error, Toast.LENGTH_LONG).show();
                         }
                     });
+                }
+        });
+
+        predictTime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    restTime.setText(predictTime.getText());
                 }
             }
         });

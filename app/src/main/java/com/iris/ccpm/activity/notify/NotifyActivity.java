@@ -76,6 +76,7 @@ public class NotifyActivity extends AppCompatActivity implements View.OnClickLis
                                     @Override
                                     public void onMySuccess(JSONObject result) {
                                         Toast.makeText(NotifyActivity.this, "用户已加入成功", Toast.LENGTH_LONG).show();
+                                        notifyViewModel.update();
                                     }
 
                                     @Override
@@ -94,6 +95,7 @@ public class NotifyActivity extends AppCompatActivity implements View.OnClickLis
                                     @Override
                                     public void onMySuccess(JSONObject result) {
                                         Toast.makeText(NotifyActivity.this, "你已拒绝用户加入该项目", Toast.LENGTH_LONG).show();
+                                        notifyViewModel.update();
                                     }
 
                                     @Override
@@ -129,7 +131,8 @@ public class NotifyActivity extends AppCompatActivity implements View.OnClickLis
                                 Request.clientPost(NotifyActivity.this, "project/invite/" + invite.getInvite_uid() + "/accept", entity, new NetCallBack() {
                                     @Override
                                     public void onMySuccess(JSONObject result) {
-                                        Toast.makeText(NotifyActivity.this, "加入成功", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(NotifyActivity.this, "你已加入成功", Toast.LENGTH_LONG).show();
+                                        notifyViewModel.update();
                                     }
 
                                     @Override
@@ -148,6 +151,7 @@ public class NotifyActivity extends AppCompatActivity implements View.OnClickLis
                                     @Override
                                     public void onMySuccess(JSONObject result) {
                                         Toast.makeText(NotifyActivity.this, "你已拒绝加入该项目", Toast.LENGTH_LONG).show();
+                                        notifyViewModel.update();
                                     }
 
                                     @Override
@@ -181,6 +185,7 @@ public class NotifyActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onMySuccess(JSONObject result) {
                         Toast.makeText(NotifyActivity.this, "您已接受任务", Toast.LENGTH_LONG).show();
+                        notifyViewModel.update();
                     }
 
                     @Override
@@ -199,6 +204,7 @@ public class NotifyActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onMySuccess(JSONObject result) {
                         Toast.makeText(NotifyActivity.this, "您已拒绝任务", Toast.LENGTH_LONG).show();
+                        notifyViewModel.update();
                     }
 
                     @Override

@@ -175,6 +175,7 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(ProjectDetailActivity.this, TaskCreateActivity.class);
+                    intent.putExtra("project_id", project.getProject_uid());
                     intent.putExtra("manager_id", project.getManager_uid());
                     startActivity(intent);
                 }
@@ -294,24 +295,11 @@ public class ProjectDetailActivity extends AppCompatActivity implements View.OnC
                             @Override
                             public void onMySuccess(JSONObject result) {
                                 Toast.makeText(ProjectDetailActivity.this, "移除成功！", Toast.LENGTH_SHORT).show();
-                                Request.clientGet("project/" + project_id + "/member", new NetCallBack() {
-                                    @Override
-                                    public void onMySuccess(JSONObject result) {
-                                        JSONArray list = result.getJSONArray("list");
-                                        String liststring = JSONObject.toJSONString(list);
-                                        memberList = JSONObject.parseArray(liststring, Member.class);//把字符串转换成集合
-                                    }
-
-                                    @Override
-                                    public void onMyFailure(String error) {
-                                    }
-                                });
-                                memberAdapter.notifyDataSetChanged();
+                                projectDetailViewModel.update();
                             }
 
                             @Override
                             public void onMyFailure(String error) {
-                                System.out.println("error:" + error);
                                 Toast.makeText(ProjectDetailActivity.this, error, Toast.LENGTH_LONG).show();
                             }
                         });
